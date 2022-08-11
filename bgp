@@ -11,7 +11,11 @@ pres + session = convert that thing we want to transmit into serialized info
 layer 5 and 6 are useless, we skip them most of the time
 3 net/ip protocol = Packets / add ip(src/dest) + other headers
 2 Data Link = Frames / deal with mac address / (error detection..) small pieces ARP(Mac->IP) | deals with mac adrs
-1 Physical = frame into ones and zeros (electricity doesn't has direction aka broadcast)
+              corrects errors that may occur in the physical layer
+              Sliding Window Protocol (https://youtu.be/LnbvhoxHn8M)
+
+1 Physical = frame into ones and zeros (electricity doesn't has direction aka broadcast) 
+            converts the digital bits into electrical, radio, or optical signals. 
 
 this data(binary) will be sent to everyone
 then send them up to make sense
@@ -29,6 +33,7 @@ the network become very busy
 switch works smarter(looks at the content) + remembers (tables)
 
 *******************************************************************
+
 protocol data unit (PDU) is a single unit of information transmitted among peer entities of a computer network.
 (packet, segment, datagram)
 PDU (Protocol Data Unit) is a generic term used to refer to the packets in different layers of the OSI model.
@@ -61,8 +66,8 @@ Datagram:
 While TCP uses packets in connection-oriented protocols, datagrams are used in UDP
 
 Application = Data
-Transprt = Segments/Datagrams
-Internet = Packets
+Transprt = Segments/Datagrams  : ACK, packet segmentation(MTU)
+Internet = Packets = addressing , routing
 Data Link = Frames
 Physical = bit
 (https://youtu.be/-hkF4OyxzNQ)
@@ -88,3 +93,25 @@ a broadcast storm can be instigated for the purpose of a denial of service (DOS)
 
 
 Layer 2 loops
+
+
+In Open Systems Interconnection (OSI) terminology, a service data unit (SDU) is a unit of data that has been passed down from an OSI layer or sublayer to a lower layer. This unit of data (SDU) has not yet been encapsulated into a protocol data unit (PDU) by the lower layer. That SDU is then encapsulated into the lower layer's PDU and the process continues until reaching the PHY, physical, or lowest layer of the OSI stack.
+
+At the receiving device the data is passed from the lowest to the highest layer as a series of SDUs while being successively stripped from each layer's header or footer until reaching the topmost layer, where the last of the data is consumed
+
+
+Fragmentation is a phenomenon in which storage space is used inefficiently, reducing capacity or performance and often both.
+Segmentation is the process of dividing the computer’s primary memory into segments or sections.
+
+Fragmentation, 
+a process in which free memory space is broken into little pieces. In this, memory blocks cannot be allocated to processes due to their small size and such blocks remain unused. It usually occurs in dynamic memory allocation system when many of free blocks are too small to satisfy any request
+
+====
+
+ip = location of a person (router friendly)
+MAC = name of the person (switch friendly)
+(https://youtu.be/FkiTOMn-XGw?list=PLBlnK6fEyqRgMCUAG0XRw78UA8qnv6jEx)
+
+reaching the city (find the network)
+reaching the appartment (find the host)
+reaching the right person (the port)
