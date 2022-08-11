@@ -1,0 +1,90 @@
+
+Hussein Nasser ytube channel
+
+APS TND
+
+7 Application = 
+6 Presentation = Encrypts if necessary
+5 Session = session id
+pres + session = convert that thing we want to transmit into serialized info
+4 trans = segment, manage ports(src/dest)
+layer 5 and 6 are useless, we skip them most of the time
+3 net/ip protocol = Packets / add ip(src/dest) + other headers
+2 Data Link = Frames / deal with mac address / (error detection..) small pieces ARP(Mac->IP) | deals with mac adrs
+1 Physical = frame into ones and zeros (electricity doesn't has direction aka broadcast)
+
+this data(binary) will be sent to everyone
+then send them up to make sense
+Data link receives all the frames checks adres and rejects them if not the right host
+each layer towards up removes its added headers..
+
+
+switch goes only to layer 2
+hub to layer 3
+router 3
+
+Hub = im not smart enough so broadcast the frame to all, machines accept it or drops it (its for me or not)
+the network become very busy
+
+switch works smarter(looks at the content) + remembers (tables)
+
+*******************************************************************
+protocol data unit (PDU) is a single unit of information transmitted among peer entities of a computer network.
+(packet, segment, datagram)
+PDU (Protocol Data Unit) is a generic term used to refer to the packets in different layers of the OSI model.
+
+Packet:
+
+data bytes have a specific format in the OSI networking model since each layer has its specific unit
+
+The basic unit of communication between a source and a destination in a network is a packet.
+Data sent through the network is divided into packets
+
+Fragment:
+
+Packets can often be larger than the MTU, so each packet is also divided into smaller pieces of data called fragments.
+each network has its own MTU capacity. 
+If the packet length is bigger than the MTU, the network layer checks the Don’t Fragment (DF) flag associated with the packet. If the DF flag is \mathsf{1}, we discard the packet. Otherwise, the network layer decides the size of the fragments, 
+create the header, encapsulate the fragments within the header, and send them to the next layer:
+
+Frame:
+The main difference between a packet and a frame is the association with the OSI layers.
+
+While a packet is the unit of data used in the network layer, 
+a frame is the unit of data used in the OSI model's data link layer. 
+Frames are not much different from packets. They contain more information about the data. 
+The process of framing consists of adding some extra bytes into the packet turning it into the frame
+
+Packet + extra info/headers = Frame
+
+Datagram:
+While TCP uses packets in connection-oriented protocols, datagrams are used in UDP
+
+Application = Data
+Transprt = Segments/Datagrams
+Internet = Packets
+Data Link = Frames
+Physical = bit
+(https://youtu.be/-hkF4OyxzNQ)
+
+
+=======
+
+VLAN is a layer 2 concept (frames)
+ VLAN tagging
+
+A switching loop or bridge loop occurs in computer networks when there is more than one layer 2 path between two endpoints
+(e.g. multiple connections between two network switches or two ports on the same switch connected to each other).
+The loop creates broadcast storms as broadcasts and multicasts are forwarded by switches out every port, 
+the switch or switches will repeatedly rebroadcast the broadcast messages flooding the network.
+Since the layer-2 header does not include a time to live (TTL) field, if a frame is sent into a looped topology,it can loop forever
+
+Routing loops are tempered by a time to live (TTL) field in layer-3 packet header; Packets will circulate the routing loop until their TTL value expires.
+ No TTL concept exists at layer 2 and packets in a switching loop will circulate until dropped
+
+broadcast storm
+A packet that induces such a storm is occasionally nicknamed a Chernobyl packet.
+a broadcast storm can be instigated for the purpose of a denial of service (DOS) 
+
+
+Layer 2 loops
