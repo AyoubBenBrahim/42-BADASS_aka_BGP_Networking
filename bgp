@@ -13,12 +13,18 @@ pres + session = convert that thing we want to transmit into serialized info
 4 trans = segment, manage ports(src/dest)
             segmentation and reassembly
             speed matching mechanism
+            TCP/UDP
 layer 5 and 6 are useless, we skip them most of the time
 3 net/ip protocol = Packets / add ip(src/dest) + other headers
-2 Data Link = moving frames
+2 Data Link = moving frames(HDLC/PPP) - error control/ flow control(speed matching)
               Frames / deal with mac address / (error detection..) small pieces ARP(Mac->IP) | deals with mac adrs
               corrects errors that may occur in the physical layer
               Sliding Window Protocol (https://youtu.be/LnbvhoxHn8M)
+              High-level Data Link Control (HDLC) is a group of communication protocols of the data link layer for transmitting data between network points or nodes. Since it is a data link protocol, data is organized into frames. A frame is transmitted via the network to the destination that verifies its successful arrival.
+
+              Multiple Access Protocols = avoid talking simultaneously aka collision 
+                                          Random access protocol (CSMA/CD..) = any station has the right to acess and send data
+                                          CSMA = carrier(medium/chanel) sense protocol aka "listen before talk"
 
 1 Physical = frame into ones and zeros (electricity doesn't has direction aka broadcast) 
             converts the digital bits into electrical, radio, or optical signals.
@@ -97,6 +103,8 @@ broadcast storm
 A packet that induces such a storm is occasionally nicknamed a Chernobyl packet.
 a broadcast storm can be instigated for the purpose of a denial of service (DOS) 
 
+==> Spanning Tree Protocol (STP) prevents broadcast loops, blocks the redundant link(will be used when active links or ports goes down)
+    (https://youtu.be/GSKoQ8ZR8rw?list=PLBlnK6fEyqRgMCUAG0XRw78UA8qnv6jEx)
 
 Layer 2 loops
 
