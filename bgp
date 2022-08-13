@@ -16,7 +16,7 @@ pres + session = convert that thing we want to transmit into serialized info
             TCP/UDP
 layer 5 and 6 are useless, we skip them most of the time
 3 net/ip protocol = Packets / add ip(src/dest) + other headers
-2 Data Link = moving frames(HDLC/PPP) - Hop to Hop transmission
+2 Data Link = moving frames(HDLC/PPP) - Hop to Hop data delivery
               MAC + LLC
               - error control/ flow control(speed matching)
               Frames / deal with mac address / (error detection..) small pieces ARP(Mac->IP) | deals with mac adrs
