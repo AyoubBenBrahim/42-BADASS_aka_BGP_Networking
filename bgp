@@ -129,3 +129,8 @@ MAC = name of the person (switch friendly)
 reaching the city (find the network)
 reaching the appartment (find the host)
 reaching the right person (the port)
+
+==
+
+ip adr says who are u in the network
+subnet mask says who are ur neighbors in the network
