@@ -3,7 +3,7 @@ Hussein Nasser ytube channel
 OSI model
 ===
 
-APS TND
+APS TNDF
 
 7 Application = 
 6 Presentation = Encrypts if necessary, zip
@@ -16,7 +16,8 @@ pres + session = convert that thing we want to transmit into serialized info
             TCP/UDP
 layer 5 and 6 are useless, we skip them most of the time
 3 net/ip protocol = Packets / add ip(src/dest) + other headers
-2 Data Link = moving frames(HDLC/PPP) - error control/ flow control(speed matching)
+2 Data Link = moving frames(HDLC/PPP) - Hop to Hop transmission
+              - error control/ flow control(speed matching)
               Frames / deal with mac address / (error detection..) small pieces ARP(Mac->IP) | deals with mac adrs
               corrects errors that may occur in the physical layer
               Sliding Window Protocol (https://youtu.be/LnbvhoxHn8M)
