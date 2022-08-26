@@ -147,7 +147,7 @@ Switch => three operations :
 
 RIP = routing information protocol
 RIP uses the nbr of hopes(routers) between networks (max 15 router)
-OSPF calculates the cost of a route/ based on bandwidth (link-state protocols)
+OSPF calculates the cost of a route/ based on bandwidth (link-state protocols) = bandwidth-based metrics
 RIP cares only about nbr of routers in the path/ uses hopes to determine the best route = distance based
 
 a value of each route = metric
