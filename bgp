@@ -154,3 +154,5 @@ a value of each route = metric
 
 OSPF cost link = 100 000 000 / bandwidth
 100 Mbps ==> 100 000 000 / 100 000 000 bps = 1
+
+right protocol/route is chosen based on administrative distances(rank)..
