@@ -139,7 +139,7 @@ subnet mask says who are ur neighbors in the network
 Switch => three operations :
         learn
         flood
-        forwrd
+        forward
         
  ====
  internet is nothing more than a series of routers
