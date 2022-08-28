@@ -165,7 +165,9 @@ EGP
 
   In simpler terms, an AS can be thought of as a connected group of IP networks managed by a single administrative entity, such as a university, government, commercial organization or other type of internet service provider (ISP).
 
-  AS is sometimes described as a set of routers that are managed by a single administrative entity. The AS appears to other autonomous systems as having a unified interior routing plan that provides a consistent picture of the networks available in that AS.
+  AS is sometimes described as a set of routers that are managed by a single administrative entity. 
+
+  An AS has many different subnetworks with combined routing logic and common routing policies.
 
   Autonymous systems exchange routing information based on their routing policies
 
