@@ -156,3 +156,23 @@ OSPF cost link = 100 000 000 / bandwidth
 100 Mbps ==> 100 000 000 / 100 000 000 bps = 1
 
 right protocol/route is chosen based on administrative distances(rank)..
+
+
+IGP
+EGP
+
+ autonomous system (AS) is a collection of connected Internet Protocol (IP) routing prefixes under the control of one or more network operators on behalf of a single administrative entity or domain, that presents a common and clearly defined routing policy to the Internet
+
+  In simpler terms, an AS can be thought of as a connected group of IP networks managed by a single administrative entity, such as a university, government, commercial organization or other type of internet service provider (ISP).
+
+  AS is sometimes described as a set of routers that are managed by a single administrative entity. The AS appears to other autonomous systems as having a unified interior routing plan that provides a consistent picture of the networks available in that AS.
+
+  Autonymous systems exchange routing information based on their routing policies
+
+  Each autonomous system is assigned a globally unique number called an Autonomous System Number (ASN). The number serves as an identifier for the AS and is used when exchanging routing information with other autonomous systems.
+
+  (IANA) manages the ASN system and coordinates the distribution of ASNs across five global regions. 
+
+  BGP can direct packets along the most efficient routes to their target autonomous systems.
+
+  Networks within an autonomous system communicate routing information to each other using one or more interior gateway protocols. In contrast, communications between autonomous systems rely on a single exterior gateway protocol -- Border Gateway Protocol -- which makes it possible to share routing information and efficiently route data packets between autonomous systems
