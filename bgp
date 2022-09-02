@@ -1,6 +1,7 @@
 
-Hussein Nasser ytube channel
 OSI model
+Hussein Nasser ytube channel
+
 ===
 
 APS TNDF
@@ -182,3 +183,27 @@ EGP
 =====
 
   QoS ==> type of service (ToS) field = a packet would be placed in a prioritized outgoing queue,
+
+  ==
+
+  An ISP (internet service provider) is a company that provides individuals and organizations access to the internet and other related services. An ISP has the equipment and the telecommunication line access required to have a point of presence on the internet for the geographic area served.
+
+ISPs make it possible for customers to access the internet while also providing additional services such as email,
+
+
+
+*******
+
+Intra-, which comes from the Latin intra (meaning “within”)
+
+inter, meaning "among, between”
+
+IGP / intra-autonomous system routing protocols (OSPF - RIP)
+EGP/ inter-AS routing protocols (BGP)
+
+https://sabercomlogica.com/en/intra-as-and-inter-as-routing/
+
+EGP / IGP: OSPF EIGRP BGP RIP IS-IS
+https://youtu.be/KjNYEzEBRD8
+
+BGP = the glue that holds internet together 
