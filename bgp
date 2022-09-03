@@ -194,6 +194,12 @@ ISPs make it possible for customers to access the internet while also providing 
 
 *******
 
+
+To use an analogy, an AS is like a city with many streets. A network prefix is one street, and an IP address is one particular house. Network packets are like cars traveling from one house to another, and BGP is like a navigation app that helps them take the best possible route.
+
+https://www.imperva.com/learn/ddos/border-gateway-protocol-bgp/
+======
+
 Intra-, which comes from the Latin intra (meaning “within”)
 
 inter, meaning "among, between”
@@ -207,3 +213,44 @@ EGP / IGP: OSPF EIGRP BGP RIP IS-IS
 https://youtu.be/KjNYEzEBRD8
 
 BGP = the glue that holds internet together 
+
+the ISP uses an IGP internally to build reachability between its routers. It then implements iBGP on top of this to actually create a coherent routing policy within its autonomous system and then eBGP to carefully expose network information to- and receive information from- other autonomous systems.
+https://www.quora.com/What-is-the-need-of-iBGP-when-we-have-other-routing-protocols-like-EIGP-OSPF
+
+Both IS-IS and Open Shortest Path First(OSPF) are link state protocols, and both use the same Dijkstra algorithm for computing the best path through the network
+IS-IS differs from OSPF in the way that "areas" are defined and routed between. IS-IS routers are designated as being: Level 1 (intra-area); Level 2 (inter area); or Level 1–2 (both). Routing information is exchanged between Level 1 routers and other Level 1 routers of the same area, and Level 2 routers can only form relationships and exchange information with other Level 2 routers. Level 1–2 routers exchange information with both levels and are used to connect the inter area routers with the intra area routers.
+
+In OSPF, areas are delineated on the interface such that an area border router (ABR) is actually in two or more areas at once, effectively creating the borders between areas inside the ABR, whereas in IS-IS area borders are in between routers, designated as Level 2 or Level 1–2. The result is that an IS-IS router is only ever a part of a single area.
+
+
+ISIS runs on top of data link layer(encapsulated in Data link layer), whereas OSPF runs on top of IP
+
+
+ administrative distance of OSPF is 110 and ISIS is 115.
+
+ ====
+
+ So, BGP performs “path vector” routing by advertising a vector of paths (lists of ASes) rather than just distances (hop counts.)
+
+ Path-vector routing protocol : It is different from the distance vector routing and link state routing. 
+ A path vector protocol guarantees loop free paths through the network by recording each hop the routing advertisement traverses through the network.
+
+ Each entry in the routing table contains the destination network, the next router and the path to reach the destination. 
+
+ Updates that have looped through the network and returned to the same node are easily detected and discarded.
+
+ advertise the reachability of networks
+ It has three phases:
+    Initiation
+    Sharing
+    Updating
+
+    =====
+
+    Why use iBGP inside an Autonomous System, if IGP protocols fulfill the need for internal communication:
+    
+    iBGP isn't really used for internal routing, it is used by all your eBGP routers to share their routes.
+    
+    EBGP exchanges internet (i.e. global) prefixes/routes from other Autonomous systems (EBGP peers). To reach those prefixes, someone should distribute/advertise across the internal network, IBGP comes to the rescue. IBGP advertises these global prefixes to the routers within the Autonomous System (AS). Why not IGP does the same? As IGP is quite chatty (i.e. in fact not designed for handling a large number of routes),
+
+    https://networkengineering.stackexchange.com/questions/3909/why-use-ibgp-inside-an-autonomous-system-if-igp-protocols-fulfill-the-need-for
