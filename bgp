@@ -254,3 +254,69 @@ ISIS runs on top of data link layer(encapsulated in Data link layer), whereas OS
     EBGP exchanges internet (i.e. global) prefixes/routes from other Autonomous systems (EBGP peers). To reach those prefixes, someone should distribute/advertise across the internal network, IBGP comes to the rescue. IBGP advertises these global prefixes to the routers within the Autonomous System (AS). Why not IGP does the same? As IGP is quite chatty (i.e. in fact not designed for handling a large number of routes),
 
     https://networkengineering.stackexchange.com/questions/3909/why-use-ibgp-inside-an-autonomous-system-if-igp-protocols-fulfill-the-need-for
+
+
+
+    do sh ip route rip
+
+int fa1/0
+interface fastEthernet0/0
+
+ip add ......
+router
+router ospf 1
+int fa1/0 ==> enable ospf on this interface
+ip ospf
+ip ospf 1 area 0 (interface belongs to)
+
+******
+
+redistribution of routes
+
+===
+int fa 1/0
+ip add 40.1.1.1 255.....
+router bgp 1 (==> ASN)
+neighbor 40.1.1.2 255.255.255.252 remote-as 2
+do sh ip bgp summ
+
+ip address 10.10.1.65 255.255.255.224
+
+
+
+
+OSPF
+
+ Link-state advertisements 
+
+  how updates are sent between areas. 
+These updates are called link-state advertisements , or LSAs. An LSA is an OSPF multicast that describes 
+a routing change or routing update to other routers or areas. 
+
+
+Each network segment needs a designated router, known as the DR
+ it is the job of the DR to multicast the update to all routers within its area. 
+ A backup designated router (BDR) must also be selected. This router becomes the DR if the DR becomes 
+unavailable. 
+
+
+You configure OSPF much like you configure other routing protocols: use the router command to 
+establish the protocol and a process number, and use the network command to tell the router which 
+
+networks it's responsible for. It's easy to become confused: with OSPF the network command takes a 
+wildcard mask, not a subnet mask. 
+
+router ospf  99
+  network 10.10.1.0 0.0.0.255 area 0
+
+  Here, we establish an OSPF routing process with the process ID 99. This routing process is responsible for 
+the network 10.10.1.0/24, which belongs to area 0. Therefore, this router is part of the OSPF backbone 
+
+area. Do not confuse the process ID (99) with the area ID (0).
+
+ASBR (autonomous system border router)
+
+
+192.168.2.0 0.0.0.255
+that wildcard masks look like subnet masks, but they aren't;
+Wildcard = 255 - Subnet
