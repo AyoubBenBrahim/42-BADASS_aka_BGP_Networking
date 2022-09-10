@@ -257,6 +257,20 @@ ISIS runs on top of data link layer(encapsulated in Data link layer), whereas OS
 
 
 
+====
+
+Multiprotocol Label Switching (MPLS) => a packet forwarding technology ==>label Switching =>faster lookup => ip header is still there
+
+An MPLS-capable router is often referred to as a label- switched router
+MPLS-capable router need not extract the destination IP address and perform a lookup of the longest prefix match in the forwarding table.
+
+In a nutshell, packets in an MPLS network are prefixed with an MPLS header (called a label stack). 
+The label stack is the only thing examined by the MPLS switches
+Therefore, no traditional routing table lookups are required, which in theory makes this a much faster solution than more traditional IP-based solutions. 
+- Network Warrior
+
+====
+
     do sh ip route rip
 
 int fa1/0
@@ -281,6 +295,12 @@ neighbor 40.1.1.2 255.255.255.252 remote-as 2
 do sh ip bgp summ
 
 ip address 10.10.1.65 255.255.255.224
+
+show ip route
+show ip ospf interface
+
+show ip ospf neighbor
+(This command gives you a list of OSPF neighbors that are directly connected to the router)
 
 
 
@@ -309,7 +329,9 @@ wildcard mask, not a subnet mask.
 router ospf  99
   network 10.10.1.0 0.0.0.255 area 0
 
-  Here, we establish an OSPF routing process with the process ID 99. This routing process is responsible for 
+Here, we establish an OSPF routing process with the process ID 99. This routing process is responsible for 
+although they are frequently called AS numbers, the numbers associated with EIGRP and OSPF routing processes are really just process IDs
+
 the network 10.10.1.0/24, which belongs to area 0. Therefore, this router is part of the OSPF backbone 
 
 area. Do not confuse the process ID (99) with the area ID (0).
@@ -320,3 +342,122 @@ ASBR (autonomous system border router)
 192.168.2.0 0.0.0.255
 that wildcard masks look like subnet masks, but they aren't;
 Wildcard = 255 - Subnet
+
+=======
+
+route summarization
+
+you should notice that there are four routes pointing to 172.16.1.1 for the various 10.x.x.x networks. 
+We can simplify the routing table
+
+
+====
+BGP
+
+We don't provide a network mask, as BGP assumes the old classful addressing scheme when a mask isn't provided explicitly.
+
+router bgp 500
+network 10.10.2.0 mask 255.255.224.0
+
+Next, we need to define our routing peers with the neighbor command. This step
+also defines whether we are using iBGP or eBGP. If our neighbor router has the same AS number, we are using iBGP. If our neighbor has a different AS number, we are configuring eBGP. In this case, we configured a neighbor with a different AS number, meaning that we are using eBGP. 
+
+router bgp 500
+neighbor 192.168.1.5 remote-as 400
+
+By default, BGP summarizes routes on class boundaries.
+
+ Configuring "no auto-summary" disables automatic summarization.
+
+ When an iBGP router advertises a route, it advertises the next hop of the route as it learned it. The next-hop-self keyword (used with the neighbor command)
+tells the router to rewrite the route's next hop as itself.
+
+===
+
+ Circuit Switching vs. Packet Switching vs Message Switching
+https://youtu.be/-HlJ4psu5aU
+
+************
+VXLAN
+
+Extensible: able to be extended or stretched; extendable.
+
+Network virtualization
+
+VXLAN is the most commonly used protocol to create overlay networks that sit on top of the physical network, 
+
+What Problem Does VXLAN Solve?
+
+Data centers have rapidly increased their server virtualization over the past decade
+
+VXLAN is a technology that allows you to segment your networks (as VLANs do) but also solves the scaling limitation of VLANs and provides benefits that VLANs can
+
+How Does VXLAN Work?
+VXLAN tunneling protocol that encapsulates Layer 2 Ethernet frames in Layer 3 UDP packets, enables you to create virtualized Layer 2 subnets, or segments, that span physical Layer 3 networks. Each Layer 2 subnet is uniquely identified by a VXLAN network identifier (VNI) that segments traffic.
+
+The entity that performs the encapsulation and decapsulation of packets is called a VXLAN tunnel endpoint (VTEP).
+
+----
+
+ Overlay Network 
+
+overlay = cover/layer
+something laid as a covering over something else.
+
+An overlay network is a computer network based on another network. 
+An overlay network separates network services from the underlying infrastructure by encapsulating a packet into another packet.
+Using nested networks, multiple layers of network abstraction can be created to run virtual network layers
+
+Network overlays are a method of using software virtualization to create additional layers of network abstraction 
+
+endpoints designated by an identification tag
+
+We need overlay networks due to the limitations of the underlay network.
+An underlay network, as the name implies, is the underlying physical infrastructure of overlay networks.
+
+On an underlay network, devices such as switches, routers, load balancers, and firewalls can be interconnected.
+
+The underlay network can be a Layer 2 or Layer 3 network. A typical example of Layer 2 underlay network is an Ethernet network, on which VLANs are created.
+
+Overlay Network (VXLAN, NVGRE, SST, GRE, NVO3, and EVPN)
+
+To get rid of the limitations of underlay networks, virtual overlay networks can be created over underlay networks using network virtualization technologies.
+
+Tunnels are established between interconnected overlay devices.
+
+When sending a data packet, a device adds a new IP header and a tunnel header to the data packet and shields the inner IP header. The data packet is then forwarded based on the new IP header. When the data packet is received by another device, the device removes the outer IP header and tunnel header to obtain the original data packet. 
+
+ extra overheads
+
+ The scalability is high. For example, a VLAN supports a maximum of 4096 discriminators, whereas a VXLAN provides a maximum of 16 million discriminators.
+
+https://info.support.huawei.com/info-finder/encyclopedia/en/Overlay+network.html
+
+Ethernet Virtual Private Network (EVPN)
+
+
+Virtual eXtensible Local Area Network (VXLAN) is one of the Network Virtualization over Layer 3 technologies 
+an extension to Virtual Local Area Network (VLAN)
+
+ VXLAN encapsulates a Layer 2 Ethernet frame into a UDP packet and transmits the packet over a Layer 3 network.
+ VXLAN network identifier (VNI) that is similar to a VLAN ID to a VXLAN header. 
+
+ VXLAN is essentially a tunneling technology.
+
+  It establishes a logical tunnel on the IP network between the source and destination network devices to encapsulate user-side packets and forward them through the tunnel. 
+
+
+VXLAN has become the mainstream technology for constructing data center networks
+
+
+What Are the Differences Between VXLAN and VLAN?
+-----
+
+VLAN is as a traditional network isolation technology. In accordance with standards, a maximum of about 4k VLANs are available, which cannot meet the tenant isolation requirements of large data centers. In addition, each VLAN is a small and fixed Layer 2 virtual network, which does not support large-scale dynamic VM migration.
+
+VXLAN overcomes the preceding disadvantages of VLAN. VXLAN uses the 24-bit VNI field (as shown in Figure 1-5) to identify up to 16M tenants, compared to a maximum of 4k tenants in VLAN. 
+
+  https://support.huawei.com/enterprise/en/doc/EDOC1100086966
+
+  VTEP ==> VXLAN Tunnel Endpoint 
+  VNI  ==> VXLAN Network Identifier 
