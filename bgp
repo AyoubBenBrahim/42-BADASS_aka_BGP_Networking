@@ -457,7 +457,160 @@ VLAN is as a traditional network isolation technology. In accordance with standa
 
 VXLAN overcomes the preceding disadvantages of VLAN. VXLAN uses the 24-bit VNI field (as shown in Figure 1-5) to identify up to 16M tenants, compared to a maximum of 4k tenants in VLAN. 
 
+
+during VXLAN packet encapsulation, a 24-bit VNI is added to a VXLAN packet
+A VNI identifies a tenant.
+
   https://support.huawei.com/enterprise/en/doc/EDOC1100086966
 
   VTEP ==> VXLAN Tunnel Endpoint 
   VNI  ==> VXLAN Network Identifier 
+
+
+  ====
+
+  spine-leaf architecture
+
+  a two-layer network topology composed of spine and leaf switches.
+
+  Three-Tier data center networks were the generally recommended data center network design in the past. They worked very well when most of the traffic moved North-South (from outside the data center in) or vice versa. A packet flows to the core, is routed to the correct distribution switch, then forwarded on to the access switch where the server was connected; 
+
+  A spine-leaf architecture is a data center network topology that consists of two switching layers—a spine and a leaf. The leaf layer consists of access switches that aggregate traffic from servers and connect directly to the spine or network core. Spine switches interconnect all leaf switches 
+
+  https://forum.huawei.com/enterprise/en/spine-leaf-vs-three-tier-network-architecture/thread/782313-100723
+
+  The spine-leaf architecture consists of only two layers of switches: spine and leaf switches. The spine layer consists of switches that perform routing and work as the core of the network. The leaf layer involves access switches that connect to servers, storage devices, and other end-users. This structure helps data center networks reduce hop count and reduce network latency.
+
+  https://community.fs.com/blog/leaf-spine-with-fs-com-switches.html
+
+  ====
+
+  the difference between a subinterface and a loopbackinterface?
+
+  There is no physicality to a Loopback (Lo).  There's no physical port, there's no cable, and it doesn't actually go anywhere.  I think of a Lo as a placeholder for an IP address, and since a Lo never goes down, the IP address is always available.
+
+  Sub-ints are subdivisions of an actual physical connection.  It's associated with an actual port, an actual cable, and it actually does go somewhere, and carries traffic.
+
+A loop back interface is a software interface which can be used to emulate a physical interface. By default, router doesn’t have any loopback interfaces (loopback interfaces are not enabled by default), but they can easily be created. 
+
+  Loop back interface is a virtual interface that sits directly under the IOS. IOS crash or hardware failure will affect this interface.
+
+  The loopback interface is used by a local system to test if its own network interface is working. A message is sent from the local system to the loopback interface address (default IP address 127.0.0.1 with IPv4). If the loopback interface receives the message then the system knows its network interface is working properly. The loopback interface is never used to send data to another machine.
+
+  IP datagrams sent by a host to a 127.x.x.x loopback address are not passed down to the data link layer for transmission. Instead, they “loop back” to the source device at the IP level. In essence, this represents a “short-circuiting” of the normal protocol stack; data is sent by a device's layer three IP implementation and then immediately received by it.
+
+The purpose of the loopback range is testing of the TCP/IP protocol implementation on a host. Since the lower layers are short-circuited, sending to a loopback address allows the higher layers (IP and above) to be effectively tested without the chance of problems at the lower layers manifesting themselves.
+
+
+
+===> "You can also configure the loopback address as the Router ID for routing protocols like OSPF and BGP."
+https://study-ccna.com/loopback-interface-loopback-address/
+
+
+
+Loopback interface’s IP Address determines a router’s OSPF Router ID. A loopback interface is always up and allows Border Gateway Protocol (BGP) neighborship between two routers to stay up even if one of the outbound physical interface connected between the routers is down. 
+https://www.omnisecu.com/cisco-certified-network-associate-ccna/what-is-loopback-interface-in-a-router.php
+
+
+
+
+What is OSPF Router ID
+https://www.omnisecu.com/cisco-certified-network-associate-ccna/what-is-ospf-router-id-and-how-to-configure-ospf-router-id.php
+
+
+
+Service providers typically choose between OSPF and IS-IS as their IGP.
+
+Each router stores the information in their link-state database (LSDB). Routers send LSAs to their neighbours who forward them to their neighbours until every router in the network area has received them – 
+this process is called flooding.
+
+*****************************
+
+Ethernet VPN (EVPN)
+
+VXLAN = L2 frame encapsulated in UDP + ID for VPNs
+VXLAN Header
+
+EVPN = a succesor of VPLS (Virtual Private LAN Service)
+MPLS
+
+VPLS = a way to provide Ethernet-based multipoint to multipoint communication over MPLS networks.
+
+ EVPN is just a successor of MPLS based L2VPN/L3VPN and that VXLAN can work on itself by just manual setup or multicast flood-and-learn. 
+
+ MPLS = IPVPN
+ MPLS = L2.5
+ VPLS= L2 VPN
+
+a WAN behaves like LAN
+
+ virtual private LAN service (VPLS) ensures that geographically isolated user sites can communicate over metropolitan area networks (MANs) and wide-area networks (WANs) as if they were on the same local area network (LAN). 
+
+ MPLS network is a Layer 2 switched network that allows users to communicate with each other similarly to communication over a LAN.
+
+ VPLS becomes increasingly important for enterprises setting up branches in different regions. 
+
+VPLS is a specific MPLS-based Ethernet technology that supports P2MP communication.
+
+VPLS integrates the advantages of both Ethernet and MPLS to provide a comprehensive multipoint communication solution. By emulating traditional LAN functions, VPLS enables users on different LANs to communicate with each other over MPLS networks as if they were on the same LAN.
+=====
+
+
+ P2MP vs P2P (Point-to-Point and Point-to-MultiPoint)
+ ------>
+ in the context of telecommunication/connection
+
+
+P2P = links two endpoints 
+P2MP = For businesses with two or more locations, allows three or more separate points to work 
+
+In the context of telecommunication, a point to point communication (also known as P2P) is an established connection between two nodes that can be used to communicate back and forth. 
+
+=====
+
+As an MPLS-based point-to-multipoint (P2MP) Layer 2 Virtual Private Network (L2VPN) service provided over a public network, the virtual private LAN service (VPLS) ensures that geographically isolated user sites can communicate over metropolitan area networks (MANs) and wide-area networks (WANs) as if they were on the same local area network (LAN). VPLS is also called the transparent LAN service (TLS).
+
+Users located in different geographical regions communicate with each other over different provider edge (PE) devices. An MPLS network is a Layer 2 switched network that allows users to communicate with each other similarly to communication over a LAN.
+
+https://forum.huawei.com/enterprise/en/vpls-vs-mpls-what-s-the-difference/thread/776591-861
+
+VPLS 
+securely and seamlessly connect multiple LANs over the Internet, making them appear as if they were all on the same LAN. 
+
+creating a virtualized Ethernet
+ VPLS creates a simulated 'pseudo-LAN' environment. 
+
+see the image
+https://www.fiber-optic-tutorial.com/vpls-vs-mpls-whats-difference.html
+
+
+VXLAN to discover neighbors:
+  ==> Flood and learn = to build MAC tables (consumes a lot) 
+  ==> BGP EVPN (VTEP switches share info with BGP)
+  https://youtu.be/RSbbIMwgUys
+
+  =====
+
+  why using VXLAN and not VLAN
+  -----------------
+  2^12 vs 2^24
+
+  VXLAN is a tunneling encapsulation protocol that uses mac in UDP encapsulation.
+
+  STP and you have multiple redundancy links between the switches, only one would be sanctionable 
+  cannot use half of the link efficiently,
+
+  VXLAN maps VLAN ID into the VXLAN VNID. Instead of just carrying the VLANs within the same layer2 domain, you can stretch the VLAN from one location to another over layer3 or underlay network. 
+
+  https://getlabsdone.com/what-is-vxlan-overlay-and-underlay-networks/
+
+  The traditional network devices cannot read the VXLAN packet, to use VXLAN you need to use VTEP known as vxlan tunnel endpoint device. VTEP’s can encapsulate and decapsulate the VXLAN packets; there are two types of VTEPs. Hardware-based and software-based. VTEP’s are usually configured with IP addresses.
+
+
+  To make it simpler, let me put it this way:
+
+Have you ever worked in virtualization such as VMware or KVM?
+
+In virtualization, the host where you have the VM’s resides is called the Host machine (the hypervisor), and the VM’s are called Guest VM’s. 
+
+Similarly, The physical networks are called the Underlay network, and the network that runs on top of the physical networks is called the overlay network.
