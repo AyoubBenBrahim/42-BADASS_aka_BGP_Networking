@@ -469,7 +469,11 @@ A VNI identifies a tenant.
 
   ====
 
-  spine-leaf architecture
+  spine-leaf architecture / Clos topology for data center networks
+
+more spins =  more bandwidth
+low cost
+Data Center = horizontal(east west) traffic
 
   a two-layer network topology composed of spine and leaf switches.
 
@@ -477,11 +481,15 @@ A VNI identifies a tenant.
 
   A spine-leaf architecture is a data center network topology that consists of two switching layers—a spine and a leaf. The leaf layer consists of access switches that aggregate traffic from servers and connect directly to the spine or network core. Spine switches interconnect all leaf switches 
 
+
   https://forum.huawei.com/enterprise/en/spine-leaf-vs-three-tier-network-architecture/thread/782313-100723
 
   The spine-leaf architecture consists of only two layers of switches: spine and leaf switches. The spine layer consists of switches that perform routing and work as the core of the network. The leaf layer involves access switches that connect to servers, storage devices, and other end-users. This structure helps data center networks reduce hop count and reduce network latency.
 
   https://community.fs.com/blog/leaf-spine-with-fs-com-switches.html
+
+
+The spine simply ensures that VTEP-to-VTEP communication is done efficiently between different leafs by using the underlay IP network
 
   ====
 
@@ -566,6 +574,8 @@ P2MP = For businesses with two or more locations, allows three or more separate 
 
 In the context of telecommunication, a point to point communication (also known as P2P) is an established connection between two nodes that can be used to communicate back and forth. 
 
+A multicast routing protocol is a mechanism for constructing a loop-free shortest path from a source host that sends data to the multiple destinations that receives the data. 
+
 =====
 
 As an MPLS-based point-to-multipoint (P2MP) Layer 2 Virtual Private Network (L2VPN) service provided over a public network, the virtual private LAN service (VPLS) ensures that geographically isolated user sites can communicate over metropolitan area networks (MANs) and wide-area networks (WANs) as if they were on the same local area network (LAN). VPLS is also called the transparent LAN service (TLS).
@@ -593,7 +603,7 @@ VXLAN to discover neighbors:
 
   why using VXLAN and not VLAN
   -----------------
-  2^12 vs 2^24
+  2^12 vs 2^24 =  broadcast domains
 
   VXLAN is a tunneling encapsulation protocol that uses mac in UDP encapsulation.
 
@@ -614,3 +624,42 @@ Have you ever worked in virtualization such as VMware or KVM?
 In virtualization, the host where you have the VM’s resides is called the Host machine (the hypervisor), and the VM’s are called Guest VM’s. 
 
 Similarly, The physical networks are called the Underlay network, and the network that runs on top of the physical networks is called the overlay network.
+
+===
+
+RR
+
+iBGP can utilize the function of a route reflector (RR). An RR is allowed to receive iBGP information and then “reflect” the information to any of its RR clients—that is, all known iBGP neighbors. 
+
+
+MAC over IP/UDP overlay
+
+The transport network, termed the underlay, needs to account for the additional bytes incurred by the overlay headers. In the case of VXLAN, typically, the transport network needs to be provisioned for an additional 50 bytes in the maximum transmission unit (MTU). 
+
+
+Increase MTU (9000 MTU) to avoid fragmentation = In computer networking, jumbo frames are Ethernet frames with more than 1500 bytes 
+
+
+/30  is the most common prefix size for P2P IP networks. A typical /30 prefix provides one network ID address, two usable IP addresses, and one broadcast ID address. While using this prefix size is an efficient way of assigning IP addresses to P2P networks, note that 50% of the addresses (the network ID address and broadcast ID address) are unusable.
+
+Alternatively, a more efficient option from an IP address assignment perspective would be to use a /31 prefix length. The IP subnet of a /31 prefix consists of only two IP addresses, both capable of being used in the P2P network. With the /30 prefix, the additional two nonusable IP addresses (network ID and broadcast ID) are overloaded due to usage with the two usable IP addresses. However, a /31 prefix provides only two usable IP addresses, without network ID and broadcast ID addresses, and therefore overloading does not occur. By using /31 prefixes instead of /30 prefixes in the underlay network, all the IP addresses in the area of P2P networks are usable.
+
+Consider the match for a network with 4 spines and a 40-leaf underlay with a /31 prefix: 4 spines × 40 leafs = 160 P2P links
+= 160 links × 2 (/31) + 40 leafs + 4 spines
+= 320 IP addresses for P2P links + 44 IP addresses for loopback interfaces
+= 364 IP addresses aggregate required => /23 prefix (512 IP addresses)
+
+-- Building Data Centers with VXLAN BGP EVPN_ A Cisco NX-OS Perspective-Cisco Press (2017)
+
+
+
+BGP as underlay routing protocol requires greater design and configuration time in a spine–leaf underlay compared to SPF-based routing protocols. 
+
+
+BGP, as a hard-state protocol, sends out updates only when there is a change in network reachability. Hence, it does not incur the periodic update overhead that link-state protocols like OSPF have in terms of periodic updates
+
+when using eBGP in the underlay, the overlay also needs to be configured in eBGP.
+
+With eBGP, the next-hop attribute is always set, which means the neighbor of a route becomes the next hop. In the spine–leaf topology, this would be inappropriate, as the spine would generally not host a VTEP interface and would thereby lack the capability to encapsulate/decapsulate VXLAN traffic. The EVPN advertisement sent out by a leaf, with regard to its locally attached hosts or prefixes, needs to be relayed by the spine to other leafs without a change in the next-hop attribute, which thereby allows VXLAN tunnels to be established end-to-end from leaf to leaf. This is achieved by setting a specific configuration in eBGP where the next-hop attribute is set to unchanged. 
+
+-- Building Data Centers with VXLAN BGP EVPN_ A Cisco NX-OS Perspective-Cisco Press (2017)
