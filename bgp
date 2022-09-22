@@ -663,3 +663,14 @@ when using eBGP in the underlay, the overlay also needs to be configured in eBGP
 With eBGP, the next-hop attribute is always set, which means the neighbor of a route becomes the next hop. In the spine–leaf topology, this would be inappropriate, as the spine would generally not host a VTEP interface and would thereby lack the capability to encapsulate/decapsulate VXLAN traffic. The EVPN advertisement sent out by a leaf, with regard to its locally attached hosts or prefixes, needs to be relayed by the spine to other leafs without a change in the next-hop attribute, which thereby allows VXLAN tunnels to be established end-to-end from leaf to leaf. This is achieved by setting a specific configuration in eBGP where the next-hop attribute is set to unchanged. 
 
 -- Building Data Centers with VXLAN BGP EVPN_ A Cisco NX-OS Perspective-Cisco Press (2017)
+
+
+
+virtual network ID
+VLAN = 12 bits
+MPLS = 20 bits
+VXLAN-GRE = 24 bit
+
+
+
+p 133
