@@ -1,0 +1,18 @@
+
+
+
+
+The FRRouting suite consists of various protocol-specific daemons and a protocol-independent daemon called zebra. Each of the protocol-specific daemons are responsible for running the relevant protocol and building the routing table 
+
+zebra is the daemon that resolves the routes provided by multiple protocols (including the static routes you specify) and programs these routes in the Linux kernel via netlink (in Linux). The FRRouting documentation defines zebra as the IP routing manager for FRRouting that “provides kernel routing table updates, interface lookups, and redistribution of routes between different routing protocols.”
+
+https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-41/Layer-3/FRRouting-Overview/#
+
+
+Docker support in GNS3
+
+https://docs.gns3.com/docs/emulators/docker-support-in-gns3/
+
+GNS3 Talks: How to import Docker containers into GNS3: your own or others available on Docker Hub.
+
+https://youtu.be/06wQQN1eXcs

@@ -1,0 +1,64 @@
+hostname aybouras-1
+no ipv6 forwarding
+!
+inter lo
+ip addr 1.1.1.1/32
+!
+inter eth0
+ip addr 10.1.1.1/30
+!
+inter eth1
+ip addr 10.1.1.5/30
+!
+inter eth2
+ip addr 10.1.1.9/30
+!
+!
+router bgp 1
+    neighbor ibgp peer-group
+    neighbor ibgp remote-as 1
+    neighbor ibgp  update-source lo
+    bgp listen range 1.1.1.0/29 peer-group ibgp
+!
+    address-family l2vpn evpn
+        neighbor ibgp activate
+        neighbor ibgp route-reflector-client
+    exit-address-family
+!
+router ospf
+network 0.0.0.0/0 area 0
+
+
+
+======
+
+neighbor {<IP-ADDRESS>|<PEER-GROUP-NAME>} route-reflector-client
+
+neighbor 1.1.1.1 route-reflector-client
+
+configures the router as a BGP route reflector and the specified peer as its client. 
+
+====
+
+Neighbor <peer group name> peer-group
+	Créez un groupe de pairs BGP.
+
+    =====
+
+
+    BGP Dynamic Neighbors are a way to bring up  BGP neighbors without specifically defining the neighbors remote IP address.
+    Using the BGP Listen Range command you specify a range of IP addresses typically on your Hub site that you trust to become BGP neigbors with you.
+
+    R1#sh run int f0/0
+
+interface FastEthernet0/0
+ ip address 172.16.1.1 255.255.255.0
+R1#sh run | sec router bgp
+router bgp 65000
+ bgp listen range 172.16.1.0/24 peer-group DYNAMIC
+ neighbor DYNAMIC peer-group
+ neighbor DYNAMIC remote-as 65000
+R1#
+
+
+https://ipwithease.com/dynamic-bgp-peering/

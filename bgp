@@ -548,7 +548,7 @@ VPLS = a way to provide Ethernet-based multipoint to multipoint communication ov
 
  MPLS = IPVPN
  MPLS = L2.5
- VPLS= L2 VPN
+ VPLS = L2 VPN
 
 a WAN behaves like LAN
 
@@ -674,3 +674,12 @@ VXLAN-GRE = 24 bit
 
 
 p 133
+
+
+MPLS L2VPN = L2 Encapsulation 
+
+The main reason MPLS was developed in the 1990s was to reduce the amount of IP routing lookups.
+The idea behind MPLS is to “switch” based on labels with lookups that use exact matching instead of the compute-intensive longest prefix IP routing lookups.
+
+
+
