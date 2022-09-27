@@ -683,3 +683,12 @@ The idea behind MPLS is to “switch” based on labels with lookups that use ex
 
 
 
+VXLAN extends the layer 2 accrross an ip fabric
+Overlay =  the original frame comming from a end ponit  
+
+Ethernet VPN (EVPN) is a technology for carrying layer 2 Ethernet traffic as a virtual private network
+
+EVPN is a Control plane: routing info,  defines what to do with incoming packets
+
+MP-BGP EVPN carries info: MAC, IP, network prefix, VNID, VTEP IP + distributes MAC, IP info avoiding flooding
+https://youtu.be/9Hq8W9PZYus?t=2472

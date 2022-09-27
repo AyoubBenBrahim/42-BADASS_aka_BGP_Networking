@@ -1,0 +1,68 @@
+static mapping
+
+R1
+ 
+ip link add br0 type bridge
+ip link set dev br0 up
+!
+ip addr add 10.1.1.1/24 dev eth0
+!
+ip link add name vxlan10 type vxlan id 10 dev eth0 remote  10.1.1.2 local 10.1.1.1 dstport 4789
+ip addr add 20.1.1.1/24 dev vxlan10 <-- VTEP IP (give ip to the vxlan interface)
+!
+ip -d link show vxlan10 (show)
+!
+(make interfaces into one bridge domain)
+(frames comming from eth1 can be encapsulated into vxlan10)
+brctl addif br0 eth1
+brctl addif br0 vxlan10
+!
+(bring interface up)
+ip link set dev vxlan10 up 
+!
+(check status)
+ip -d link show vxlan10 
+ip link show vxlan10
+
+
+-------------------
+
+R2
+
+(create and bring up)
+ip link add br0 type bridge 
+ip link set dev br0 up
+!
+ip addr add 10.1.1.2/24 dev eth0
+!
+ip link add name vxlan10 type vxlan id 10 dev eth0 remote 10.1.1.1 local 10.1.1.2 dstport 4789
+ip addr add 20.1.1.2/24 dev vxlan10 (VTEP IP)
+ip link set dev vxlan10 up
+!
+
+(check)
+ip -d link show vxlan10
+!
+(one bridge domain)
+brctl addif br0 eth1
+brctl addif br0 vxlan10
+
+
+(see if they are in one bridge domain)
+ip link show vxlan10
+ip link show eth1
+
+----
+Addr for alpine machines
+
+ip addr add 30.1.1.1/24  dev eth1 
+----
+ip addr add 30.1.1.2/24  dev eth1
+
+****************************************
+
+
+
+
+
+configured VXLAN interfaces, attached them to a bridge, and mapped VLANs to VNIs.

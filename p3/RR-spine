@@ -20,7 +20,7 @@ router bgp 1
     neighbor ibgp  update-source lo
     bgp listen range 1.1.1.0/29 peer-group ibgp
 !
-    address-family l2vpn evpn
+    address-family l2vpn evpn  (the type of information BGP can distribute) 
         neighbor ibgp activate
         neighbor ibgp route-reflector-client
     exit-address-family
@@ -51,14 +51,20 @@ Neighbor <peer group name> peer-group
 
     R1#sh run int f0/0
 
-interface FastEthernet0/0
- ip address 172.16.1.1 255.255.255.0
-R1#sh run | sec router bgp
-router bgp 65000
- bgp listen range 172.16.1.0/24 peer-group DYNAMIC
- neighbor DYNAMIC peer-group
- neighbor DYNAMIC remote-as 65000
-R1#
+    interface FastEthernet0/0
+     ip address 172.16.1.1 255.255.255.0
+    R1#sh run | sec router bgp
+    router bgp 65000
+     bgp listen range 172.16.1.0/24 peer-group DYNAMIC
+     neighbor DYNAMIC peer-group
+     neighbor DYNAMIC remote-as 65000
+    R1#
 
 
 https://ipwithease.com/dynamic-bgp-peering/
+
+=====
+
+RR to avoid full-mesh topology(all leafs connected)
+RR take the VTEP information and redistribute/Reflect it to the other VTEPs
+https://youtu.be/9Hq8W9PZYus?t=2753
