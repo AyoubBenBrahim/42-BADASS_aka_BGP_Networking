@@ -19,13 +19,13 @@ ip addr 10.1.1.2/30
 ip ospf area 0
 !
 router bgp 1
-neighbor 1.1.1.1 remote-as 1
-neighbor 1.1.1.1 update-source loopback
+  neighbor 1.1.1.1 remote-as 1  (6500)
+  neighbor 1.1.1.1 update-source loopback
 !
-address-family l2vpn evpn
-    neighbor 1.1.1.1 activate  ==> Neighbor <peer group name> activate
-    advertise-all-vni
-exit-address-familly
+  address-family l2vpn evpn
+      neighbor 1.1.1.1 activate  ==> Neighbor <peer group name> activate
+      advertise-all-vni
+  exit-address-familly
 !
 router ospf
 
@@ -129,3 +129,7 @@ https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-42/Network-Vi
 Configuration de BGP
 
  https://docs.citrix.com/fr-fr/citrix-adc/current-release/networking/ip-routing/configuring-dynamic-routes/configuring-bgp.html
+
+
+
+ The neighbor command must be repeated to configure various parameters such as advertisement interval, activation, and so on.

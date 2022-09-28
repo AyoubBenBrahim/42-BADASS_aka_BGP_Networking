@@ -692,3 +692,40 @@ EVPN is a Control plane: routing info,  defines what to do with incoming packets
 
 MP-BGP EVPN carries info: MAC, IP, network prefix, VNID, VTEP IP + distributes MAC, IP info avoiding flooding
 https://youtu.be/9Hq8W9PZYus?t=2472
+
+
+EVPN is a solution that provides the control plane for network virtualization. In the simplest of terms, EVPN is a technology that connects L2 network segments separated by an L3 net‐ work. EVPN accomplishes this by building the L2 network as a virtual Layer 2 net‐ work overlay over the Layer 3 network. It uses BGP as its control protocol, and in the data center it uses VXLAN for packet encapsulation.
+
+It uses BGP as the control protocol to exchange reachability information for virtual networks
+
+
+VXLAN-EVPN adopted by Data Centers in 2017
+
+VXLAN needs to know which VTEPs2 are interested in which virtual networks, so that multidestination frames such as Broadcast, Unknown unicast, and Multicast (BUM) traffic can be delivered only to the interested endpoints.
+EVPN goes even further and also provides support for the following:
+• ARP/ND suppression
+• Routing
+• Multihomed nodes
+• L3 multicast
+
+Cloud Native Data Center Networking p 335
+
+
+ VTEP, as a memory refresher, is the edge of the network virtual overlay, the place where the nonvirtual network meets the virtual network; the place where packets are encapsulated on their way into the overlay and decapsulated on their way out of the overlay. 
+
+ OSPF (or IS-IS) is used to build the routed underlay, and iBGP is used to exchange virtual network information.
+
+ Cloud Native Data Center Networking p 337
+
+iBGP peering is between leaves for the use case of NVO3 in a Clos topology. This means that each leaf sets up an iBGP peering session with every other leaf. This full-mesh iBGP peering quickly becomes unscala‐ ble and fragile. To overcome this problem, two separate solutions were invented: BGP confederations and Route Reflectors (RRs). Of the two, RR is by far the most popular solution and the way people consider deploying iBGP
+
+ Cloud Native Data Center Networking p 338
+
+
+RR follows a hub-and-spoke model, in which all the iBGP speakers connect to a group of central RR servers. The job of the RRs is to compute the best path for a route and advertise that to each of the RR clients.
+
+ Cloud Native Data Center Networking p 339
+
+ the spines in a Clos topology act as RRs. The spines are part of the underlay and have no knowledge of the virtual networks. 
+
+  Cloud Native Data Center Networking p 340
