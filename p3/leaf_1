@@ -2,7 +2,7 @@ hostname aybouras-2
 no ipv6 forwarding
 !
 ip link add br0 type bridge
-ip link set dev br0 up  ==>Bring br0 online
+ip link set dev br0 up ==> Bring br0 online
 !
 ip link add vx1337 type vxlan id 1337 dsport 4789
 ip link set dev vx1337 up
@@ -59,7 +59,8 @@ ip link add name eth0.110 link eth0 type vlan id 110 ==> Add VLAN 110 on the fly
 ip COMMAND CHEAT SHEET
 https://github.com/yuriskinfo/cheat-sheets/blob/master/cheat-sheets/Linux-ip-route-reference-by-examples.adoc
 https://access.redhat.com/sites/default/files/attachments/rh_ip_command_cheatsheet_1214_jcs_print.pdf
-neighbor
+
+
 neighbor 1.1.1.1 update-source loopback
  If multiple paths exist between the iBGP routers, using a loopback interface as the neighbor address can add stability to the network. With this command, stability can be achieved by providing the loopback interface address as the source address of the TCP/IP session.
 
