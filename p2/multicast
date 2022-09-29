@@ -7,7 +7,7 @@ ip link set dev br0 up
 ip addr add. 10.1.1.1/24 dev eth0
 !
 ip link add name vxlan10 type vxlan id 10 dev eth0 group 239.1.1.1 dsport 4789
-ip addr add 20.1.1.1/24 dev vxlan10 (VTEP IP)
+ip addr add 20.1.1.1/24 dev vxlan10 (VTEP IP) (give ip to the vxlan interface)
 !
 brctl addif br0 eth1
 brctl addif br0 vxlan10
