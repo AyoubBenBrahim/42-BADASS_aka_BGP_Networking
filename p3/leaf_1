@@ -10,13 +10,13 @@ ip link set dev vx1337 up
 brctl addif br0 eth1
 brctl addif br0 vx1337
 !
-inter lo
-ip addr 1.1.1.2/32
-ip ospf area 0
+interface lo
+  ip addr 1.1.1.2/32
+  ip ospf area 0
 !
-inter eth0
-ip addr 10.1.1.2/30 
-ip ospf area 0
+interface eth0
+  ip addr 10.1.1.2/30 
+  ip ospf area 0
 !
 router bgp 1
   neighbor 1.1.1.1 remote-as 1  (6500)
@@ -91,7 +91,11 @@ address-family l2vpn evpn
 
 Selects the L2VPN EVPN address family.
 
-Specifies address family to use and changes to the configuration context for the specified family:
+Specifies address family to use and changes to the configuration context for the specified family
+
+
+  address-family l2vpn evpn
+The spine activates the l2vpn evpn address family to signal to its peers that it can process EVPN routes.
 
 ====
 
@@ -134,3 +138,5 @@ Configuration de BGP
 
 
  The neighbor command must be repeated to configure various parameters such as advertisement interval, activation, and so on.
+
+

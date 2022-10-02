@@ -1,4 +1,9 @@
 
+I squander untold effort making an arrangement of my thoughts.
+
+Ludwig Wittgenstein - Culture and Value
+
+
 OSI model
 Hussein Nasser ytube channel
 
@@ -694,7 +699,7 @@ MP-BGP EVPN carries info: MAC, IP, network prefix, VNID, VTEP IP + distributes M
 https://youtu.be/9Hq8W9PZYus?t=2472
 
 
-EVPN is a solution that provides the control plane for network virtualization. In the simplest of terms, EVPN is a technology that connects L2 network segments separated by an L3 net‐ work. EVPN accomplishes this by building the L2 network as a virtual Layer 2 net‐ work overlay over the Layer 3 network. It uses BGP as its control protocol, and in the data center it uses VXLAN for packet encapsulation.
+EVPN is a solution that provides the control plane for network virtualization. In the simplest of terms, EVPN is a technology that connects L2 network segments separated by an L3 network. EVPN accomplishes this by building the L2 network as a virtual Layer 2 net‐ work overlay over the Layer 3 network. It uses BGP as its control protocol, and in the data center it uses VXLAN for packet encapsulation.
 
 It uses BGP as the control protocol to exchange reachability information for virtual networks
 
@@ -711,13 +716,13 @@ EVPN goes even further and also provides support for the following:
 Cloud Native Data Center Networking p 335
 
 
- VTEP, as a memory refresher, is the edge of the network virtual overlay, the place where the nonvirtual network meets the virtual network; the place where packets are encapsulated on their way into the overlay and decapsulated on their way out of the overlay. 
+ VTEP, as a memory refresher, is the edge of the network virtual overlay, the place where the non-virtual network meets the virtual network; the place where packets are encapsulated on their way into the overlay and decapsulated on their way out of the overlay. 
 
  OSPF (or IS-IS) is used to build the routed underlay, and iBGP is used to exchange virtual network information.
 
  Cloud Native Data Center Networking p 337
 
-iBGP peering is between leaves for the use case of NVO3 in a Clos topology. This means that each leaf sets up an iBGP peering session with every other leaf. This full-mesh iBGP peering quickly becomes unscala‐ ble and fragile. To overcome this problem, two separate solutions were invented: BGP confederations and Route Reflectors (RRs). Of the two, RR is by far the most popular solution and the way people consider deploying iBGP
+iBGP peering is between leaves for the use case of NVO3 in a Clos topology. This means that each leaf sets up an iBGP peering session with every other leaf. This full-mesh iBGP peering quickly becomes unscalable and fragile. To overcome this problem, two separate solutions were invented: BGP confederations and Route Reflectors (RRs). Of the two, RR is by far the most popular solution and the way people consider deploying iBGP
 
  Cloud Native Data Center Networking p 338
 
@@ -726,6 +731,80 @@ RR follows a hub-and-spoke model, in which all the iBGP speakers connect to a gr
 
  Cloud Native Data Center Networking p 339
 
- the spines in a Clos topology act as RRs. The spines are part of the underlay and have no knowledge of the virtual networks. 
+The spines in a Clos topology act as RRs. The spines are part of the underlay and have no knowledge of the virtual networks. 
+The spines are used as iBGP RRs. 
+  - Cloud Native Data Center Networking p 340
 
-  Cloud Native Data Center Networking p 340
+EVPN is considered to be a kind of an L2 VPN.
+
+The spines are only part of the underlay. 
+
+
+
+==
+1994: BGP
+1996: VPN
+1999: MPLS (L3VPN)
+2005: VPLS  (https://www.researchgate.net/publication/352384676_A_survey_of_Virtual_Private_LAN_Services_VPLS_Past_present_and_future)
+2011: VXLAN
+2017: EVPN
+
+
+
+ most VXLAN networks use an IPv4 underlay exclusively.
+
+  Cloud Native Data Center Networking p 258
+
+
+
+
+  Bridging operates at Layer 2 of the OSI reference model while routing operates at Layer 3. A set of logical ports configured for bridging can be said to constitute a bridging domain.
+
+  Configure interfaces as a bridge to deploy security devices in a topology without reconfiguration of the IP routing scheme.
+
+  Bridge interfaces connect two different interfaces (bridge ports). Bridging two interfaces causes every Ethernet frame that is received on one bridge port to be transmitted to the other port. Thus, the two bridge ports participate in the same Broadcast domain (different from router port behavior). 
+
+  they behave in most respects as if they were a single network. 
+
+
+  ===
+
+  VXLAN is an overlay network technology. Overlay network can be defined as any logical network that is created on top of the existing physical networks. VXLAN creates Layer 2 logical networks on top of the IP network. 
+
+VXLAN encapsulates original MAC frames in to a UDP header (shown below), and all vSphere hosts participating in VXLAN acts as tunnel end points. They are called Virtual Tunnel Endpoints (VTEPs).
+
+https://blogs.vmware.com/vsphere/2013/04/vxlan-series-different-components-part-1.html
+
+
+a unique IP address range is assigned as Multicast group IP address. It is a Class D address range from 224.0.0.0 to 239.255.255.255. Each address in this range designates a multicast group. Some of the addresses are reserved.
+
+Any node (computer/user) in the network can join a multicast group using Internet Group Management Protocol (IGMP).
+
+IGMP-PIM
+The network devices use these protocols to learn about which nodes have joined which multicast groups and where the nodes are in the network.
+
+The layer 2 switches monitor the IGMP query and report messages to find out which switch ports are subscribed to which multicast group. This functionality of a layer 2 switch is called IGMP snooping.
+https://blogs.vmware.com/vsphere/2013/05/vxlan-series-multicast-basics-part-2.html
+
+
+How VTEPs Learns and Creates Forwarding Table
+  Each VTEP has its own forwarding table, which is initially empty
+
+  We will take an example of virtual machine on Host 1 trying to communicate with the virtual machine on the Host 2. First, an ARP request is sent from the virtual machine MAC1 to find the MAC address of the virtual machine on Host 2. The ARP request is a broadcast packet.
+
+1/  Virtual machine on Host1 sends ARP packet with Destination MAC as “FFFFFFFFFFF”
+2/  VTEP on Host 1 encapsulates the Ethernet broadcast packet into a UDP header with Multicast address “239.1.1.100” as the     
+      destination IP address and VTEP address “10.20.10.10” as the Source IP address.
+3/  The physical network delivers the multicast packet to the hosts that joined the multicast group address “239.1.1.10”.
+4/  The VTEP on Host 2 receives the encapsulated packet. Based on the outer and inner header, it makes an entry in the forwarding table 
+      that shows the mapping of the virtual machine MAC address and the VTEP. In this example, the virtual machine MAC1 running on Host 1 is associated with VTEP IP “10.20.10.10”. VTEP also checks the segment ID or VXLAN logical network ID (5001) in the external header to decide if the packet has to be delivered on the host or not.
+5/  The packet is de-encapsulated and delivered to the virtual machine connected on that logical network VXLAN 5001.
+
+https://blogs.vmware.com/vsphere/2013/05/vxlan-series-how-vtep-learns-and-creates-forwarding-table-part-5.html
+
+
+
+
+
+
+
