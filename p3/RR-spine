@@ -1,48 +1,47 @@
-hostname aybouras-1
+vtysh
+
+
+hostname aybouras-spine
 no ipv6 forwarding
-!
+!!!
 interface lo
     ip address 1.1.1.1/32
-!
+!!!
 interface eth0
     ip address 10.1.1.1/30
-!
+!!!
 interface eth1
     ip address 10.1.1.5/30
-!
+!!!
 interface eth2
     ip address 10.1.1.9/30
-!
-!
-router bgp 1  (6500)
-    neighbor ibgp peer-group  (neighbors/peers) / defines a peer-group called (neighbor peer-group ibgp)
-    neighbor ibgp remote-as 1
-    neighbor ibgp  update-source lo
-    bgp listen range 1.1.1.0/29 peer-group ibgp
-!
-    address-family l2vpn evpn  (the type of information BGP can distribute) 
-        neighbor ibgp route-reflector-client
-        neighbor ibgp activate
+!!!
+
+
+!!!
+router bgp 1
+    neighbor SERVERS peer-group
+    neighbor SERVERS remote-as 1
+    neighbor SERVERS  update-source lo
+    bgp listen range 1.1.1.0/29 peer-group SERVERS
+!!!
+    !! (the type of information BGP can distribute) 
+    address-family l2vpn evpn  
+        neighbor SERVERS route-reflector-client
+        neighbor SERVERS activate
     exit-address-family
-!
+!!!
 router ospf
     network 0.0.0.0/0 area 0
-
-
+!!!
 
 ======
 
-neighbor {<IP-ADDRESS>|<PEER-GROUP-NAME>} route-reflector-client
-
 neighbor 1.1.1.1 route-reflector-client
 
+(the type of information BGP can distribute)
 configures the router as a BGP route reflector and the specified peer as its client. 
 Without this, no EVPN routes will be distributed to the leaves.
-
-====
-
-Neighbor <peer group name> peer-group
-	Créez un groupe de pairs BGP.
 
     =====
 
@@ -87,9 +86,7 @@ RR take the VTEP information and redistribute/Reflect it to the other VTEPs
 https://youtu.be/9Hq8W9PZYus?t=2753
 
 To simplify repetition when configuring multiple neighbors, most routing suites support a form of templating called peer group.
-The user creates a peer group with a name and then proceeds to configure the desired attributes
-for neighbor connection (such as remote-as, connection timers, and the use of BFD). In the next step,
-the operator assigns each real neighbor to the created peer group, thus avoiding the need to type the same boring stuff over and over again.
+The user creates a peer group with a name and then proceeds to configure the desired attributes for neighbor connection (such as remote-as, connection timers, and the use of BFD). In the next step, the operator assigns each real neighbor to the created peer group, thus avoiding the need to type the same boring stuff over and over again.
 
 Cloud Native Data Center Networking p 307
 
@@ -105,5 +102,67 @@ Cloud Native Data Center Networking p 307
 1 / Enable EVPN between BGP Neighbors
     To enable EVPN between BGP neighbors, add the address family evpn to the existing neighbor address-family activation command.
 
+ address-family ==> address families, they are a way for BGP to carry information for different protocols. 
+
 Advertise All VNIs
+
+
+====
+
+VxLAN Address Learning
+
+
+One is learning through the data plane, and the other is learning through the control plane.
+
+Data plane learning is the typical flood-and-learn (FL) style. It’s in the original VxLAN specification and is very similar to the way Ethernet learns addresses.
+
+Control plane learning is more recent and sophisticated. This method uses MP-BGP to share MAC address and VTEP information. This feels similar to how BGP learns routes.
+
+https://networkdirection.net/articles/routingandswitching/vxlanoverview/vxlanaddresslearning/
+
+
+BUM is an acronym, standing for Broadcast, Unknown Unicast, Multicast. It is significant, as it is any traffic that has more than one destination.
+
+Consider how Ethernet would handle Unknown Unicast for example. If traffic needs to go to an IP, but the MAC address is unknown, an ARP request will be flooded to the network segment. The owner of the IP will respond, and the rest will ignore the request.
+
+VxLAN is similar in some ways but uses a few tricks to make it more efficient.
+
+One method is to use multicast. Each VNI is mapped to a multicast group. Each group can have one or more VNI mapped to it.
+
+When a VTEP comes online, it uses IGMP to join the groups that it needs for the VNI’s that it owns.
+
+Now when the switch needs to send BUM traffic, it can send it to the multicast group. Any VTEP that’s part of the group will receive the traffic. Other destinations are not in the group, and will not get the traffic, limiting the scope of flooding. An ARP request, for example, will not go to the entire network, just to the parts it needs to go to.
+
+This is a very efficient way to handle BUM traffic, and it scales well. It does require a multicast infrastructure, which may make it a little more tricky to implement.
+
+https://networkdirection.net/articles/routingandswitching/vxlanoverview/vxlanaddresslearning/
+
+VxLAN Control Plane (EVPN)
+BGP-EVPN
+BGP operates in the control plane. A normal BGP deployment will share IP reachability information (routes). When integrated with VxLAN, it can also share MAC and VTEP reachability information.
+
+It does this with the EVPN (Ethernet VPN) address family. If you’re not familiar with address families, they are a way for BGP to carry information for different protocols. There are address families for IPv4, IPv6, L3VPN (MPLS), and others.
+
+As all the addresses are learned proactively, there’s no need for flooding.
+
+All switches in the VxLAN topology need to run BGP EVPN. They don’t all need to be running VTEPs. An example is the spine switches in the spine/leaf topology.
+
+The switches peer with each other. The standard BGP rules apply here. This means that you need an iBGP full mesh or route reflectors. The spine switches are good candidates for route-reflectors.
+
+When a host comes online, it announces its MAC address. This can also happen at other times with GARP messages. The local switch will add the MAC into the local BGP database. This is then sent to its peers as a BGP update.
+
+When VTEPs are learned through BGP, they are dynamically added to a whitelist. This prevents rogue VTEP injection. BGP neighbour authentication can be used to prevent rogue peers.
+
+https://networkdirection.net/articles/routingandswitching/vxlanoverview/vxlanaddresslearning/
+
+
+VXLAN allows us to create layer 2 networks over layer 3 infrastructure. The VXLAN base use case is to connect two or more layer three network domains and make them look like a common layer two domain. In the Data center environment this allows virtual machines on different networks to communicate as if they were in the same layer 2 subnet.
+
+VXLAN bridging is the concept of using the VXLAN protocol to provide layer 2 connectivity across the layer 3 infrastructure. VxLAN itself doesn’t have any control plane and rely on flood and learn mechanism similar to classic switches or VPLS services.
+
+With the usage of EVPN, mac address information can be distributed with MP-iBGP updates. Using route reflectors at the Spine layer is recommended for the scalability. (Spine-Leaf Architecture is the baseline for the VxLAN-EVPN networks.)
+
+http://www.fabricplane.com/vxlan-evpn-bridging/
+
+
 

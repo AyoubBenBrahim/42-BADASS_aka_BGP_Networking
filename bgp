@@ -4,12 +4,12 @@ I squander untold effort making an arrangement of my thoughts.
 Ludwig Wittgenstein - Culture and Value
 
 
-OSI model
-Hussein Nasser ytube channel
+===
+
+OSI model --> Hussein Nasser's ytube channel
 
 ===
 
-APS TNDF
 
 7 Application = 
 6 Presentation = Encrypts if necessary, zip
@@ -398,6 +398,9 @@ Data centers have rapidly increased their server virtualization over the past de
 VXLAN is a technology that allows you to segment your networks (as VLANs do) but also solves the scaling limitation of VLANs and provides benefits that VLANs can
 
 How Does VXLAN Work?
+
+VXLAN allows us to create layer 2 networks over layer 3 infrastructure. 
+
 VXLAN tunneling protocol that encapsulates Layer 2 Ethernet frames in Layer 3 UDP packets, enables you to create virtualized Layer 2 subnets, or segments, that span physical Layer 3 networks. Each Layer 2 subnet is uniquely identified by a VXLAN network identifier (VNI) that segments traffic.
 
 The entity that performs the encapsulation and decapsulation of packets is called a VXLAN tunnel endpoint (VTEP).
@@ -678,10 +681,8 @@ VXLAN-GRE = 24 bit
 
 
 
-p 133
+p 133 - chap 6: Network virtualization
 
-
-MPLS L2VPN = L2 Encapsulation 
 
 The main reason MPLS was developed in the 1990s was to reduce the amount of IP routing lookups.
 The idea behind MPLS is to “switch” based on labels with lookups that use exact matching instead of the compute-intensive longest prefix IP routing lookups.
@@ -721,6 +722,10 @@ Cloud Native Data Center Networking p 335
  OSPF (or IS-IS) is used to build the routed underlay, and iBGP is used to exchange virtual network information.
 
  Cloud Native Data Center Networking p 337
+
+ When packets can be encapsulated post-routing or packets can be routed post-decapsulation, this functionality is often referred to as Routing In and Out of Tunnels (RIOT).
+
+ - p 132
 
 iBGP peering is between leaves for the use case of NVO3 in a Clos topology. This means that each leaf sets up an iBGP peering session with every other leaf. This full-mesh iBGP peering quickly becomes unscalable and fragile. To overcome this problem, two separate solutions were invented: BGP confederations and Route Reflectors (RRs). Of the two, RR is by far the most popular solution and the way people consider deploying iBGP
 
@@ -807,4 +812,26 @@ https://blogs.vmware.com/vsphere/2013/05/vxlan-series-how-vtep-learns-and-create
 
 
 
+VxLAN Address Learning
 
+ how the destination MAC addresses are learned? What about the VTEPs? How do the switches know the VTEP IP
+
+ In short, there are two ways to do this. One is learning through the data plane, and the other is learning through the control plane.
+
+
+When frames from one of these VNI’s arrives at the Ingress VTEP, the VTEP encapsulates it with UDP and IP headers.
+The encapsulated packet is sent over the IP network to the Egress VTEP. When it arrives, the VTEP removes the IP and UDP headers, and delivers the frame as normal.
+ https://networkdirection.net/articles/routingandswitching/vxlanoverview/
+
+
+  L2vpn VS L3vpn
+
+L3VPN
+
+SP devices forward customer’s packet based on L3 info (eg.IP). SP is involved in customer IP routing.SP and customer may be present in different LAN.
+
+L2VPN
+
+SP devices forward customer’s packet based on L2 info (eg. MAC,VlanID).Spis not involved in customer IP routing.SP and customer are present in same LAN.
+
+ L3VPN (VPLS..) , L3VPN (MPLS..)

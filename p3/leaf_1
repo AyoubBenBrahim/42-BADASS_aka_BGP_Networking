@@ -1,35 +1,51 @@
-hostname aybouras-2
-no ipv6 forwarding
-!
+
+
+###
 ip link add br0 type bridge
-ip link set dev br0 up ==> Bring br0 online
-!
-ip link add vx1337 type vxlan id 1337 dsport 4789
-ip link set dev vx1337 up
-!
+ip link add vxlan10 type vxlan id 10 dstport 4789
+###
+ip link set dev br0 up
+ip link set dev vxlan10 up
+###
 brctl addif br0 eth1
-brctl addif br0 vx1337
-!
+brctl addif br0 vxlan10
+###
+
+vtysh
+
+hostname aybouras-leaf-1
+no ipv6 forwarding
+!!!
 interface lo
   ip addr 1.1.1.2/32
   ip ospf area 0
-!
+!!!
 interface eth0
   ip addr 10.1.1.2/30 
   ip ospf area 0
-!
+!!!
+
+
 router bgp 1
-  neighbor 1.1.1.1 remote-as 1  (6500)
+  neighbor 1.1.1.1 remote-as 1
   neighbor 1.1.1.1 update-source loopback
-!
-  address-family l2vpn evpn
-      neighbor 1.1.1.1 activate  ==> Neighbor <peer group name> activate
+
+   address-family l2vpn evpn
+      neighbor 1.1.1.1 activate
       advertise-all-vni
-  exit-address-familly
-!
+  exit-address-family
+!!!
 router ospf
+!
 
 ========================
+
+
+neighbor 1.1.1.1 activate  ==> activate address- family for the RR
+                            
+
+---
+
 
 When EVPN is enabled on a VTEP, all locally defined VNIs on that switch and other information (such as MAC addresses) are advertised to EVPN peers.
 
@@ -40,16 +56,14 @@ When EVPN is enabled on a VTEP, all locally defined VNIs on that switch and othe
             address-family l2vpn evpn
             neighbor 1.1.1.1 activate
 
-3/ Advertise All VNI (This configuration is only needed on leaf switches that are VTEPs. )
-        enable the BGP control plane for all VNIs configured on the switch in the default VRF.
-
-            advertise-all-vni
+3/ advertise-all-vni (This configuration is only needed on leaf switches that are VTEPs )
+        enable the BGP control plane for all VNIs configured on the switch.
 
 
 https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-41/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/Basic-Configuration/
 
 
-=====
+==
 
 ip addr show dev em1	Display information only for device em1
 link: Manage and display the state of all network interfaces
@@ -64,11 +78,12 @@ https://access.redhat.com/sites/default/files/attachments/rh_ip_command_cheatshe
 neighbor 1.1.1.1 update-source loopback
  If multiple paths exist between the iBGP routers, using a loopback interface as the neighbor address can add stability to the network. With this command, stability can be achieved by providing the loopback interface address as the source address of the TCP/IP session.
 
- "There are two paths between A and B. And that justifies the use of update-source in the neighbor command"
+"There are two paths between A and B. And that justifies the use of update-source in the neighbor command"
 
 
-https://www.arubanetworks.com/techdocs/AOS-CX/10.09/HTML/ip_route_8400/Content/Chp_BGP/BGP_cmds/nei-upd-sou-10.htm#:~:text=This%20command%20specifies%20the%20source,add%20stability%20to%20the%20network.
-It's not needed at all by default. You only use it when you want your router to use a specific IP address when exchanging BGP updates with another router.
+https://shortest.link/55Mo
+
+Its not needed at all by default. You only use it when you want your router to use a specific IP address when exchanging BGP updates with another router.
 
 A common configuration is to have a loopback interface on your router and then to use under your BGP config
 

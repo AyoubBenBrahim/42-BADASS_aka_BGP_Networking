@@ -50,6 +50,9 @@ ip addr add 30.1.1.2/24  dev eth1
 
 =====
 
+Multicast to handl BUM traffic
+
+
 Multicasting can be used to push data to multiple hosts simultaneously. 
 Characteristics of multicasting are as follows:
 
@@ -86,3 +89,13 @@ How VTEPs Learns and Creates Forwarding Table
 5/  The packet is de-encapsulated and delivered to the virtual machine connected on that logical network VXLAN 5001.
 
 https://blogs.vmware.com/vsphere/2013/05/vxlan-series-how-vtep-learns-and-creates-forwarding-table-part-5.html
+
+====
+
+VxLAN Address Learning
+
+BUM is an acronym, standing for Broadcast, Unknown Unicast, Multicast. It is significant, as it is any traffic that has more than one destination.
+
+Consider how Ethernet would handle Unknown Unicast for example. If traffic needs to go to an IP, but the MAC address is unknown, an ARP request will be flooded to the network segment. The owner of the IP will respond, and the rest will ignore the request.
+
+VxLAN is similar in some ways but uses a few tricks to make it more efficient.
