@@ -1,0 +1,19 @@
+ alpine machines
+
+Host1
+ip addr add 20.1.1.1/24  dev eth1
+
+Host2
+
+Host3
+ip addr add 20.1.1.2/24  dev eth0
+
+do show ip route
+do show ip route ospf
+
+do sh ip bgp neighbor
+
+do show bgp summ
+
+do show bgp l2vpn evpn
+
