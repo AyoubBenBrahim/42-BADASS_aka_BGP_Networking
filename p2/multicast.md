@@ -6,9 +6,8 @@ ip link set dev br0 up
 ###
 ip addr add 10.1.1.1/24 dev eth0
 ###
-## IGMP snooping enabled
 ip link add name vxlan10 type vxlan id 10 dev eth0 group 239.1.1.1 dstport 4789
-## (VTEP IP) (give IP to the vxlan interface)
+
 ip addr add 20.1.1.1/24 dev vxlan10 
 ###
 brctl addif br0 eth1
@@ -17,9 +16,7 @@ brctl addif br0 vxlan10
 ip link set dev vxlan10 up
 ###
 ip -d link show vxlan10
-   # ull see vxlan id 10 associated with group 239.1.1.1 
 
-### which interfaces to wich bridge domain
  brctl show 
 -------
 
