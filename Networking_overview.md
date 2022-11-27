@@ -4,9 +4,9 @@ I squander untold effort making an arrangement of my thoughts.
 Ludwig Wittgenstein - Culture and Value
 
 
-===
+==
 "Give me six hours to chop down a tree and I will spend the first four sharpening the axe." - Abraham Lincoln
-===
+==
 
 OSI model --> Hussein Nasser's ytube channel
 
