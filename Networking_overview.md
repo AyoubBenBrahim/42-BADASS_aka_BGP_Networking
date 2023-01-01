@@ -317,9 +317,7 @@ https://www.imperva.com/learn/ddos/border-gateway-protocol-bgp/
 
 *******************************************************************
 
-  An ISP (internet service provider) is a company that provides individuals and organizations access to the internet and other related services. An ISP 
-  
-  has the equipment and the telecommunication line access required to have a point of presence on the internet for the geographic area served.
+  An ISP (internet service provider) is a company that provides individuals and organizations access to the internet and other related services. An ISP has the equipment and the telecommunication line access required to have a point of presence on the internet for the geographic area served.
 
 ISPs make it possible for customers to access the internet while also providing additional services such as email,
 
@@ -365,7 +363,7 @@ In OSPF, areas are delineated on the interface such that an area border router (
 ISIS runs on top of data link layer(encapsulated in Data link layer), whereas OSPF runs on top of IP
 
 
- administrative distance of OSPF is 110 and ISIS is 115.
+ Administrative Distance of OSPF is 110 and ISIS is 115.
 
 *******************************************************************
 
