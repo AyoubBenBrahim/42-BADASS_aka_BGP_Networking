@@ -124,9 +124,7 @@ Packets can often be larger than the MTU, so each packet is also divided into sm
 
 each network has its own MTU capacity. 
 
-If the packet length is bigger than the MTU, the network layer checks the Don’t Fragment (DF) flag associated with the packet. If the DF flag is 
-
-{1}, we discard the packet. Otherwise, the network layer decides the size of the fragments, 
+If the packet length is bigger than the MTU, the network layer checks the Don’t Fragment (DF) flag associated with the packet. If the DF flag is 1, we discard the packet. Otherwise, the network layer decides the size of the fragments, 
 
 create the header, encapsulate the fragments within the header, and send them to the next layer:
 
@@ -189,7 +187,8 @@ expires.
  
  from Reddit [answer](https://www.reddit.com/r/networking/comments/2rnxzh/why_ethernet_frames_dont_have_ttl/)
  ```
- A TTL type field doesn't "solve" the loop problem anyway, it will stop a particular frame from circling forever but it doesn't fix everything.
+ A TTL type field doesn't "solve" the loop problem anyway,
+ it will stop a particular frame from circling forever but it doesn't fix everything.
 
 Imagine a triangle network of just 3 switches: A joined to B and C, B joined to A and C, C joined to A and B.
 
@@ -197,7 +196,8 @@ A broadcast goes into switch A, which floods it to B and C. Now there are 2 fram
 
 B sees the broadcast and floods to A and C. C sees the broadcast and floods it to A and B. Now there are 4.
 
-Even with a modest TTL type value of 16 that one frame would grow exponentially to 216=65536 frames. Every endpoint on the network would be drowning in broadcast / multicast / unknown unicast traffic. More nodes / links would make it worse.
+Even with a modest TTL type value of 16 that one frame would grow exponentially to 216=65536 frames.
+Every endpoint on the network would be drowning in broadcast / multicast / unknown unicast traffic. More nodes / links would make it worse.
 
 TTL is good at layer 3 as multi-hop traffic doesn't flood (multicast uses other mechanisms to prevent loops)
  ```
