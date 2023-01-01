@@ -184,7 +184,23 @@ Since the layer-2 header does not include a time to live (TTL) field, if a frame
 Routing loops are tempered by a time to live (TTL) field in layer-3 packet header; Packets will circulate the routing loop until their TTL value 
 expires.
 
- No TTL concept exists at layer 2 and packets in a switching loop will circulate until dropped
+ **No TTL concept exists at layer 2 and packets in a switching loop will circulate until dropped**
+ **Layer 2 frame does not have TTL**
+ 
+ from Reddit [answer](https://www.reddit.com/r/networking/comments/2rnxzh/why_ethernet_frames_dont_have_ttl/)
+ ```
+ A TTL type field doesn't "solve" the loop problem anyway, it will stop a particular frame from circling forever but it doesn't fix everything.
+
+Imagine a triangle network of just 3 switches: A joined to B and C, B joined to A and C, C joined to A and B.
+
+A broadcast goes into switch A, which floods it to B and C. Now there are 2 frames.
+
+B sees the broadcast and floods to A and C. C sees the broadcast and floods it to A and B. Now there are 4.
+
+Even with a modest TTL type value of 16 that one frame would grow exponentially to 216=65536 frames. Every endpoint on the network would be drowning in broadcast / multicast / unknown unicast traffic. More nodes / links would make it worse.
+
+TTL is good at layer 3 as multi-hop traffic doesn't flood (multicast uses other mechanisms to prevent loops)
+ ```
  
 
 broadcast storm
