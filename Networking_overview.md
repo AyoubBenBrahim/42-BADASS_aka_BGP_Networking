@@ -349,19 +349,20 @@ best simple definition i come across
 
 *******************************************************************
 
-the ISP uses an IGP internally to build reachability between its routers. It then implements iBGP on top of this to actually create a coherent routing
-
-policy within its autonomous system and then eBGP to carefully expose network information to- and receive information from- other autonomous systems.
+the ISP uses an IGP internally to build reachability between its routers. It then implements iBGP on top of this to actually create a coherent routing policy within its autonomous system and then eBGP to carefully expose network information to- and receive information from- other autonomous systems.
 
 https://www.quora.com/What-is-the-need-of-iBGP-when-we-have-other-routing-protocols-like-EIGP-OSPF
 
+*******************************************************************
+
+IS-IS vs OSPF
+
 Both IS-IS and Open Shortest Path First(OSPF) are link state protocols, and both use the same Dijkstra algorithm for computing the best path through the network
 
-IS-IS differs from OSPF in the way that "areas" are defined and routed between. IS-IS routers are designated as being: Level 1 (intra-area); Level 2 
+IS-IS differs from OSPF in the way that "areas" are defined and routed between. IS-IS routers are designated as being:
 
-(inter area); or Level 1–2 (both). Routing information is exchanged between Level 1 routers and other Level 1 routers of the same area, and Level 2 
+Level 1 (intra-area); Level 2 (inter area); or Level 1–2 (both). Routing information is exchanged between Level 1 routers and other Level 1 routers of the same area, and Level 2 routers can only form relationships and exchange information with other Level 2 routers. Level 1–2 routers exchange information with both levels and are used to connect the inter area routers with the intra area routers.
 
-routers can only form relationships and exchange information with other Level 2 routers. Level 1–2 routers exchange information with both levels and are used to connect the inter area routers with the intra area routers.
 
 In OSPF, areas are delineated on the interface such that an area border router (ABR) is actually in two or more areas at once, effectively creating the borders between areas inside the ABR, whereas in IS-IS area borders are in between routers, designated as Level 2 or Level 1–2. The result is that an IS-IS router is only ever a part of a single area.
 
