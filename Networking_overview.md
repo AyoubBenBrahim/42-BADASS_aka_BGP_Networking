@@ -25,6 +25,8 @@ OSI model --> Hussein Nasser's ytube channel
 pres + session = convert that thing we want to transmit into serialized info
 
    establish conx, Dialogue
+   
+      ---------
                 
 4 trans = segment, manage ports(src/dest)
 
@@ -36,7 +38,11 @@ TCP/UDP
             
 layer 5 and 6 are useless, we skip them most of the time
 
+      ---------
+     
 3 net/ip protocol = Packets / add ip(src/dest) + other headers
+
+      ---------
 
 2 Data Link = moving frames(HDLC/PPP) - Hop to Hop data delivery
 
@@ -61,6 +67,8 @@ layer 5 and 6 are useless, we skip them most of the time
   Random access protocol (CSMA/CD..) = any station has the right to acess and send data
                                           
   CSMA = carrier(medium/chanel) sense protocol aka "listen before talk"
+  
+      --------- 
 
 1 Physical = frame into ones and zeros (electricity doesn't has direction aka broadcast) 
 
@@ -70,10 +78,11 @@ this data(binary) will be sent to everyone
 
 then send them up to make sense
 
+*******************************************************************
+
 Data link receives all the frames checks adres and rejects them if not the right host
 
 each layer towards up removes its added headers..
-
 
 switch goes only to layer 2
 
