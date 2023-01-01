@@ -294,6 +294,20 @@ AS
   Networks within an AS communicate routing information to each other using one or more IGPs - interior gateway protocols.
   
   In contrast, communications between autonomous systems rely on a single EGP Exterior Gateway Protocol -- Border Gateway Protocol BGP -- which makes it possible to share routing information and efficiently route data packets between AS
+  
+*******************************************************************
+
+To use an analogy, an AS is like a city with many streets.
+
+A Network Prefix (/n) is one street, 
+
+and an IP address is one particular house.
+
+Network Packets are like cars traveling from one house to another,
+
+and BGP is like a navigation app that helps them take the best possible route.
+
+https://www.imperva.com/learn/ddos/border-gateway-protocol-bgp/
 
 *******************************************************************
 
@@ -309,14 +323,6 @@ ISPs make it possible for customers to access the internet while also providing 
 
 *******************************************************************
 
-
-To use an analogy, an AS is like a city with many streets. A network prefix is one street, and an IP address is one particular house. Network packets 
-
-are like cars traveling from one house to another, and BGP is like a navigation app that helps them take the best possible route.
-
-https://www.imperva.com/learn/ddos/border-gateway-protocol-bgp/
-
-*******************************************************************
 Intra / Inter
 IGP / EGP
 
