@@ -311,7 +311,9 @@ https://www.imperva.com/learn/ddos/border-gateway-protocol-bgp/
 
 *******************************************************************
 
-  QoS ==> type of service (ToS) field = a packet would be placed in a prioritized outgoing queue,
+  QoS ==> quality of service 
+  
+  (ToS) type of service  field = a packet would be placed in a prioritized outgoing queue
 
 *******************************************************************
 
