@@ -220,11 +220,7 @@ Fragmentation is a phenomenon in which storage space is used inefficiently, redu
 
 Segmentation is the process of dividing the computer’s primary memory into segments or sections.
 
-Fragmentation, 
-
-a process in which free memory space is broken into little pieces. In this, memory blocks cannot be allocated to processes due to their small size and 
-
-such blocks remain unused. It usually occurs in dynamic memory allocation system when many of free blocks are too small to satisfy any request
+Fragmentation,  a process in which free memory space is broken into little pieces. In this, memory blocks cannot be allocated to processes due to their small size and  such blocks remain unused. It usually occurs in dynamic memory allocation system when many of free blocks are too small to satisfy any request
 
 *******************************************************************
 
