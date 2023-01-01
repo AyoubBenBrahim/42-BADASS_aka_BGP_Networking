@@ -337,7 +337,7 @@ EGP/ inter-AS routing protocols (BGP)
 
 https://sabercomlogica.com/en/intra-as-and-inter-as-routing/
 
-EGP / IGP: OSPF EIGRP BGP RIP IS-IS
+OSPF EIGRP BGP RIP IS-IS
 
 https://youtu.be/KjNYEzEBRD8
 
