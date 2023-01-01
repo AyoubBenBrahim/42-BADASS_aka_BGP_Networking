@@ -1,8 +1,7 @@
 
-I squander untold effort making an arrangement of my thoughts.
+Forcing my thoughts into an ordered sequence is a torment for me. [...] I squander untold effort making an arrangement of my thoughts.
 
 Ludwig Wittgenstein - Culture and Value
-
 
 Give me six hours to chop down a tree and I will spend the first four sharpening the axe. - Abraham Lincoln
 
@@ -14,42 +13,72 @@ OSI model --> Hussein Nasser's ytube channel
 
 
 7 Application = 
+
 6 Presentation = Encrypts if necessary, zip
+
 5 Session = session id
+
 pres + session = convert that thing we want to transmit into serialized info
+
                 establish conx, Dialogue
+                
 4 trans = segment, manage ports(src/dest)
+
             segmentation and reassembly
+            
             speed matching mechanism
+            
             TCP/UDP
+            
 layer 5 and 6 are useless, we skip them most of the time
+
 3 net/ip protocol = Packets / add ip(src/dest) + other headers
+
 2 Data Link = moving frames(HDLC/PPP) - Hop to Hop data delivery
+
               MAC + LLC
+              
               - error control/ flow control(speed matching)
+              
               Frames / deal with mac address / (error detection..) small pieces ARP(Mac->IP) | deals with mac adrs
+              
               corrects errors that may occur in the physical layer
+              
               Sliding Window Protocol (https://youtu.be/LnbvhoxHn8M)
-              High-level Data Link Control (HDLC) is a group of communication protocols of the data link layer for transmitting data between network points or nodes. Since it is a data link protocol, data is organized into frames. A frame is transmitted via the network to the destination that verifies its successful arrival.
+              
+              High-level Data Link Control (HDLC) is a group of communication protocols of the data link layer for transmitting data between network 
+              
+              points or nodes. Since it is a data link protocol, data is organized into frames. A frame is transmitted via the network to the 
+              
+              destination that verifies its successful arrival.
 
               Multiple Access Protocols = avoid talking simultaneously aka collision 
+              
                                           Random access protocol (CSMA/CD..) = any station has the right to acess and send data
+                                          
                                           CSMA = carrier(medium/chanel) sense protocol aka "listen before talk"
 
 1 Physical = frame into ones and zeros (electricity doesn't has direction aka broadcast) 
+
             converts the digital bits into electrical, radio, or optical signals.
 
 this data(binary) will be sent to everyone
+
 then send them up to make sense
+
 Data link receives all the frames checks adres and rejects them if not the right host
+
 each layer towards up removes its added headers..
 
 
 switch goes only to layer 2
+
 hub to layer 3
+
 router 3
 
 Hub = im not smart enough so broadcast the frame to all, machines accept it or drops it (its for me or not)
+
 the network become very busy
 
 switch works smarter(looks at the content) + remembers (tables)
@@ -57,7 +86,9 @@ switch works smarter(looks at the content) + remembers (tables)
 *******************************************************************
 
 protocol data unit (PDU) is a single unit of information transmitted among peer entities of a computer network.
+
 (packet, segment, datagram)
+
 PDU (Protocol Data Unit) is a generic term used to refer to the packets in different layers of the OSI model.
 
 Packet:
@@ -65,88 +96,133 @@ Packet:
 data bytes have a specific format in the OSI networking model since each layer has its specific unit
 
 The basic unit of communication between a source and a destination in a network is a packet.
+
 Data sent through the network is divided into packets
 
 Fragment:
 
 Packets can often be larger than the MTU, so each packet is also divided into smaller pieces of data called fragments.
+
 each network has its own MTU capacity. 
-If the packet length is bigger than the MTU, the network layer checks the Don’t Fragment (DF) flag associated with the packet. If the DF flag is \mathsf{1}, we discard the packet. Otherwise, the network layer decides the size of the fragments, 
+
+If the packet length is bigger than the MTU, the network layer checks the Don’t Fragment (DF) flag associated with the packet. If the DF flag is 
+
+\mathsf{1}, we discard the packet. Otherwise, the network layer decides the size of the fragments, 
+
 create the header, encapsulate the fragments within the header, and send them to the next layer:
 
 Frame:
+
 The main difference between a packet and a frame is the association with the OSI layers.
 
 While a packet is the unit of data used in the network layer, 
+
 a frame is the unit of data used in the OSI model's data link layer. 
+
 Frames are not much different from packets. They contain more information about the data. 
+
 The process of framing consists of adding some extra bytes into the packet turning it into the frame
 
 Packet + extra info/headers = Frame
 
 Datagram:
+
 While TCP uses packets in connection-oriented protocols, datagrams are used in UDP
 
 Application = Data
+
 Transprt = Segments/Datagrams  : ACK, packet segmentation(MTU)
+
 Internet = Packets = addressing , routing
+
 Data Link = Frames
+
 Physical = bit
+
 (https://youtu.be/-hkF4OyxzNQ)
 
 
 =======
 
 VLAN is a layer 2 concept (frames)
+
  VLAN tagging
 
 A switching loop or bridge loop occurs in computer networks when there is more than one layer 2 path between two endpoints
+
 (e.g. multiple connections between two network switches or two ports on the same switch connected to each other).
+
 The loop creates broadcast storms as broadcasts and multicasts are forwarded by switches out every port, 
+
 the switch or switches will repeatedly rebroadcast the broadcast messages flooding the network.
+
 Since the layer-2 header does not include a time to live (TTL) field, if a frame is sent into a looped topology,it can loop forever
 
-Routing loops are tempered by a time to live (TTL) field in layer-3 packet header; Packets will circulate the routing loop until their TTL value expires.
+Routing loops are tempered by a time to live (TTL) field in layer-3 packet header; Packets will circulate the routing loop until their TTL value 
+expires.
+
  No TTL concept exists at layer 2 and packets in a switching loop will circulate until dropped
+ 
 
 broadcast storm
+
 A packet that induces such a storm is occasionally nicknamed a Chernobyl packet.
+
 a broadcast storm can be instigated for the purpose of a denial of service (DOS) 
 
 ==> Spanning Tree Protocol (STP) prevents broadcast loops, blocks the redundant link(will be used when active links or ports goes down)
+
     (https://youtu.be/GSKoQ8ZR8rw?list=PLBlnK6fEyqRgMCUAG0XRw78UA8qnv6jEx)
 
 Layer 2 loops
 
 
-In Open Systems Interconnection (OSI) terminology, a service data unit (SDU) is a unit of data that has been passed down from an OSI layer or sublayer to a lower layer. This unit of data (SDU) has not yet been encapsulated into a protocol data unit (PDU) by the lower layer. That SDU is then encapsulated into the lower layer's PDU and the process continues until reaching the PHY, physical, or lowest layer of the OSI stack.
+In Open Systems Interconnection (OSI) terminology, a service data unit (SDU) is a unit of data that has been passed down from an OSI layer or sublayer 
 
-At the receiving device the data is passed from the lowest to the highest layer as a series of SDUs while being successively stripped from each layer's header or footer until reaching the topmost layer, where the last of the data is consumed
+to a lower layer. This unit of data (SDU) has not yet been encapsulated into a protocol data unit (PDU) by the lower layer. That SDU is then 
+
+encapsulated into the lower layer's PDU and the process continues until reaching the PHY, physical, or lowest layer of the OSI stack.
+
+At the receiving device the data is passed from the lowest to the highest layer as a series of SDUs while being successively stripped from each layer's 
+
+header or footer until reaching the topmost layer, where the last of the data is consumed
 
 
 Fragmentation is a phenomenon in which storage space is used inefficiently, reducing capacity or performance and often both.
+
 Segmentation is the process of dividing the computer’s primary memory into segments or sections.
 
 Fragmentation, 
-a process in which free memory space is broken into little pieces. In this, memory blocks cannot be allocated to processes due to their small size and such blocks remain unused. It usually occurs in dynamic memory allocation system when many of free blocks are too small to satisfy any request
+
+a process in which free memory space is broken into little pieces. In this, memory blocks cannot be allocated to processes due to their small size and 
+
+such blocks remain unused. It usually occurs in dynamic memory allocation system when many of free blocks are too small to satisfy any request
 
 ====
 
 ip = location of a person (router friendly)
+
 MAC = name of the person (switch friendly)
+
 (https://youtu.be/FkiTOMn-XGw?list=PLBlnK6fEyqRgMCUAG0XRw78UA8qnv6jEx)
 
 reaching the city (find the network)
+
 reaching the appartment (find the host)
+
 reaching the right person (the port)
 
 ip adr says who are u in the network
+
 subnet mask says who are ur neighbors in the network
 
 ==
 Switch => three operations :
+
         learn
+        
         flood
+        
         forward
         
  ====
@@ -154,13 +230,17 @@ Switch => three operations :
 
 
 RIP = routing information protocol
+
 RIP uses the nbr of hopes(routers) between networks (max 15 router)
+
 OSPF calculates the cost of a route/ based on bandwidth (link-state protocols) = bandwidth-based metrics
+
 RIP cares only about nbr of routers in the path/ uses hopes to determine the best route = distance based
 
 a value of each route = metric
 
 OSPF cost link = 100 000 000 / bandwidth
+
 100 Mbps ==> 100 000 000 / 100 000 000 bps = 1
 
 right protocol/route is chosen based on administrative distances(rank)..
@@ -169,9 +249,13 @@ right protocol/route is chosen based on administrative distances(rank)..
 IGP
 EGP
 
- autonomous system (AS) is a collection of connected Internet Protocol (IP) routing prefixes under the control of one or more network operators on behalf of a single administrative entity or domain, that presents a common and clearly defined routing policy to the Internet
+ autonomous system (AS) is a collection of connected Internet Protocol (IP) routing prefixes under the control of one or more network operators on 
+ 
+ behalf of a single administrative entity or domain, that presents a common and clearly defined routing policy to the Internet
 
-  In simpler terms, an AS can be thought of as a connected group of IP networks managed by a single administrative entity, such as a university, government, commercial organization or other type of internet service provider (ISP).
+  In simpler terms, an AS can be thought of as a connected group of IP networks managed by a single administrative entity, such as a university, 
+  
+  government, commercial organization or other type of internet service provider (ISP).
 
   AS is sometimes described as a set of routers that are managed by a single administrative entity. 
 
@@ -179,13 +263,19 @@ EGP
 
   Autonomous systems exchange routing information based on their routing policies
 
-  Each autonomous system is assigned a globally unique number called an Autonomous System Number (ASN). The number serves as an identifier for the AS and is used when exchanging routing information with other autonomous systems.
+  Each autonomous system is assigned a globally unique number called an Autonomous System Number (ASN). The number serves as an identifier for the AS 
+  
+  and is used when exchanging routing information with other autonomous systems.
 
   (IANA) manages the ASN system and coordinates the distribution of ASNs across five global regions. 
 
   BGP can direct packets along the most efficient routes to their target autonomous systems.
 
-  Networks within an autonomous system communicate routing information to each other using one or more interior gateway protocols. In contrast, communications between autonomous systems rely on a single exterior gateway protocol -- Border Gateway Protocol -- which makes it possible to share routing information and efficiently route data packets between autonomous systems
+  Networks within an autonomous system communicate routing information to each other using one or more interior gateway protocols. In contrast, 
+  
+  communications between autonomous systems rely on a single exterior gateway protocol -- Border Gateway Protocol -- which makes it possible to share 
+  
+  routing information and efficiently route data packets between autonomous systems
 
 =====
 
@@ -193,16 +283,18 @@ EGP
 
   ==
 
-  An ISP (internet service provider) is a company that provides individuals and organizations access to the internet and other related services. An ISP has the equipment and the telecommunication line access required to have a point of presence on the internet for the geographic area served.
+  An ISP (internet service provider) is a company that provides individuals and organizations access to the internet and other related services. An ISP 
+  
+  has the equipment and the telecommunication line access required to have a point of presence on the internet for the geographic area served.
 
 ISPs make it possible for customers to access the internet while also providing additional services such as email,
-
-
 
 *******
 
 
-To use an analogy, an AS is like a city with many streets. A network prefix is one street, and an IP address is one particular house. Network packets are like cars traveling from one house to another, and BGP is like a navigation app that helps them take the best possible route.
+To use an analogy, an AS is like a city with many streets. A network prefix is one street, and an IP address is one particular house. Network packets 
+
+are like cars traveling from one house to another, and BGP is like a navigation app that helps them take the best possible route.
 
 https://www.imperva.com/learn/ddos/border-gateway-protocol-bgp/
 ======
@@ -212,20 +304,30 @@ Intra-, which comes from the Latin intra (meaning “within”)
 inter, meaning "among, between”
 
 IGP / intra-autonomous system routing protocols (OSPF - RIP)
+
 EGP/ inter-AS routing protocols (BGP)
 
 https://sabercomlogica.com/en/intra-as-and-inter-as-routing/
 
 EGP / IGP: OSPF EIGRP BGP RIP IS-IS
+
 https://youtu.be/KjNYEzEBRD8
 
 BGP = the glue that holds internet together 
 
-the ISP uses an IGP internally to build reachability between its routers. It then implements iBGP on top of this to actually create a coherent routing policy within its autonomous system and then eBGP to carefully expose network information to- and receive information from- other autonomous systems.
+the ISP uses an IGP internally to build reachability between its routers. It then implements iBGP on top of this to actually create a coherent routing
+
+policy within its autonomous system and then eBGP to carefully expose network information to- and receive information from- other autonomous systems.
+
 https://www.quora.com/What-is-the-need-of-iBGP-when-we-have-other-routing-protocols-like-EIGP-OSPF
 
 Both IS-IS and Open Shortest Path First(OSPF) are link state protocols, and both use the same Dijkstra algorithm for computing the best path through the network
-IS-IS differs from OSPF in the way that "areas" are defined and routed between. IS-IS routers are designated as being: Level 1 (intra-area); Level 2 (inter area); or Level 1–2 (both). Routing information is exchanged between Level 1 routers and other Level 1 routers of the same area, and Level 2 routers can only form relationships and exchange information with other Level 2 routers. Level 1–2 routers exchange information with both levels and are used to connect the inter area routers with the intra area routers.
+
+IS-IS differs from OSPF in the way that "areas" are defined and routed between. IS-IS routers are designated as being: Level 1 (intra-area); Level 2 
+
+(inter area); or Level 1–2 (both). Routing information is exchanged between Level 1 routers and other Level 1 routers of the same area, and Level 2 
+
+routers can only form relationships and exchange information with other Level 2 routers. Level 1–2 routers exchange information with both levels and are used to connect the inter area routers with the intra area routers.
 
 In OSPF, areas are delineated on the interface such that an area border router (ABR) is actually in two or more areas at once, effectively creating the borders between areas inside the ABR, whereas in IS-IS area borders are in between routers, designated as Level 2 or Level 1–2. The result is that an IS-IS router is only ever a part of a single area.
 
@@ -247,18 +349,26 @@ ISIS runs on top of data link layer(encapsulated in Data link layer), whereas OS
  Updates that have looped through the network and returned to the same node are easily detected and discarded.
 
  advertise the reachability of networks
+ 
  It has three phases:
+ 
     Initiation
+    
     Sharing
+    
     Updating
 
-    =====
+    =
 
     Why use iBGP inside an Autonomous System, if IGP protocols fulfill the need for internal communication:
     
     iBGP isn't really used for internal routing, it is used by all your eBGP routers to share their routes.
     
-    EBGP exchanges internet (i.e. global) prefixes/routes from other Autonomous systems (EBGP peers). To reach those prefixes, someone should distribute/advertise across the internal network, IBGP comes to the rescue. IBGP advertises these global prefixes to the routers within the Autonomous System (AS). Why not IGP does the same? As IGP is quite chatty (i.e. in fact not designed for handling a large number of routes),
+    EBGP exchanges internet (i.e. global) prefixes/routes from other Autonomous systems (EBGP peers). To reach those prefixes, someone should 
+    
+    distribute/advertise across the internal network, IBGP comes to the rescue. IBGP advertises these global prefixes to the routers within the 
+    
+    Autonomous System (AS). Why not IGP does the same? As IGP is quite chatty (i.e. in fact not designed for handling a large number of routes),
 
     https://networkengineering.stackexchange.com/questions/3909/why-use-ibgp-inside-an-autonomous-system-if-igp-protocols-fulfill-the-need-for
 
@@ -269,32 +379,36 @@ ISIS runs on top of data link layer(encapsulated in Data link layer), whereas OS
 Multiprotocol Label Switching (MPLS) => a packet forwarding technology ==>label Switching =>faster lookup => ip header is still there
 
 An MPLS-capable router is often referred to as a label- switched router
+
 MPLS-capable router need not extract the destination IP address and perform a lookup of the longest prefix match in the forwarding table.
 
 In a nutshell, packets in an MPLS network are prefixed with an MPLS header (called a label stack). 
+
 The label stack is the only thing examined by the MPLS switches
-Therefore, no traditional routing table lookups are required, which in theory makes this a much faster solution than more traditional IP-based solutions. 
+
+Therefore, no traditional routing table lookups are required, which in theory makes this a much faster solution than more traditional IP-based 
+solutions. 
+
 - Network Warrior
 
 ====
-
+```
     do sh ip route rip
-
 int fa1/0
 interface fastEthernet0/0
-
 ip add ......
 router
 router ospf 1
 int fa1/0 ==> enable ospf on this interface
 ip ospf
 ip ospf 1 area 0 (interface belongs to)
-
+```
 ******
 
 redistribution of routes
 
 ===
+```
 int fa 1/0
 ip add 40.1.1.1 255.....
 router bgp 1 (==> ASN)
@@ -308,7 +422,7 @@ show ip ospf interface
 
 show ip ospf neighbor
 (This command gives you a list of OSPF neighbors that are directly connected to the router)
-
+```
 
 
 
@@ -317,12 +431,16 @@ OSPF
  Link-state advertisements 
 
   how updates are sent between areas. 
+  
 These updates are called link-state advertisements , or LSAs. An LSA is an OSPF multicast that describes 
+
 a routing change or routing update to other routers or areas. 
 
 
 Each network segment needs a designated router, known as the DR
+
  it is the job of the DR to multicast the update to all routers within its area. 
+ 
  A backup designated router (BDR) must also be selected. This router becomes the DR if the DR becomes 
 unavailable. 
 
@@ -332,10 +450,10 @@ establish the protocol and a process number, and use the network command to tell
 
 networks it's responsible for. It's easy to become confused: with OSPF the network command takes a 
 wildcard mask, not a subnet mask. 
-
+```
 router ospf  99
   network 10.10.1.0 0.0.0.255 area 0
-
+```
 Here, we establish an OSPF routing process with the process ID 99. This routing process is responsible for 
 although they are frequently called AS numbers, the numbers associated with EIGRP and OSPF routing processes are really just process IDs
 
@@ -366,22 +484,23 @@ We don't provide a network mask, as BGP assumes the old classful addressing sche
 router bgp 500
 network 10.10.2.0 mask 255.255.224.0
 
-Next, we need to define our routing peers with the neighbor command. This step
-also defines whether we are using iBGP or eBGP. If our neighbor router has the same AS number, we are using iBGP. If our neighbor has a different AS number, we are configuring eBGP. In this case, we configured a neighbor with a different AS number, meaning that we are using eBGP. 
-
+Next, we need to define our routing peers with the neighbor command. This step also defines whether we are using iBGP or eBGP. If our neighbor router has the same AS number, we are using iBGP. If our neighbor has a different AS number, we are configuring eBGP. In this case, we configured a neighbor with a different AS number, meaning that we are using eBGP. 
+```
 router bgp 500
 neighbor 192.168.1.5 remote-as 400
-
+```
 By default, BGP summarizes routes on class boundaries.
 
  Configuring "no auto-summary" disables automatic summarization.
 
  When an iBGP router advertises a route, it advertises the next hop of the route as it learned it. The next-hop-self keyword (used with the neighbor command)
+ 
 tells the router to rewrite the route's next hop as itself.
 
 ===
 
  Circuit Switching vs. Packet Switching vs Message Switching
+ 
 https://youtu.be/-HlJ4psu5aU
 
 ************
@@ -412,10 +531,13 @@ The entity that performs the encapsulation and decapsulation of packets is calle
  Overlay Network 
 
 overlay = cover/layer
+
 something laid as a covering over something else.
 
 An overlay network is a computer network based on another network. 
+
 An overlay network separates network services from the underlying infrastructure by encapsulating a packet into another packet.
+
 Using nested networks, multiple layers of network abstraction can be created to run virtual network layers
 
 Network overlays are a method of using software virtualization to create additional layers of network abstraction 
@@ -423,6 +545,7 @@ Network overlays are a method of using software virtualization to create additio
 endpoints designated by an identification tag
 
 We need overlay networks due to the limitations of the underlay network.
+
 An underlay network, as the name implies, is the underlying physical infrastructure of overlay networks.
 
 On an underlay network, devices such as switches, routers, load balancers, and firewalls can be interconnected.
@@ -446,10 +569,11 @@ https://info.support.huawei.com/info-finder/encyclopedia/en/Overlay+network.html
 Ethernet Virtual Private Network (EVPN)
 
 
-Virtual eXtensible Local Area Network (VXLAN) is one of the Network Virtualization over Layer 3 technologies 
+Virtual eXtensible Local Area Network (VXLAN) is one of the Network Virtualization over Layer 3 technologies / 
 an extension to Virtual Local Area Network (VLAN)
 
  VXLAN encapsulates a Layer 2 Ethernet frame into a UDP packet and transmits the packet over a Layer 3 network.
+ 
  VXLAN network identifier (VNI) that is similar to a VLAN ID to a VXLAN header. 
 
  VXLAN is essentially a tunneling technology.
@@ -474,23 +598,22 @@ A VNI identifies a tenant.
   https://support.huawei.com/enterprise/en/doc/EDOC1100086966
 
   VTEP ==> VXLAN Tunnel Endpoint 
+  
   VNI  ==> VXLAN Network Identifier 
-
 
   ====
 
   spine-leaf architecture / Clos topology for data center networks
 
-more spins =  more bandwidth
-low cost
+more spins =  more bandwidth + low cost
+
 Data Center = horizontal(east west) traffic
 
-  a two-layer network topology composed of spine and leaf switches.
+a two-layer network topology composed of spine and leaf switches.
 
   Three-Tier data center networks were the generally recommended data center network design in the past. They worked very well when most of the traffic moved North-South (from outside the data center in) or vice versa. A packet flows to the core, is routed to the correct distribution switch, then forwarded on to the access switch where the server was connected; 
 
   A spine-leaf architecture is a data center network topology that consists of two switching layers—a spine and a leaf. The leaf layer consists of access switches that aggregate traffic from servers and connect directly to the spine or network core. Spine switches interconnect all leaf switches 
-
 
   https://forum.huawei.com/enterprise/en/spine-leaf-vs-three-tier-network-architecture/thread/782313-100723
 
@@ -522,25 +645,21 @@ The purpose of the loopback range is testing of the TCP/IP protocol implementati
 
 
 ===> "You can also configure the loopback address as the Router ID for routing protocols like OSPF and BGP."
+
 https://study-ccna.com/loopback-interface-loopback-address/
 
 
 
 Loopback interface’s IP Address determines a router’s OSPF Router ID. A loopback interface is always up and allows Border Gateway Protocol (BGP) neighborship between two routers to stay up even if one of the outbound physical interface connected between the routers is down. 
+
 https://www.omnisecu.com/cisco-certified-network-associate-ccna/what-is-loopback-interface-in-a-router.php
-
-
-
 
 What is OSPF Router ID
 https://www.omnisecu.com/cisco-certified-network-associate-ccna/what-is-ospf-router-id-and-how-to-configure-ospf-router-id.php
 
-
-
 Service providers typically choose between OSPF and IS-IS as their IGP.
 
-Each router stores the information in their link-state database (LSDB). Routers send LSAs to their neighbours who forward them to their neighbours until every router in the network area has received them – 
-this process is called flooding.
+Each router stores the information in their link-state database (LSDB). Routers send LSAs to their neighbours who forward them to their neighbours until every router in the network area has received them –  this process is called flooding.
 
 *****************************
 
@@ -554,10 +673,12 @@ MPLS
 
 VPLS = a way to provide Ethernet-based multipoint to multipoint communication over MPLS networks.
 
- EVPN is just a successor of MPLS based L2VPN/L3VPN and that VXLAN can work on itself by just manual setup or multicast flood-and-learn. 
+EVPN is just a successor of MPLS based L2VPN/L3VPN and that VXLAN can work on itself by just manual setup or multicast flood-and-learn. 
 
  MPLS = IPVPN
+ 
  MPLS = L2.5
+ 
  VPLS = L2 VPN
 
 a WAN behaves like LAN
@@ -580,6 +701,7 @@ VPLS integrates the advantages of both Ethernet and MPLS to provide a comprehens
 
 
 P2P = links two endpoints 
+
 P2MP = For businesses with two or more locations, allows three or more separate points to work 
 
 In the context of telecommunication, a point to point communication (also known as P2P) is an established connection between two nodes that can be used to communicate back and forth. 
@@ -594,25 +716,33 @@ Users located in different geographical regions communicate with each other over
 
 https://forum.huawei.com/enterprise/en/vpls-vs-mpls-what-s-the-difference/thread/776591-861
 
-VPLS 
+VPLS
+
 securely and seamlessly connect multiple LANs over the Internet, making them appear as if they were all on the same LAN. 
 
 creating a virtualized Ethernet
- VPLS creates a simulated 'pseudo-LAN' environment. 
+
+VPLS creates a simulated 'pseudo-LAN' environment. 
 
 see the image
+
 https://www.fiber-optic-tutorial.com/vpls-vs-mpls-whats-difference.html
 
 
 VXLAN to discover neighbors:
+
   ==> Flood and learn = to build MAC tables (consumes a lot) 
+  
   ==> BGP EVPN (VTEP switches share info with BGP)
+  
   https://youtu.be/RSbbIMwgUys
 
-  =====
+==
 
   why using VXLAN and not VLAN
+  
   -----------------
+  
   2^12 vs 2^24 =  broadcast domains
 
   VXLAN is a tunneling encapsulation protocol that uses mac in UDP encapsulation.
@@ -646,25 +776,23 @@ MAC over IP/UDP overlay
 
 The transport network, termed the underlay, needs to account for the additional bytes incurred by the overlay headers. In the case of VXLAN, typically, the transport network needs to be provisioned for an additional 50 bytes in the maximum transmission unit (MTU). 
 
-
 Increase MTU (9000 MTU) to avoid fragmentation = In computer networking, jumbo frames are Ethernet frames with more than 1500 bytes 
-
 
 /30  is the most common prefix size for P2P IP networks. A typical /30 prefix provides one network ID address, two usable IP addresses, and one broadcast ID address. While using this prefix size is an efficient way of assigning IP addresses to P2P networks, note that 50% of the addresses (the network ID address and broadcast ID address) are unusable.
 
 Alternatively, a more efficient option from an IP address assignment perspective would be to use a /31 prefix length. The IP subnet of a /31 prefix consists of only two IP addresses, both capable of being used in the P2P network. With the /30 prefix, the additional two nonusable IP addresses (network ID and broadcast ID) are overloaded due to usage with the two usable IP addresses. However, a /31 prefix provides only two usable IP addresses, without network ID and broadcast ID addresses, and therefore overloading does not occur. By using /31 prefixes instead of /30 prefixes in the underlay network, all the IP addresses in the area of P2P networks are usable.
 
 Consider the match for a network with 4 spines and a 40-leaf underlay with a /31 prefix: 4 spines × 40 leafs = 160 P2P links
+
 = 160 links × 2 (/31) + 40 leafs + 4 spines
+
 = 320 IP addresses for P2P links + 44 IP addresses for loopback interfaces
+
 = 364 IP addresses aggregate required => /23 prefix (512 IP addresses)
 
 -- Building Data Centers with VXLAN BGP EVPN_ A Cisco NX-OS Perspective-Cisco Press (2017)
 
-
-
 BGP as underlay routing protocol requires greater design and configuration time in a spine–leaf underlay compared to SPF-based routing protocols. 
-
 
 BGP, as a hard-state protocol, sends out updates only when there is a change in network reachability. Hence, it does not incur the periodic update overhead that link-state protocols like OSPF have in terms of periodic updates
 
@@ -677,11 +805,12 @@ With eBGP, the next-hop attribute is always set, which means the neighbor of a r
 
 
 virtual network ID
+
 VLAN = 12 bits
+
 MPLS = 20 bits
+
 VXLAN-GRE = 24 bit
-
-
 
 p 133 - chap 6: Network virtualization
 
@@ -689,9 +818,8 @@ p 133 - chap 6: Network virtualization
 The main reason MPLS was developed in the 1990s was to reduce the amount of IP routing lookups.
 The idea behind MPLS is to “switch” based on labels with lookups that use exact matching instead of the compute-intensive longest prefix IP routing lookups.
 
-
-
 VXLAN extends the layer 2 accrross an ip fabric
+
 Overlay =  the original frame comming from a end ponit  
 
 Ethernet VPN (EVPN) is a technology for carrying layer 2 Ethernet traffic as a virtual private network
@@ -699,6 +827,7 @@ Ethernet VPN (EVPN) is a technology for carrying layer 2 Ethernet traffic as a v
 EVPN is a Control plane: routing info,  defines what to do with incoming packets
 
 MP-BGP EVPN carries info: MAC, IP, network prefix, VNID, VTEP IP + distributes MAC, IP info avoiding flooding
+
 https://youtu.be/9Hq8W9PZYus?t=2472
 
 
@@ -706,14 +835,18 @@ EVPN is a solution that provides the control plane for network virtualization. I
 
 It uses BGP as the control protocol to exchange reachability information for virtual networks
 
-
 VXLAN-EVPN adopted by Data Centers in 2017
 
 VXLAN needs to know which VTEPs2 are interested in which virtual networks, so that multidestination frames such as Broadcast, Unknown unicast, and Multicast (BUM) traffic can be delivered only to the interested endpoints.
+
 EVPN goes even further and also provides support for the following:
+
 • ARP/ND suppression
+
 • Routing
+
 • Multihomed nodes
+
 • L3 multicast
 
 Cloud Native Data Center Networking p 335
@@ -739,31 +872,31 @@ RR follows a hub-and-spoke model, in which all the iBGP speakers connect to a gr
  Cloud Native Data Center Networking p 339
 
 The spines in a Clos topology act as RRs. The spines are part of the underlay and have no knowledge of the virtual networks. 
+
 The spines are used as iBGP RRs. 
+
   - Cloud Native Data Center Networking p 340
 
 EVPN is considered to be a kind of an L2 VPN.
 
 The spines are only part of the underlay. 
 
-
-
 ==
 1994: BGP
+
 1996: VPN
+
 1999: MPLS (L3VPN)
+
 2005: VPLS  (https://www.researchgate.net/publication/352384676_A_survey_of_Virtual_Private_LAN_Services_VPLS_Past_present_and_future)
+
 2011: VXLAN
+
 2017: EVPN
-
-
 
  most VXLAN networks use an IPv4 underlay exclusively.
 
   Cloud Native Data Center Networking p 258
-
-
-
 
   Bridging operates at Layer 2 of the OSI reference model while routing operates at Layer 3. A set of logical ports configured for bridging can be said to constitute a bridging domain.
 
@@ -772,8 +905,7 @@ The spines are only part of the underlay.
   Bridge interfaces connect two different interfaces (bridge ports). Bridging two interfaces causes every Ethernet frame that is received on one bridge port to be transmitted to the other port. Thus, the two bridge ports participate in the same Broadcast domain (different from router port behavior). 
 
   they behave in most respects as if they were a single network. 
-
-
+  
   ===
 
   VXLAN is an overlay network technology. Overlay network can be defined as any logical network that is created on top of the existing physical networks. VXLAN creates Layer 2 logical networks on top of the IP network. 
@@ -788,29 +920,33 @@ a unique IP address range is assigned as Multicast group IP address. It is a Cla
 Any node (computer/user) in the network can join a multicast group using Internet Group Management Protocol (IGMP).
 
 IGMP-PIM
+
 The network devices use these protocols to learn about which nodes have joined which multicast groups and where the nodes are in the network.
 
 The layer 2 switches monitor the IGMP query and report messages to find out which switch ports are subscribed to which multicast group. This functionality of a layer 2 switch is called IGMP snooping.
+
 https://blogs.vmware.com/vsphere/2013/05/vxlan-series-multicast-basics-part-2.html
 
 
 How VTEPs Learns and Creates Forwarding Table
+
   Each VTEP has its own forwarding table, which is initially empty
 
   We will take an example of virtual machine on Host 1 trying to communicate with the virtual machine on the Host 2. First, an ARP request is sent from the virtual machine MAC1 to find the MAC address of the virtual machine on Host 2. The ARP request is a broadcast packet.
 
 1/  Virtual machine on Host1 sends ARP packet with Destination MAC as “FFFFFFFFFFF”
+
 2/  VTEP on Host 1 encapsulates the Ethernet broadcast packet into a UDP header with Multicast address “239.1.1.100” as the     
       destination IP address and VTEP address “10.20.10.10” as the Source IP address.
+      
 3/  The physical network delivers the multicast packet to the hosts that joined the multicast group address “239.1.1.10”.
+
 4/  The VTEP on Host 2 receives the encapsulated packet. Based on the outer and inner header, it makes an entry in the forwarding table 
       that shows the mapping of the virtual machine MAC address and the VTEP. In this example, the virtual machine MAC1 running on Host 1 is associated with VTEP IP “10.20.10.10”. VTEP also checks the segment ID or VXLAN logical network ID (5001) in the external header to decide if the packet has to be delivered on the host or not.
+      
 5/  The packet is de-encapsulated and delivered to the virtual machine connected on that logical network VXLAN 5001.
 
 https://blogs.vmware.com/vsphere/2013/05/vxlan-series-how-vtep-learns-and-creates-forwarding-table-part-5.html
-
-
-
 
 
 
@@ -822,11 +958,13 @@ VxLAN Address Learning
 
 
 When frames from one of these VNI’s arrives at the Ingress VTEP, the VTEP encapsulates it with UDP and IP headers.
+
 The encapsulated packet is sent over the IP network to the Egress VTEP. When it arrives, the VTEP removes the IP and UDP headers, and delivers the frame as normal.
+
  https://networkdirection.net/articles/routingandswitching/vxlanoverview/
 
 
-  L2vpn VS L3vpn
+L2vpn VS L3vpn
 
 L3VPN
 
