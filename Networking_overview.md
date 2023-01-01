@@ -91,6 +91,12 @@ protocol data unit (PDU) is a single unit of information transmitted among peer 
 
 PDU (Protocol Data Unit) is a generic term used to refer to the packets in different layers of the OSI model.
 
+In Open Systems Interconnection (OSI) terminology, a service data unit (SDU) is a unit of data that has been passed down from an OSI layer or sublayer 
+to a lower layer. This unit of data (SDU) has not yet been encapsulated into a protocol data unit (PDU) by the lower layer. That SDU is then 
+encapsulated into the lower layer's PDU and the process continues until reaching the PHY, physical, or lowest layer of the OSI stack.
+At the receiving device the data is passed from the lowest to the highest layer as a series of SDUs while being successively stripped from each layer's 
+header or footer until reaching the topmost layer, where the last of the data is consumed
+
 Packet:
 
 data bytes have a specific format in the OSI networking model since each layer has its specific unit
@@ -141,8 +147,7 @@ Physical = bit
 
 (https://youtu.be/-hkF4OyxzNQ)
 
-
-=======
+*******************************************************************
 
 VLAN is a layer 2 concept (frames)
 
@@ -177,17 +182,6 @@ a broadcast storm can be instigated for the purpose of a denial of service (DOS)
 Layer 2 loops
 
 
-In Open Systems Interconnection (OSI) terminology, a service data unit (SDU) is a unit of data that has been passed down from an OSI layer or sublayer 
-
-to a lower layer. This unit of data (SDU) has not yet been encapsulated into a protocol data unit (PDU) by the lower layer. That SDU is then 
-
-encapsulated into the lower layer's PDU and the process continues until reaching the PHY, physical, or lowest layer of the OSI stack.
-
-At the receiving device the data is passed from the lowest to the highest layer as a series of SDUs while being successively stripped from each layer's 
-
-header or footer until reaching the topmost layer, where the last of the data is consumed
-
-
 Fragmentation is a phenomenon in which storage space is used inefficiently, reducing capacity or performance and often both.
 
 Segmentation is the process of dividing the computer’s primary memory into segments or sections.
@@ -198,7 +192,7 @@ a process in which free memory space is broken into little pieces. In this, memo
 
 such blocks remain unused. It usually occurs in dynamic memory allocation system when many of free blocks are too small to satisfy any request
 
-====
+*******************************************************************
 
 ip = location of a person (router friendly)
 
@@ -216,7 +210,8 @@ ip adr says who are u in the network
 
 subnet mask says who are ur neighbors in the network
 
-==
+*******************************************************************
+
 Switch => three operations :
 
   learn
@@ -225,9 +220,9 @@ Switch => three operations :
         
   forward
         
- ====
- internet is nothing more than a series of routers
+*******************************************************************
 
+ internet is nothing more than a series of routers
 
 RIP = routing information protocol
 
@@ -277,11 +272,11 @@ EGP
   
   routing information and efficiently route data packets between autonomous systems
 
-=====
+*******************************************************************
 
   QoS ==> type of service (ToS) field = a packet would be placed in a prioritized outgoing queue,
 
-  ==
+*******************************************************************
 
   An ISP (internet service provider) is a company that provides individuals and organizations access to the internet and other related services. An ISP 
   
@@ -289,7 +284,7 @@ EGP
 
 ISPs make it possible for customers to access the internet while also providing additional services such as email,
 
-*******
+*******************************************************************
 
 
 To use an analogy, an AS is like a city with many streets. A network prefix is one street, and an IP address is one particular house. Network packets 
@@ -297,7 +292,8 @@ To use an analogy, an AS is like a city with many streets. A network prefix is o
 are like cars traveling from one house to another, and BGP is like a navigation app that helps them take the best possible route.
 
 https://www.imperva.com/learn/ddos/border-gateway-protocol-bgp/
-======
+
+*******************************************************************
 
 Intra-, which comes from the Latin intra (meaning “within”)
 
@@ -337,7 +333,7 @@ ISIS runs on top of data link layer(encapsulated in Data link layer), whereas OS
 
  administrative distance of OSPF is 110 and ISIS is 115.
 
- ====
+*******************************************************************
 
  So, BGP performs “path vector” routing by advertising a vector of paths (lists of ASes) rather than just distances (hop counts.)
 
@@ -358,7 +354,7 @@ ISIS runs on top of data link layer(encapsulated in Data link layer), whereas OS
     
   Updating
 
-  =
+*******************************************************************
 
   Why use iBGP inside an Autonomous System, if IGP protocols fulfill the need for internal communication:
     
@@ -372,7 +368,7 @@ ISIS runs on top of data link layer(encapsulated in Data link layer), whereas OS
 
   https://networkengineering.stackexchange.com/questions/3909/why-use-ibgp-inside-an-autonomous-system-if-igp-protocols-fulfill-the-need-for
 
-====
+*******************************************************************
 
 Multiprotocol Label Switching (MPLS) => a packet forwarding technology ==>label Switching =>faster lookup => ip header is still there
 
@@ -389,7 +385,8 @@ solutions.
 
 - Network Warrior
 
-====
+*******************************************************************
+
 ```
 do sh ip route rip
 int fa1/0
@@ -422,7 +419,7 @@ show ip ospf neighbor
 (This command gives you a list of OSPF neighbors that are directly connected to the router)
 ```
 
-
+*******************************************************************
 
 OSPF
 
@@ -433,7 +430,6 @@ OSPF
 These updates are called link-state advertisements , or LSAs. An LSA is an OSPF multicast that describes 
 
 a routing change or routing update to other routers or areas. 
-
 
 Each network segment needs a designated router, known as the DR
 
@@ -466,7 +462,7 @@ ASBR (autonomous system border router)
 that wildcard masks look like subnet masks, but they aren't;
 Wildcard = 255 - Subnet
 
-=======
+*******************************************************************
 
 route summarization
 
@@ -474,7 +470,8 @@ you should notice that there are four routes pointing to 172.16.1.1 for the vari
 We can simplify the routing table
 
 
-====
+*******************************************************************
+
 BGP
 
 We don't provide a network mask, as BGP assumes the old classful addressing scheme when a mask isn't provided explicitly.
@@ -495,13 +492,14 @@ By default, BGP summarizes routes on class boundaries.
  
 tells the router to rewrite the route's next hop as itself.
 
-===
+*******************************************************************
 
  Circuit Switching vs. Packet Switching vs Message Switching
  
 https://youtu.be/-HlJ4psu5aU
 
-************
+*******************************************************************
+
 VXLAN
 
 Extensible: able to be extended or stretched; extendable.
@@ -524,7 +522,7 @@ VXLAN tunneling protocol that encapsulates Layer 2 Ethernet frames in Layer 3 UD
 
 The entity that performs the encapsulation and decapsulation of packets is called a VXLAN tunnel endpoint (VTEP).
 
-----
+*******************************************************************
 
  Overlay Network 
 
@@ -564,8 +562,7 @@ When sending a data packet, a device adds a new IP header and a tunnel header to
 
 https://info.support.huawei.com/info-finder/encyclopedia/en/Overlay+network.html
 
-Ethernet Virtual Private Network (EVPN)
-
+*******************************************************************
 
 Virtual eXtensible Local Area Network (VXLAN) is one of the Network Virtualization over Layer 3 technologies / 
 an extension to Virtual Local Area Network (VLAN)
@@ -581,6 +578,7 @@ an extension to Virtual Local Area Network (VLAN)
 
 VXLAN has become the mainstream technology for constructing data center networks
 
+*******************************************************************
 
 What Are the Differences Between VXLAN and VLAN?
 -----
@@ -599,9 +597,9 @@ A VNI identifies a tenant.
   
   VNI  ==> VXLAN Network Identifier 
 
-  ====
+*******************************************************************
 
-  spine-leaf architecture / Clos topology for data center networks
+ spine-leaf architecture / Clos topology for data center networks
 
 more spins =  more bandwidth + low cost
 
@@ -622,7 +620,7 @@ a two-layer network topology composed of spine and leaf switches.
 
 The spine simply ensures that VTEP-to-VTEP communication is done efficiently between different leafs by using the underlay IP network
 
-  ====
+*******************************************************************
 
   the difference between a subinterface and a loopbackinterface?
 
@@ -659,7 +657,7 @@ Service providers typically choose between OSPF and IS-IS as their IGP.
 
 Each router stores the information in their link-state database (LSDB). Routers send LSAs to their neighbours who forward them to their neighbours until every router in the network area has received them –  this process is called flooding.
 
-*****************************
+*******************************************************************
 
 Ethernet VPN (EVPN)
 
@@ -690,7 +688,8 @@ a WAN behaves like LAN
 VPLS is a specific MPLS-based Ethernet technology that supports P2MP communication.
 
 VPLS integrates the advantages of both Ethernet and MPLS to provide a comprehensive multipoint communication solution. By emulating traditional LAN functions, VPLS enables users on different LANs to communicate with each other over MPLS networks as if they were on the same LAN.
-=====
+
+*******************************************************************
 
 
  P2MP vs P2P (Point-to-Point and Point-to-MultiPoint)
@@ -706,7 +705,7 @@ In the context of telecommunication, a point to point communication (also known 
 
 A multicast routing protocol is a mechanism for constructing a loop-free shortest path from a source host that sends data to the multiple destinations that receives the data. 
 
-=====
+*******************************************************************
 
 As an MPLS-based point-to-multipoint (P2MP) Layer 2 Virtual Private Network (L2VPN) service provided over a public network, the virtual private LAN service (VPLS) ensures that geographically isolated user sites can communicate over metropolitan area networks (MANs) and wide-area networks (WANs) as if they were on the same local area network (LAN). VPLS is also called the transparent LAN service (TLS).
 
@@ -726,6 +725,7 @@ see the image
 
 https://www.fiber-optic-tutorial.com/vpls-vs-mpls-whats-difference.html
 
+*******************************************************************
 
 VXLAN to discover neighbors:
 
@@ -735,11 +735,10 @@ VXLAN to discover neighbors:
   
   https://youtu.be/RSbbIMwgUys
 
-==
+*******************************************************************
 
   why using VXLAN and not VLAN
   
-  -----------------
   
   2^12 vs 2^24 =  broadcast domains
 
@@ -763,7 +762,7 @@ In virtualization, the host where you have the VM’s resides is called the Host
 
 Similarly, The physical networks are called the Underlay network, and the network that runs on top of the physical networks is called the overlay network.
 
-===
+*******************************************************************
 
 RR
 
@@ -800,7 +799,7 @@ With eBGP, the next-hop attribute is always set, which means the neighbor of a r
 
 -- Building Data Centers with VXLAN BGP EVPN_ A Cisco NX-OS Perspective-Cisco Press (2017)
 
-
+*******************************************************************
 
 virtual network ID
 
@@ -812,6 +811,7 @@ VXLAN-GRE = 24 bit
 
 p 133 - chap 6: Network virtualization
 
+*******************************************************************
 
 The main reason MPLS was developed in the 1990s was to reduce the amount of IP routing lookups.
 The idea behind MPLS is to “switch” based on labels with lookups that use exact matching instead of the compute-intensive longest prefix IP routing lookups.
@@ -849,6 +849,7 @@ EVPN goes even further and also provides support for the following:
 
 Cloud Native Data Center Networking p 335
 
+*******************************************************************
 
  VTEP, as a memory refresher, is the edge of the network virtual overlay, the place where the non-virtual network meets the virtual network; the place where packets are encapsulated on their way into the overlay and decapsulated on their way out of the overlay. 
 
@@ -879,7 +880,8 @@ EVPN is considered to be a kind of an L2 VPN.
 
 The spines are only part of the underlay. 
 
-==
+*******************************************************************
+
 1994: BGP
 
 1996: VPN
@@ -891,6 +893,8 @@ The spines are only part of the underlay.
 2011: VXLAN
 
 2017: EVPN
+
+*******************************************************************
 
  most VXLAN networks use an IPv4 underlay exclusively.
 
@@ -904,7 +908,7 @@ The spines are only part of the underlay.
 
   they behave in most respects as if they were a single network. 
   
-  ===
+*******************************************************************
 
   VXLAN is an overlay network technology. Overlay network can be defined as any logical network that is created on top of the existing physical networks. VXLAN creates Layer 2 logical networks on top of the IP network. 
 
@@ -912,6 +916,7 @@ VXLAN encapsulates original MAC frames in to a UDP header (shown below), and all
 
 https://blogs.vmware.com/vsphere/2013/04/vxlan-series-different-components-part-1.html
 
+*******************************************************************
 
 a unique IP address range is assigned as Multicast group IP address. It is a Class D address range from 224.0.0.0 to 239.255.255.255. Each address in this range designates a multicast group. Some of the addresses are reserved.
 
@@ -925,6 +930,7 @@ The layer 2 switches monitor the IGMP query and report messages to find out whic
 
 https://blogs.vmware.com/vsphere/2013/05/vxlan-series-multicast-basics-part-2.html
 
+*******************************************************************
 
 How VTEPs Learns and Creates Forwarding Table
 
@@ -946,6 +952,8 @@ How VTEPs Learns and Creates Forwarding Table
 
 https://blogs.vmware.com/vsphere/2013/05/vxlan-series-how-vtep-learns-and-creates-forwarding-table-part-5.html
 
+*******************************************************************
+
 VxLAN Address Learning
 
  how the destination MAC addresses are learned? What about the VTEPs? How do the switches know the VTEP IP
@@ -959,6 +967,7 @@ The encapsulated packet is sent over the IP network to the Egress VTEP. When it 
 
  https://networkdirection.net/articles/routingandswitching/vxlanoverview/
 
+*******************************************************************
 
 L2vpn VS L3vpn
 
