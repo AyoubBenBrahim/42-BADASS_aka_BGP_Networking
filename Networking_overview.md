@@ -203,7 +203,7 @@ TTL is good at layer 3 as multi-hop traffic doesn't flood (multicast uses other 
  ```
  
 
-broadcast storm
+Broadcast Storm
 
 A packet that induces such a storm is occasionally nicknamed a **Chernobyl packet**.
 
@@ -219,8 +219,7 @@ Layer 2 loops
 Fragmentation is a phenomenon in which storage space is used inefficiently, reducing capacity or performance and often both.
 
 Segmentation is the process of dividing the computer’s primary memory into segments or sections.
-
-Fragmentation,  a process in which free memory space is broken into little pieces. In this, memory blocks cannot be allocated to processes due to their small size and  such blocks remain unused. It usually occurs in dynamic memory allocation system when many of free blocks are too small to satisfy any request
+a process in which free memory space is broken into little pieces. In this, memory blocks cannot be allocated to processes due to their small size and  such blocks remain unused. It usually occurs in dynamic memory allocation system when many of free blocks are too small to satisfy any request
 
 *******************************************************************
 
@@ -244,11 +243,11 @@ subnet mask says who are ur neighbors in the network
 
 Switch => three operations :
 
-  learn
+  Learn
         
-  flood
+  Flood
         
-  forward
+  Forward
         
 *******************************************************************
 
@@ -292,11 +291,9 @@ AS
 
   BGP can direct packets along the most efficient routes to their target autonomous systems.
 
-  Networks within an autonomous system communicate routing information to each other using one or more interior gateway protocols. In contrast, 
+  Networks within an autonomous system communicate routing information to each other using one or more interior gateway protocols.
   
-  communications between autonomous systems rely on a single exterior gateway protocol -- Border Gateway Protocol -- which makes it possible to share 
-  
-  routing information and efficiently route data packets between autonomous systems
+  In contrast, communications between autonomous systems rely on a single exterior gateway protocol -- Border Gateway Protocol -- which makes it possible to share routing information and efficiently route data packets between autonomous systems
 
 *******************************************************************
 
