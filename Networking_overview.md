@@ -168,6 +168,8 @@ Physical = bit
 VLAN is a layer 2 concept (frames)
 
  VLAN tagging
+ 
+*******************************************************************
 
 A switching loop or bridge loop occurs in computer networks when there is more than one layer 2 path between two endpoints
 
