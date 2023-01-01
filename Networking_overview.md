@@ -205,7 +205,7 @@ TTL is good at layer 3 as multi-hop traffic doesn't flood (multicast uses other 
 
 broadcast storm
 
-A packet that induces such a storm is occasionally nicknamed a Chernobyl packet.
+A packet that induces such a storm is occasionally nicknamed a **Chernobyl packet**.
 
 a broadcast storm can be instigated for the purpose of a denial of service (DOS) 
 
