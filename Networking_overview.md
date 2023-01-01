@@ -202,7 +202,6 @@ Every endpoint on the network would be drowning in broadcast / multicast / unkno
 TTL is good at layer 3 as multi-hop traffic doesn't flood (multicast uses other mechanisms to prevent loops)
  ```
  
-
 Broadcast Storm
 
 A packet that induces such a storm is occasionally nicknamed a **Chernobyl packet**.
@@ -359,9 +358,19 @@ IS-IS vs OSPF
 
 Both IS-IS and Open Shortest Path First(OSPF) are link state protocols, and both use the same Dijkstra algorithm for computing the best path through the network
 
-IS-IS differs from OSPF in the way that "areas" are defined and routed between. IS-IS routers are designated as being:
+IS-IS differs from OSPF in the way that "areas" are defined and routed between.
 
-Level 1 (intra-area); Level 2 (inter area); or Level 1–2 (both). Routing information is exchanged between Level 1 routers and other Level 1 routers of the same area, and Level 2 routers can only form relationships and exchange information with other Level 2 routers. Level 1–2 routers exchange information with both levels and are used to connect the inter area routers with the intra area routers.
+IS-IS routers are designated as being:
+
+Level 1 (intra-area);
+
+Level 2 (inter area);
+
+or Level 1–2 (both).
+
+Routing information is exchanged between Level 1 routers and other Level 1 routers of the same area, and Level 2 routers can only form relationships and exchange information with other Level 2 routers.
+
+Level 1–2 routers exchange information with both levels and are used to connect the inter area routers with the intra area routers.
 
 
 In OSPF, areas are delineated on the interface such that an area border router (ABR) is actually in two or more areas at once, effectively creating the borders between areas inside the ABR, whereas in IS-IS area borders are in between routers, designated as Level 2 or Level 1–2. The result is that an IS-IS router is only ever a part of a single area.
