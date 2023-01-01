@@ -341,7 +341,13 @@ OSPF EIGRP BGP RIP IS-IS
 
 https://youtu.be/KjNYEzEBRD8
 
-**BGP = the glue that holds internet together **
+*******************************************************************
+
+best simple definition i come across
+
+**BGP = the glue that holds internet together**
+
+*******************************************************************
 
 the ISP uses an IGP internally to build reachability between its routers. It then implements iBGP on top of this to actually create a coherent routing
 
