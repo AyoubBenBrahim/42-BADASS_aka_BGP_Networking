@@ -126,7 +126,7 @@ each network has its own MTU capacity.
 
 If the packet length is bigger than the MTU, the network layer checks the Don’t Fragment (DF) flag associated with the packet. If the DF flag is 
 
-\mathsf{1}, we discard the packet. Otherwise, the network layer decides the size of the fragments, 
+{1}, we discard the packet. Otherwise, the network layer decides the size of the fragments, 
 
 create the header, encapsulate the fragments within the header, and send them to the next layer:
 
