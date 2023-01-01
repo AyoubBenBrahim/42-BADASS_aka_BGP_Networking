@@ -144,9 +144,12 @@ The process of framing consists of adding some extra bytes into the packet turni
 
 Packet + extra info/headers = Frame
 
+
 Datagram:
 
 While TCP uses packets in connection-oriented protocols, datagrams are used in UDP
+
+*******************************************************************
 
 Application = Data
 
