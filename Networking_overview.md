@@ -20,15 +20,15 @@ OSI model --> Hussein Nasser's ytube channel
 
 pres + session = convert that thing we want to transmit into serialized info
 
-                establish conx, Dialogue
+   establish conx, Dialogue
                 
 4 trans = segment, manage ports(src/dest)
 
-            segmentation and reassembly
+  segmentation and reassembly
             
-            speed matching mechanism
+  speed matching mechanism
             
-            TCP/UDP
+TCP/UDP
             
 layer 5 and 6 are useless, we skip them most of the time
 
@@ -36,31 +36,31 @@ layer 5 and 6 are useless, we skip them most of the time
 
 2 Data Link = moving frames(HDLC/PPP) - Hop to Hop data delivery
 
-              MAC + LLC
+  MAC + LLC
               
-              - error control/ flow control(speed matching)
+  - error control/ flow control(speed matching)
               
-              Frames / deal with mac address / (error detection..) small pieces ARP(Mac->IP) | deals with mac adrs
+  Frames / deal with mac address / (error detection..) small pieces ARP(Mac->IP) | deals with mac adrs
               
-              corrects errors that may occur in the physical layer
+  corrects errors that may occur in the physical layer
               
-              Sliding Window Protocol (https://youtu.be/LnbvhoxHn8M)
+  Sliding Window Protocol (https://youtu.be/LnbvhoxHn8M)
               
-              High-level Data Link Control (HDLC) is a group of communication protocols of the data link layer for transmitting data between network 
+  High-level Data Link Control (HDLC) is a group of communication protocols of the data link layer for transmitting data between network 
               
-              points or nodes. Since it is a data link protocol, data is organized into frames. A frame is transmitted via the network to the 
+  points or nodes. Since it is a data link protocol, data is organized into frames. A frame is transmitted via the network to the 
               
-              destination that verifies its successful arrival.
+  destination that verifies its successful arrival.
 
-              Multiple Access Protocols = avoid talking simultaneously aka collision 
+  Multiple Access Protocols = avoid talking simultaneously aka collision 
               
-                                          Random access protocol (CSMA/CD..) = any station has the right to acess and send data
+  Random access protocol (CSMA/CD..) = any station has the right to acess and send data
                                           
-                                          CSMA = carrier(medium/chanel) sense protocol aka "listen before talk"
+  CSMA = carrier(medium/chanel) sense protocol aka "listen before talk"
 
 1 Physical = frame into ones and zeros (electricity doesn't has direction aka broadcast) 
 
-            converts the digital bits into electrical, radio, or optical signals.
+  converts the digital bits into electrical, radio, or optical signals.
 
 this data(binary) will be sent to everyone
 
@@ -172,7 +172,7 @@ a broadcast storm can be instigated for the purpose of a denial of service (DOS)
 
 ==> Spanning Tree Protocol (STP) prevents broadcast loops, blocks the redundant link(will be used when active links or ports goes down)
 
-    (https://youtu.be/GSKoQ8ZR8rw?list=PLBlnK6fEyqRgMCUAG0XRw78UA8qnv6jEx)
+  (https://youtu.be/GSKoQ8ZR8rw?list=PLBlnK6fEyqRgMCUAG0XRw78UA8qnv6jEx)
 
 Layer 2 loops
 
@@ -219,11 +219,11 @@ subnet mask says who are ur neighbors in the network
 ==
 Switch => three operations :
 
-        learn
+  learn
         
-        flood
+  flood
         
-        forward
+  forward
         
  ====
  internet is nothing more than a series of routers
@@ -352,27 +352,25 @@ ISIS runs on top of data link layer(encapsulated in Data link layer), whereas OS
  
  It has three phases:
  
-    Initiation
+  Initiation
     
-    Sharing
+  Sharing
     
-    Updating
+  Updating
 
-    =
+  =
 
-    Why use iBGP inside an Autonomous System, if IGP protocols fulfill the need for internal communication:
+  Why use iBGP inside an Autonomous System, if IGP protocols fulfill the need for internal communication:
     
-    iBGP isn't really used for internal routing, it is used by all your eBGP routers to share their routes.
+  iBGP isn't really used for internal routing, it is used by all your eBGP routers to share their routes.
     
-    EBGP exchanges internet (i.e. global) prefixes/routes from other Autonomous systems (EBGP peers). To reach those prefixes, someone should 
+  EBGP exchanges internet (i.e. global) prefixes/routes from other Autonomous systems (EBGP peers). To reach those prefixes, someone should 
     
-    distribute/advertise across the internal network, IBGP comes to the rescue. IBGP advertises these global prefixes to the routers within the 
+  distribute/advertise across the internal network, IBGP comes to the rescue. IBGP advertises these global prefixes to the routers within the 
     
-    Autonomous System (AS). Why not IGP does the same? As IGP is quite chatty (i.e. in fact not designed for handling a large number of routes),
+  Autonomous System (AS). Why not IGP does the same? As IGP is quite chatty (i.e. in fact not designed for handling a large number of routes),
 
-    https://networkengineering.stackexchange.com/questions/3909/why-use-ibgp-inside-an-autonomous-system-if-igp-protocols-fulfill-the-need-for
-
-
+  https://networkengineering.stackexchange.com/questions/3909/why-use-ibgp-inside-an-autonomous-system-if-igp-protocols-fulfill-the-need-for
 
 ====
 
@@ -393,7 +391,7 @@ solutions.
 
 ====
 ```
-    do sh ip route rip
+do sh ip route rip
 int fa1/0
 interface fastEthernet0/0
 ip add ......
@@ -947,8 +945,6 @@ How VTEPs Learns and Creates Forwarding Table
 5/  The packet is de-encapsulated and delivered to the virtual machine connected on that logical network VXLAN 5001.
 
 https://blogs.vmware.com/vsphere/2013/05/vxlan-series-how-vtep-learns-and-creates-forwarding-table-part-5.html
-
-
 
 VxLAN Address Learning
 
