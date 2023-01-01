@@ -270,17 +270,13 @@ OSPF cost link = 100 000 000 / bandwidth
 
 right protocol/route is chosen based on administrative distances(rank)..
 
+*******************************************************************
 
-IGP
-EGP
+AS
 
- autonomous system (AS) is a collection of connected Internet Protocol (IP) routing prefixes under the control of one or more network operators on 
- 
- behalf of a single administrative entity or domain, that presents a common and clearly defined routing policy to the Internet
+ autonomous system (AS) is a collection of connected Internet Protocol (IP) routing prefixes under the control of one or more network operators on behalf of a single administrative entity or domain, that presents a common and clearly defined routing policy to the Internet
 
-  In simpler terms, an AS can be thought of as a connected group of IP networks managed by a single administrative entity, such as a university, 
-  
-  government, commercial organization or other type of internet service provider (ISP).
+  In simpler terms, an AS can be thought of as a connected group of IP networks managed by a single administrative entity, such as a university, government, commercial organization or other type of internet service provider (ISP).
 
   AS is sometimes described as a set of routers that are managed by a single administrative entity. 
 
@@ -324,6 +320,8 @@ are like cars traveling from one house to another, and BGP is like a navigation 
 https://www.imperva.com/learn/ddos/border-gateway-protocol-bgp/
 
 *******************************************************************
+Intra / Inter
+IGP / EGP
 
 Intra-, which comes from the Latin intra (meaning “within”)
 
