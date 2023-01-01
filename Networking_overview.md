@@ -326,6 +326,7 @@ ISPs make it possible for customers to access the internet while also providing 
 *******************************************************************
 
 Intra / Inter
+
 IGP / EGP
 
 Intra-, which comes from the Latin intra (meaning “within”)
