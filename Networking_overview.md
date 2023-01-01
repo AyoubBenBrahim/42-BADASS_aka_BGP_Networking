@@ -289,11 +289,11 @@ AS
 
   (IANA) manages the ASN system and coordinates the distribution of ASNs across five global regions. 
 
-  BGP can direct packets along the most efficient routes to their target autonomous systems.
+  BGP can direct packets along the most efficient routes to their target AS.
 
-  Networks within an autonomous system communicate routing information to each other using one or more interior gateway protocols.
+  Networks within an AS communicate routing information to each other using one or more IGPs - interior gateway protocols.
   
-  In contrast, communications between autonomous systems rely on a single exterior gateway protocol -- Border Gateway Protocol -- which makes it possible to share routing information and efficiently route data packets between autonomous systems
+  In contrast, communications between autonomous systems rely on a single EGP Exterior Gateway Protocol -- Border Gateway Protocol BGP -- which makes it possible to share routing information and efficiently route data packets between AS
 
 *******************************************************************
 
