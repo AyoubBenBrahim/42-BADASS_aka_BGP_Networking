@@ -473,25 +473,17 @@ OSPF
 
  Link-state advertisements 
 
-  how updates are sent between areas. 
+ how updates are sent between areas. 
   
-These updates are called link-state advertisements , or LSAs. An LSA is an OSPF multicast that describes 
-
-a routing change or routing update to other routers or areas. 
+These updates are called link-state advertisements , or LSAs. An LSA is an OSPF multicast that describes a routing change or routing update to other routers or areas. 
 
 Each network segment needs a designated router, known as the DR
 
- it is the job of the DR to multicast the update to all routers within its area. 
+it is the job of the DR to multicast the update to all routers within its area. 
  
- A backup designated router (BDR) must also be selected. This router becomes the DR if the DR becomes 
-unavailable. 
+A backup designated router (BDR) must also be selected. This router becomes the DR if the DR becomes unavailable. 
 
-
-You configure OSPF much like you configure other routing protocols: use the router command to 
-establish the protocol and a process number, and use the network command to tell the router which 
-
-networks it's responsible for. It's easy to become confused: with OSPF the network command takes a 
-wildcard mask, not a subnet mask. 
+You configure OSPF much like you configure other routing protocols: use the router command to establish the protocol and a process number, and use the network command to tell the router which networks it's responsible for. It's easy to become confused: with OSPF the network command takes a wildcard mask, not a subnet mask. 
 ```
 router ospf  99
   network 10.10.1.0 0.0.0.255 area 0
@@ -499,34 +491,34 @@ router ospf  99
 Here, we establish an OSPF routing process with the process ID 99. This routing process is responsible for 
 although they are frequently called AS numbers, the numbers associated with EIGRP and OSPF routing processes are really just process IDs
 
-the network 10.10.1.0/24, which belongs to area 0. Therefore, this router is part of the OSPF backbone 
-
-area. Do not confuse the process ID (99) with the area ID (0).
+the network 10.10.1.0/24, which belongs to area 0. Therefore, this router is part of the OSPF backbone area. Do not confuse the process ID (99) with the area ID (0).
 
 ASBR (autonomous system border router)
 
 
 192.168.2.0 0.0.0.255
+
 that wildcard masks look like subnet masks, but they aren't;
+
 Wildcard = 255 - Subnet
 
 *******************************************************************
 
-route summarization
+Route Summarization
 
 you should notice that there are four routes pointing to 172.16.1.1 for the various 10.x.x.x networks. 
-We can simplify the routing table
 
+We can simplify the routing table
 
 *******************************************************************
 
 BGP
 
 We don't provide a network mask, as BGP assumes the old classful addressing scheme when a mask isn't provided explicitly.
-
+```
 router bgp 500
 network 10.10.2.0 mask 255.255.224.0
-
+```
 Next, we need to define our routing peers with the neighbor command. This step also defines whether we are using iBGP or eBGP. If our neighbor router has the same AS number, we are using iBGP. If our neighbor has a different AS number, we are configuring eBGP. In this case, we configured a neighbor with a different AS number, meaning that we are using eBGP. 
 ```
 router bgp 500
@@ -534,9 +526,9 @@ neighbor 192.168.1.5 remote-as 400
 ```
 By default, BGP summarizes routes on class boundaries.
 
- Configuring "no auto-summary" disables automatic summarization.
+Configuring "no auto-summary" disables automatic summarization.
 
- When an iBGP router advertises a route, it advertises the next hop of the route as it learned it. The next-hop-self keyword (used with the neighbor command)
+When an iBGP router advertises a route, it advertises the next hop of the route as it learned it. The next-hop-self keyword (used with the neighbor command)
  
 tells the router to rewrite the route's next hop as itself.
 
@@ -552,15 +544,23 @@ VXLAN
 
 Extensible: able to be extended or stretched; extendable.
 
+*******************************************************************
+
 Network virtualization
 
+*******************************************************************
+
 VXLAN is the most commonly used protocol to create overlay networks that sit on top of the physical network, 
+
+*******************************************************************
 
 What Problem Does VXLAN Solve?
 
 Data centers have rapidly increased their server virtualization over the past decade
 
 VXLAN is a technology that allows you to segment your networks (as VLANs do) but also solves the scaling limitation of VLANs and provides benefits that VLANs can
+
+*******************************************************************
 
 How Does VXLAN Work?
 
@@ -589,6 +589,8 @@ Network overlays are a method of using software virtualization to create additio
 endpoints designated by an identification tag
 
 We need overlay networks due to the limitations of the underlay network.
+
+*******************************************************************
 
 An underlay network, as the name implies, is the underlying physical infrastructure of overlay networks.
 
@@ -623,7 +625,6 @@ an extension to Virtual Local Area Network (VLAN)
 
   It establishes a logical tunnel on the IP network between the source and destination network devices to encapsulate user-side packets and forward them through the tunnel. 
 
-
 VXLAN has become the mainstream technology for constructing data center networks
 
 *******************************************************************
@@ -635,8 +636,8 @@ VLAN is as a traditional network isolation technology. In accordance with standa
 
 VXLAN overcomes the preceding disadvantages of VLAN. VXLAN uses the 24-bit VNI field (as shown in Figure 1-5) to identify up to 16M tenants, compared to a maximum of 4k tenants in VLAN. 
 
-
 during VXLAN packet encapsulation, a 24-bit VNI is added to a VXLAN packet
+
 A VNI identifies a tenant.
 
   https://support.huawei.com/enterprise/en/doc/EDOC1100086966
@@ -665,7 +666,6 @@ a two-layer network topology composed of spine and leaf switches.
 
   https://community.fs.com/blog/leaf-spine-with-fs-com-switches.html
 
-
 The spine simply ensures that VTEP-to-VTEP communication is done efficiently between different leafs by using the underlay IP network
 
 *******************************************************************
@@ -686,13 +686,9 @@ A loop back interface is a software interface which can be used to emulate a phy
 
 The purpose of the loopback range is testing of the TCP/IP protocol implementation on a host. Since the lower layers are short-circuited, sending to a loopback address allows the higher layers (IP and above) to be effectively tested without the chance of problems at the lower layers manifesting themselves.
 
-
-
 ===> "You can also configure the loopback address as the Router ID for routing protocols like OSPF and BGP."
 
 https://study-ccna.com/loopback-interface-loopback-address/
-
-
 
 Loopback interface’s IP Address determines a router’s OSPF Router ID. A loopback interface is always up and allows Border Gateway Protocol (BGP) neighborship between two routers to stay up even if one of the outbound physical interface connected between the routers is down. 
 
