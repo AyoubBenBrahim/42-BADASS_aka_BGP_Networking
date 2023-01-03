@@ -428,8 +428,8 @@ In a nutshell, packets in an MPLS network are prefixed with an MPLS header (call
 
 The label stack is the only thing examined by the MPLS switches
 
-Therefore, no traditional routing table lookups are required, which in theory makes this a much faster solution than more traditional IP-based 
-solutions. 
+Therefore, no traditional routing table lookups are required, which in theory makes this **a much faster solution than more traditional IP-based 
+solutions.**
 
 - Network Warrior
 
