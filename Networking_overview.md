@@ -1139,3 +1139,28 @@ EVPN is used to connect multiple virtual rooms together, it creates a virtual ne
 BGP is used to distribute the information of virtual rooms across the network, so that all routers in the house know where each virtual room is located and how to reach it. This is important for allowing people to move seamlessly between virtual and physical rooms.
 
 In summary, a bridge is used to connect the physical room to the virtual room, allowing communication between the two networks and allowing people to move seamlessly between the physical and virtual rooms. EVPN is used to connect multiple virtual rooms together, creating a virtual network that spans multiple virtual rooms and providing a common addressing scheme. BGP is used to distribute information about the virtual rooms across the network, allowing for efficient communication between virtual and physical rooms.
+
+`dose EVPN connects vxlans  that are create on same underlay physical network or vxlans that are created on different network `
+
+EVPN (Ethernet Virtual Private Network) is a technology used to connect multiple VXLANs (Virtual Extensible LANs) together, regardless of whether the VXLANs are created on the same underlay physical network or on different networks. EVPN provides a way to create a virtual network that spans multiple VXLANs, and it provides a common addressing scheme for the virtual network. This allows for efficient communication between VMs (Virtual Machines) and other devices connected to the virtual network, regardless of their location on the physical network. EVPN also allows for network services such as load balancing and VPN to be implemented on the virtual network.
+
+
+
+`u mean two vxlan that are cretaed on diffirent underlay physical network can be connected, and a routing policy established in between, BGP for example`
+
+Yes, that is correct. EVPN allows for multiple VXLANs created on different underlay physical networks to be connected together, and a routing protocol such as BGP can be used to establish a routing policy between them.
+
+EVPN uses a control plane based on MP-BGP (Multiprotocol Border Gateway Protocol) to distribute information about the VXLANs across the network. This allows for the creation of a virtual network that spans multiple physical networks, and it allows for efficient communication between devices connected to the virtual network, regardless of their location on the physical networks.
+
+By using BGP to distribute information about the VXLANs, it can establish routing policy between different VXLANs and make sure that traffic is directed to the correct VXLAN. And this way, it allows for seamless communication between VMs and other devices connected to the virtual network, regardless of their location on the physical network.
+
+
+`what do u mean by a control plan by EVPN`
+
+When we talk about a control plane in the context of networking, we're referring to the set of protocols and processes that manage and control the flow of data in a network. The control plane is responsible for things like setting up and tearing down connections, managing routing information, and making decisions about how to handle different types of traffic.
+
+In the case of EVPN, the control plane is based on MP-BGP (Multiprotocol Border Gateway Protocol), which is used to distribute information about the VXLANs across the network. This allows for the creation of a virtual network that spans multiple physical networks, and it allows for efficient communication between devices connected to the virtual network, regardless of their location on the physical networks.
+
+The control plane of EVPN uses MP-BGP to advertise the information about VXLANs, as well as the routes within the VXLANs. This information is used by routers in the network to build a forwarding table that can be used to forward traffic to the correct VXLAN. By using BGP to distribute information about the VXLANs, it can establish routing policy between different VXLANs and make sure that traffic is directed to the correct VXLAN.
+
+In summary, the control plane of EVPN is the set of protocols and processes that manage and control the flow of data in the virtual network created by EVPN. It uses MP-BGP to distribute information about the VXLANs across the network, and it allows for the creation of a virtual network that spans multiple physical networks, and it allows for efficient communication between devices connected to the virtual network, regardless of their location on the physical networks.
