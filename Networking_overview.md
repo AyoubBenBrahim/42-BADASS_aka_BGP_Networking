@@ -1046,7 +1046,7 @@ SP devices forward customer’s packet based on L2 info (eg. MAC,VlanID).Spis no
  
  
  
-**explain VXLAN to a layman in a nutshell**
+`explain VXLAN to a layman in a nutshell`
  
 VXLAN (Virtual Extensible LAN) is a technology that allows you to create a virtual network on top of your existing physical network infrastructure. Think of it like creating a virtual room in your house, within your existing house.
 
@@ -1057,7 +1057,7 @@ VXLAN also allows for more flexibility in network design, as it can span multipl
 It's a bit like using a software to create a virtual LAN, so you can have multiple networks in your existing network infrastructure without having to physically rewire it. It is beneficial for large enterprise networks, data centers, and cloud service providers.
 
 
-**explore more on the virtual room example**
+`explore more on the virtual room example`
 
 Sure, let's say you have a large house with many rooms and you want to create a new space for a specific purpose, like a home office or a game room. With VXLAN, you can create a virtual room within your existing house without having to build any new walls or make any major changes to your house's infrastructure.
 
@@ -1069,7 +1069,7 @@ It's worth noting that VXLAN is a Layer 2 (Data Link Layer) protocol, that means
 
 
 
-**why a bridge is needed to configure vxlan**
+`why a bridge is needed to configure vxlan`
 
 
 A bridge is needed to configure VXLAN because it acts as the intermediary between the virtual and physical networks. In VXLAN, the virtual network is called the VXLAN Tunnel Endpoint (VTEP), and the physical network is called the underlay. The bridge connects these two networks by encapsulating the traffic from the virtual network and forwarding it to the physical network, and vice versa.
@@ -1081,7 +1081,7 @@ Additionally, the bridge also provides features such as VLAN tagging and filteri
 In short, a bridge is needed in VXLAN to connect the virtual and physical networks, encapsulate and forward traffic, and provide features such as segmentation, security, and multicast support.
 
 
-**what may be a bridge in the example of virtual room above**
+`what may be a bridge in the example of virtual room above`
 
 In the example of the virtual room, the bridge could be thought of as the virtual door or portal that connects the virtual room to the rest of the house. The virtual room is the VXLAN segment or virtual network, and the rest of the house is the physical network or underlay.
 
@@ -1093,7 +1093,7 @@ It's worth noting that the virtual door is not a physical thing but a software c
 
 
 
-**what an equivalent of EVPN in the example** 
+`what an equivalent of EVPN in the example`
 
 In the example of the virtual room, the equivalent of EVPN (Ethernet Virtual Private Network) could be thought of as the virtual key or access card that allows people to enter and exit the virtual room.
 
@@ -1107,7 +1107,7 @@ It's worth noting that, just like how EVPN is a software construct that simulate
 
 
 
-**whats the relation VXLAN EVPN BGP, and include them in the example of virtual room**
+`whats the relation VXLAN EVPN BGP, and include them in the example of virtual room`
 
 
 VXLAN, EVPN, and BGP are all technologies that are used to build and manage virtual networks. They are all related in the sense that they are often used together to create a highly scalable and resilient virtual network infrastructure.
@@ -1129,7 +1129,7 @@ In summary, VXLAN, EVPN, and BGP work together to create a virtual network infra
 
 
 
-**correct me if im wrong, follwing the exampl, a bridge connects the physical room to the virtual room, and evpn connects virtual rooms togeter**
+`correct me if im wrong, follwing the exampl, a bridge connects the physical room to the virtual room, and evpn connects virtual rooms togeter`
 
 
 You are correct that a bridge is used to connect the physical room to the virtual room in the example. The bridge allows communication between the physical and virtual networks, it allows people to move seamlessly between the physical and virtual rooms.
