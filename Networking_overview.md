@@ -314,6 +314,12 @@ and BGP is like a navigation app that helps them take the best possible route.
 
 https://www.imperva.com/learn/ddos/border-gateway-protocol-bgp/
 
+let's say you're in city A and you want to drive to city Z. To get there, you'll need to take a route through different cities, or networks. Without BGP, your route might take you through many cities that are not the most direct or efficient. But with BGP, a navigation system can check its BGP table and see the best route to get you directly from city A to city Z, avoiding any unnecessary stops.
+
+BGP also helps with dealing with any issues that might come up on the way. For example, if there is a traffic jam or road construction on the way, BGP can find an alternative route to ensure you still get to your destination quickly.
+
+Additionally, BGP also allows different road-map service providers to share information about their networks, so that all the road-map service providers have a complete map of the road network and can make the best routing decisions possible.
+
 *******************************************************************
 
   QoS ==> quality of service 
