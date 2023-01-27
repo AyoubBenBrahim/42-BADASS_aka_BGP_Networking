@@ -12,7 +12,7 @@ OSI model --> Hussein Nasser's ytube channel
 *******************************************************************
 
 
-7 Application = 
+7 Application = providing services to the user and for interfacing with the other layers
 
       ---------
 
