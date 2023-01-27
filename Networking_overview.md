@@ -966,6 +966,7 @@ The chronological order of the following technologies is:
 
 5 EVPN (Ethernet Virtual Private Network) - EVPN is based on VXLAN and was first introduced in 2013 as a way to provide Layer 2 and Layer 3 VPN services over VXLAN networks.
 ```
+
 *******************************************************************
 
  most VXLAN networks use an IPv4 underlay exclusively.
@@ -1160,7 +1161,6 @@ In summary, VXLAN, EVPN, and BGP work together to create a virtual network infra
 
 
 
-
 `correct me if im wrong, follwing the exampl, a bridge connects the physical room to the virtual room, and evpn connects virtual rooms togeter`
 
 
@@ -1198,3 +1198,24 @@ The control plane of EVPN uses MP-BGP to advertise the information about VXLANs,
 In summary, the control plane of EVPN is the set of protocols and processes that manage and control the flow of data in the virtual network created by EVPN. It uses MP-BGP to distribute information about the VXLANs across the network, and it allows for the creation of a virtual network that spans multiple physical networks, and it allows for efficient communication between devices connected to the virtual network, regardless of their location on the physical networks.
 
 
+
+
+`is vxlan an evolution of VPLS and MPLS`
+
+VXLAN is a network virtualization technology that is used to create virtual Layer 2 networks on top of existing Layer 3 infrastructures. It can be considered an evolution of VPLS (Virtual Private LAN Service) and MPLS (Multiprotocol Label Switching) as it provides similar functionality, but with some key differences. VXLAN uses a different encapsulation method than VPLS and MPLS, and it also supports a much larger number of virtual networks. Additionally, VXLAN is designed to work with IP-based networks, whereas VPLS and MPLS are primarily used with MPLS-enabled networks.
+
+`what is the functionality of VPLS`
+VPLS (Virtual Private LAN Service) is a technology that allows multiple sites to be connected together as if they were on the same LAN. This enables users at different sites to communicate with each other as if they were on the same local network, even though they may be connected over a wide area network (WAN).
+
+VPLS functions by creating a virtual private network (VPN) over a public infrastructure. It uses MPLS (Multiprotocol Label Switching) to create a virtual circuit between sites, allowing for the creation of a virtual LAN (VLAN) that spans multiple sites. This virtual LAN allows for the use of standard LAN protocols, such as Ethernet, to communicate between sites.
+
+VPLS is typically used by organizations that have multiple locations and need to connect them together in a way that allows for the sharing of resources and communication between users at different sites. It can be used for a variety of applications, such as voice over IP (VoIP), video conferencing, and data sharing.
+
+بركة خان
+`is VPLS still in use`
+
+VPLS (Virtual Private LAN Service) is still in use, but it is not as widely deployed as it once was. The technology has been around for a number of years and has been used by many organizations to connect multiple sites together as if they were on the same LAN.
+
+However, as the technology has evolved, other solutions have emerged that can provide similar functionality with more advanced features. One such solution is VXLAN (Virtual Extensible LAN), which is based on the same concept of creating virtual LANs that span multiple sites, but it uses a different encapsulation method and supports a much larger number of virtual networks.
+
+Additionally, many companies are now moving to cloud-based solutions, which can provide similar functionality without the need for a physical infrastructure. Services such as Amazon Virtual Private Cloud (VPC) and Google Cloud Virtual Private Cloud (VPC) provide similar functionality to VPLS, allowing for the creation of virtual private networks that can span multiple sites.
