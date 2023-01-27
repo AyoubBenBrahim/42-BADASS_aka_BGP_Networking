@@ -29,22 +29,28 @@ pres + session = convert that thing we want to transmit into serialized info
       ---------
                 
 4 trans = segment, manage ports(src/dest)
+  
+  Responsible for ensuring that data is delivered reliably and in order, and for managing the flow of data between devices
 
   segmentation and reassembly
             
   speed matching mechanism
             
 TCP/UDP
+
+
             
 layer 5 and 6 are useless, we skip them most of the time
 
       ---------
      
-3 net/ip protocol = Packets / add ip(src/dest) + other headers
+3 net/ip protocol = Packets / add ip(src/dest) + other headers, routing
 
       ---------
 
 2 Data Link = moving frames(HDLC/PPP) - Hop to Hop data delivery
+
+  Responsible for creating a reliable link between two devices on a network
 
   MAC + LLC
               
