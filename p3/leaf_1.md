@@ -155,7 +155,7 @@ But you can have an iBGP between a loopback on R1 and the physical interface on 
 
 R4(config-router)# neighbor 2.2.2.2 update-source loopback 0
 
-=====
+==
 
 address-family l2vpn evpn
 
@@ -167,13 +167,13 @@ Specifies address family to use and changes to the configuration context for the
   address-family l2vpn evpn
 The spine activates the l2vpn evpn address family to signal to its peers that it can process EVPN routes.
 
-====
+==
 
  neighbor 1.1.1.1 activate
 
   enables the address-family capability and exchange of information specific to an address family with a BGP neighbor.
 
-===
+==
 
 neighbor 1.1.1.1 remote-as 1
 
@@ -181,7 +181,7 @@ Creates a peer, initiates the connection to the peer, and adds an entry to the B
 
 Neighbor <peer group name> remote-as < as-number>
 	Mettez à jour la table de voisins BGP IPv4 avec l’adresse IPv4 du voisin dans le système autonome spécifié.
-====
+==
 
 ARP suppression 
 
