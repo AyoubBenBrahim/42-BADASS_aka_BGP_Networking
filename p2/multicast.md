@@ -1,6 +1,6 @@
 
-R1
-
+### R1
+```
 ip link add br0 type bridge
 ip link set dev br0 up
 ###
@@ -17,11 +17,13 @@ ip link set dev vxlan10 up
 ###
 ip -d link show vxlan10
 
- brctl show 
+brctl show 
+``` 
+
 -------
 
-R2
-
+### R2
+```
 ip link add br0 type bridge
 ip link set dev br0 up
 ###
@@ -36,16 +38,39 @@ brctl addif br0 vxlan10
 ip link set dev vxlan10 up
 ###
 ip -d link show vxlan10
+```
 
+---
 
--------------------
  alpine machines
-
+```
 ip addr add 30.1.1.1/24  dev eth1
     ----
 ip addr add 30.1.1.2/24  dev eth1
+```
+====
 
-=====
+`ip link add br0 type bridge`: this command creates a new bridge device named "br0" and sets its type as "bridge".
+
+`ip link set dev br0 up`: this command brings up the "br0" bridge device, making it active and ready to use.
+
+`ip addr add 10.1.1.1/24 dev eth0`: this command assigns the IP address 10.1.1.1 with a netmask of /24 to the interface "eth0"
+
+`ip link add name vxlan10 type vxlan id 10 dev eth0 group 239.1.1.1 dstport 4789`: this command creates a new VXLAN interface named "vxlan10" with a VXLAN ID of 10, using the interface "eth0" as the local endpoint and the multicast group 239.1.1.1 as the destination. "dstport 4789" is the destination port for the VXLAN tunnel.
+
+`ipaddr add 20.1.1.1/24 dev vxlan10`: this command assigns the IP address 20.1.1.1 with a netmask of /24 to the VXLAN interface "vxlan10".
+
+`brctl addif br0 eth1`: this command adds the interface "eth1" to the bridge "br0"
+
+`brctl addif br0 vxlan10`: this command adds the VXLAN interface "vxlan10" to the bridge "br0"
+
+`ip link set dev vxlan10 up`: this command brings up the "vxlan10" interface, making it active and ready to use.
+
+`ip -d link show vxlan10`: this command shows detailed information about the VXLAN interface "vxlan10"
+
+`brctl show`: this command shows the status of all the bridges on the system.
+
+====
 
 Multicast to handl BUM traffic
 
