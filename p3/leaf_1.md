@@ -175,17 +175,15 @@ The spine activates the l2vpn evpn address family to signal to its peers that it
 
 ==
 
-neighbor 1.1.1.1 remote-as 1
+`neighbor 1.1.1.1 remote-as 1`
 
 Creates a peer, initiates the connection to the peer, and adds an entry to the BGP neighbor table. Specifies a neighbor with an autonomous system (AS) number that identifies the neighbor as internal to the local autonomous system. 
 
-Neighbor <peer group name> remote-as < as-number>
-	Mettez à jour la table de voisins BGP IPv4 avec l’adresse IPv4 du voisin dans le système autonome spécifié.
+`Neighbor <peer group name> remote-as < as-number>`
+ Mettez à jour la table de voisins BGP IPv4 avec l’adresse IPv4 du voisin dans le système autonome spécifié.
 ==
 
 ARP suppression 
-
-
 
 
 Enable EVPN in an iBGP Environment with an OSPF Underlay
