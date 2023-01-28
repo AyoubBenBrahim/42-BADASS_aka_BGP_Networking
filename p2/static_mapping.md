@@ -33,7 +33,7 @@ ip link set dev vxlan10 up
 
 `ip addr add 10.1.1.2/24 dev eth0` - This command assigns the IP address "10.1.1.2" with a netmask of "/24" to the network interface "eth0". This interface will be used as the local endpoint for communication.
 
-`ip link add name vxlan10 type vxlan id 10 dev eth0 remote 10.1.1.1 local 10.1.1.2 dstport 4789` - This command creates a new VXLAN interface named "vxlan10" with an identifier of "10". The interface is associated with the "eth0" device, and the remote endpoint of the VXLAN tunnel is set to "10.1.1.1" and the local endpoint is set to "10.1.1.2" and the destination port is set to "4789". VXLAN is a network virtualization technology used to extend Layer 2 networks over Layer 3 networks.
+`ip link add name vxlan10 type vxlan id 10 dev eth0 remote 10.1.1.1 local 10.1.1.2 dstport 4789` - (VTEP) , This command creates a new VXLAN interface named "vxlan10" with an identifier of "10". The interface is associated with the "eth0" device, and the remote endpoint of the VXLAN tunnel is set to "10.1.1.1" and the local endpoint is set to "10.1.1.2" and the destination port is set to "4789". VXLAN is a network virtualization technology used to extend Layer 2 networks over Layer 3 networks.
 
 `ipaddr add 20.1.1.2/24 dev vxlan10` - This command assigns the IP address "20.1.1.2" with a netmask of "/24" to the VXLAN interface "vxlan10".
 
@@ -56,3 +56,6 @@ ip addr add 30.1.1.2/24  dev eth1
 
 
 configured VXLAN interfaces, attached them to a bridge, and mapped VLANs to VNIs.
+
+
+a software bridge is a program that runs on a computer or a virtual machine, while a hardware bridge is a physical device that connects networks together.
