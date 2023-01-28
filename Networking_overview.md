@@ -1236,6 +1236,31 @@ In summary, the control plane of EVPN is the set of protocols and processes that
 
 
 
+`whats the diffirence between multicast and static mapping in VXLAN`
+
+In VXLAN networks, there are two main ways to map devices to VXLANs:
+multicast and static mapping. And there is a bridge role that connects all the devices in the VXLAN, which is known as Virtual Tunnel End Point (VTEP)
+
+Multicast mapping is a dynamic method of mapping devices to VXLANs. When a device wants to join a multicast group, it sends an IGMP (Internet Group Management Protocol) report to the VTEP. The VTEP then adds the device to the multicast group and starts forwarding packets to the group. When a device leaves a multicast group, it sends an IGMP leave message to the VTEP, which then stops forwarding packets to the group.
+
+Static mapping is a manual method of mapping devices to VXLANs. In this method, an administrator configures the VXLAN ID and the IP multicast address of the multicast group on each device and the VTEP, then the devices and the VTEP will use this information to forward packets to and from the devices in the VXLAN.
+
+The main difference between the two methods is that multicast mapping is dynamic and automatic, while static mapping is manual and requires configuration. Multicast mapping is useful when devices are joining and leaving the VXLAN frequently and when there are many devices in the VXLAN. Static mapping is useful when there are only a few devices in the VXLAN and when the devices are not joining and leaving the VXLAN frequently.
+
+It's also worth noting that Multicast mapping is more scalable than static mapping, as it allows for a larger number of devices to be added to a VXLAN, it also makes it more efficient to manage the membership of a multicast group and make sure that the traffic is only sent to the devices that are part of the group. The VTEP serves as a bridge to connect all the devices within the VXLAN, it does the encapsulation and de-encapsulation of the VXLAN header, and the forwarding of the traffic between the devices.
+
+`is the VTEP intelligent, dose it have a table like routers`
+
+Yes, the VTEP (Virtual Tunnel End Point) is a type of network device that is responsible for connecting devices within a VXLAN (Virtual Extensible LAN) network. The VTEP has a similar function to a router in that it forwards traffic between different devices in the network.
+
+As such, the VTEP also has a table, similar to a router's routing table, that is used to forward packets. This table is called the MAC address table and it is used to keep track of the MAC addresses of the devices that are connected to the VXLAN. When a packet is received by the VTEP, it uses the MAC address of the destination device in the packet to look up the corresponding VNI (VXLAN Network Identifier) in the MAC address table. Then the VTEP encapsulates the packet with a VXLAN header that includes the VNI, and forwards the packet to the destination device.
+
+The VTEP is also responsible for managing the multicast groups in the VXLAN network, it uses the Internet Group Management Protocol (IGMP) to track the membership of the multicast group and make sure that the traffic is only sent to the devices that are part of the group.
+
+Additionally, the VTEP is also responsible for performing encapsulation and de-encapsulation of VXLAN headers, this enable the VTEP to forward traffic between different VXLANs and other types of networks, such as VLANs and traditional LANs.
+
+In short, the VTEP is an intelligent device that performs similar functions as a router, it uses its MAC address table and IGMP to forward traffic and manage membership in the VXLAN network.
+
 
 `is vxlan an evolution of VPLS and MPLS`
 
