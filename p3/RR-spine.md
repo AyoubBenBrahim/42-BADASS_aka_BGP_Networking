@@ -115,6 +115,7 @@ BGP Dynamic Neighbors / BGP Listen Range
 
 The BGP dynamic neighbors feature is supported in some implementations where one end, the listening end, is passive.
 It is just told what IP subnet to accept connections from, and is associated with a peer group that controls the characteristics of the peering session.
+
 ```
 router bgp 65011
       ...
@@ -129,7 +130,7 @@ Cloud Native Data Center Networking p 330
 
 ==
 
-RR to avoid full-mesh topology(all leafs connected)
+**RR to avoid full-mesh topology(all leafs connected)**
 RR take the VTEP information and redistribute/Reflect it to the other VTEPs
 https://youtu.be/9Hq8W9PZYus?t=2753
 
