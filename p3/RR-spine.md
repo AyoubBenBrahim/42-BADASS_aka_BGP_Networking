@@ -131,7 +131,9 @@ Cloud Native Data Center Networking p 330
 ==
 
 **RR to avoid full-mesh topology(all leafs connected)**
+
 RR take the VTEP information and redistribute/Reflect it to the other VTEPs
+
 https://youtu.be/9Hq8W9PZYus?t=2753
 
 To simplify repetition when configuring multiple neighbors, most routing suites support a form of templating called peer group.
@@ -140,13 +142,16 @@ The user creates a peer group with a name and then proceeds to configure the des
 Cloud Native Data Center Networking p 307
 
 1/ defines a peer-group called ISL.
+
 2/ assign attributes that all members of the peer-group share.
+
 3/ adds this neighbor to the peer-group already defined.
 
 
 
 1 / Enable EVPN between BGP Neighbors
-    To enable EVPN between BGP neighbors, add the address family evpn to the existing neighbor address-family activation command.
+
+   To enable EVPN between BGP neighbors, add the address family evpn to the existing neighbor address-family activation command.
 
  address-family ==> address families, they are a way for BGP to carry information for different protocols. 
 
@@ -184,7 +189,9 @@ This is a very efficient way to handle BUM traffic, and it scales well. It does 
 https://networkdirection.net/articles/routingandswitching/vxlanoverview/vxlanaddresslearning/
 
 VxLAN Control Plane (EVPN)
+
 BGP-EVPN
+
 BGP operates in the control plane. A normal BGP deployment will share IP reachability information (routes). When integrated with VxLAN, it can also share MAC and VTEP reachability information.
 
 It does this with the EVPN (Ethernet VPN) address family. If you’re not familiar with address families, they are a way for BGP to carry information for different protocols. There are address families for IPv4, IPv6, L3VPN (MPLS), and others.
