@@ -1,3 +1,4 @@
+```
 #shell
 ip link add br0 type bridge
 ip link add vxlan0 type vxlan id 10 dstport 4789
@@ -35,9 +36,47 @@ exit
 exit
 ip a sh dev lo
 #
+```
+=====
+### script commentary
 
-========================
+The first block of code is using the ip command to create and configure a Linux bridge and a VXLAN interface.
 
+`ip link add br0 type bridge` creates a bridge interface named "br0".
+`ip link add vxlan0 type vxlan id 10 dstport 4789` creates a VXLAN interface named "vxlan0" with VXLAN identifier (VNI) 10 and destination port 4789.
+`ip link set eth1 master br0` adds the ethernet interface "eth1" to the bridge "br0"
+`ip link set vxlan0 master br0` adds the VXLAN interface "vxlan0" to the bridge "br0"
+`ip link set vxlan0 up` brings up the VXLAN interface "vxlan0"
+`ip link set br0 up` brings up the bridge "br0"
+
+The second block of code is using the vtysh command.
+
+`vtysh` enters the vtysh command-line interface
+`conf t` enters the configuration mode
+
+`interface eth0` enters the configuration mode for the ethernet interface "eth0"
+`ip address 10.1.1.2/30` assigns the IP address 10.1.1.2 with a subnet mask of 255.255.255.252 to the interface eth0
+`ip ospf area 0` assigns the OSPF area 0 to the interface eth0
+
+`interface lo` enters the configuration mode for the loopback interface
+`ip address 1.1.1.2/32` assigns the IP address 1.1.1.2 with a subnet mask of 255.255.255.255 to the loopback interface
+`ip ospf area 0` assigns the OSPF area 0 to the loopback interface
+
+`router bgp 1` enters the configuration mode for BGP with autonomous system number 1
+`neighbor 1.1.1.1 remote-as 1` specifies the BGP neighbor with IP address 1.1.1.1 and its autonomous system number is 1
+`neighbor 1.1.1.1 update-source lo` specifies that the source IP address of the BGP updates will be the loopback interface
+`address-family l2vpn evpn` enters the address family configuration mode for L2VPN EVPN
+`neighbor 1.1.1.1 activate` activates the BGP neighbor specified
+`advertise-all-vni` Advertise all VXLAN VNIs to the BGP peer
+`exit-address-family` exits the address family configuration mode
+
+`router ospf` enters the configuration mode for OSPF
+`exit` exits the configuration mode
+`exit` exits vtysh
+
+`ip a sh dev lo` command shows the IP address of the loopback interface.
+
+==
 
 neighbor 1.1.1.1 activate  ==> activate address- family for the RR
 
