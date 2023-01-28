@@ -1070,6 +1070,8 @@ VXLAN uses a unicast or multicast IP address to identify the VTEP (VXLAN Tunnel 
 In summary, VXLAN is a network virtualization technology that uses a MAC-in-UDP encapsulation scheme to extend Layer 2 networks over Layer 3 networks. It uses a VXLAN header with a 24-bit VNI to identify the VXLAN, and it uses a unicast or multicast IP address to identify the VTEP devices that are responsible for encapsulating and decapsulating VXLAN packets. It is IP-based and relies on the IP infrastructure to provide layer 3 routing and forwarding services.
  
  `explain more on "extend Layer 2 networks over Layer 3 networks."`
+ 
+ "Extending Layer 2 networks over Layer 3 networks" refers to the process of connecting multiple LANs (Local Area Networks) that use the same Layer 2 protocol (such as Ethernet) over a wider area network (WAN) that uses a different Layer 3 protocol (such as IP). This allows devices on different LANs to communicate as if they were on the same LAN, even if they are physically separated by a WAN. This is commonly done using a technique called VLAN (Virtual LAN) tagging, which allows multiple LANs to coexist on the same physical network infrastructure.
 
 In traditional networks, Layer 2 networks are typically confined to a single physical location, such as a single switch or a single data center. This means that devices connected to the same Layer 2 network must be in the same physical location in order to communicate with each other. However, in modern networks, it is often necessary to connect devices that are located in different physical locations, such as different data centers or different parts of a large building.
 
