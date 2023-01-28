@@ -1153,6 +1153,15 @@ VTEPs work by encapsulating the original Layer 2 frames with a VXLAN header and 
 
 When a packet is received by a VTEP, it removes the VXLAN header and forwards the original Layer 2 frame to the appropriate VXLAN. In this way, VTEPs allow devices on different VXLANs to communicate as if they were on the same LAN, even though they are physically separated by Layer 3 network.
 
+`so like a router links between two LANS, a VTEP links two VXLANs`
+
+Yes, that is correct. Just as a router links two LANs (Local Area Networks) and allows communication between devices on different LANs, a VTEP (VXLAN Tunnel End Point) links two VXLANs (Virtual Extensible LANs) and allows communication between devices on different VXLANs.
+
+A router forwards packets between different LANs based on their Layer 3 (IP) addresses, while a VTEP forwards packets between different VXLANs based on the VXLAN ID in the VXLAN header.
+
+Additionally, a VTEP encapsulates the original Layer 2 frames with a VXLAN header and sends them over a Layer 3 network, while a router doesn't do any encapsulation.
+
+In summary, both Router and VTEP allows communication between different networks, but Router operates on layer 3 and VTEP operates on layer 2, and VTEP also encapsulate the frames before forwarding.
 
 `what an equivalent of EVPN in the example`
 
