@@ -1,3 +1,4 @@
+```
 vtysh
 conf t
 !
@@ -36,8 +37,52 @@ exit
 exit
 ip a sh dev lo
 #
-
+```
 ======
+
+### commentary
+
+`vtysh`: This command starts the VTYSH command-line interface, which is used to configure and monitor various network protocols on a device.
+
+`conf t`: This command enters configuration mode, which allows the user to make changes to the device's configuration.
+
+`interface eth0`: This command enters the configuration for the Ethernet interface "eth0".
+
+`ip address 10.1.1.1/30`: This command assigns the IP address 10.1.1.1 with a subnet mask of /30 to the interface "eth0". This means that the device will be able to communicate with other devices on the 10.1.1.0/30 network.
+
+`ip ospf area 0`: This command enables the OSPF (Open Shortest Path First) protocol on the interface "eth0" and assigns it to area 0. OSPF is a routing protocol used to distribute routing information within a single autonomous system (AS).
+
+`interface eth1`: This command enters the configuration for the Ethernet interface "eth1".
+
+`ip address 10.1.1.5/30`: This command assigns the IP address 10.1.1.5 with a subnet mask of /30 to the interface "eth1". This means that the device will be able to communicate with other devices on the 10.1.1.4/30 network.
+
+`interface eth2`: This command enters the configuration for the Ethernet interface "eth2".
+
+`ip address 10.1.1.9/30`: This command assigns the IP address 10.1.1.9 with a subnet mask of /30 to the interface "eth2". This means that the device will be able to communicate with other devices on the 10.1.1.8/30 network.
+
+`interface lo`: This command enters the configuration for the loopback interface "lo".
+
+`ip address 1.1.1.1/32`: This command assigns the IP address 1.1.1.1 with a subnet mask of /32 to the loopback interface "lo". This is a virtual interface that is always up and can be used for testing and management purposes.
+
+`router bgp 1`: This command enters the BGP (Border Gateway Protocol) configuration mode and sets the local AS (Autonomous System) number to 1. BGP is a routing protocol used to distribute routing information between different autonomous systems.
+
+`neighbor ibgp peer-group`: This command creates a peer group called "ibgp" for BGP internal peers.
+
+`neighbor ibgp remote-as 1`: This command configures the remote AS number for the "ibgp" peer group to 1.
+
+`neighbor ibgp update-source lo`: This command configures the loopback interface as the source for BGP updates for the "ibgp" peer group.
+
+`bgp listen range 1.1.1.0/29 peer-group ibgp`: This command configures BGP to listen for incoming connections on the IP range 1.1.1.0/29 for the "ibgp" peer group.
+
+`address-family l2vpn evpn`: This command enters the address family configuration mode for L2VPN EVPN (Ethernet Virtual Private Network).
+
+`neighbor ibgp activate` This command activates the ibgp neighbor.
+
+`neighbor ibgp route-reflector-client` This command configures the ibgp peer as a route reflector client.
+
+`exit-address-family`
+==
+
 
 neighbor 1.1.1.1 route-reflector-client
 
