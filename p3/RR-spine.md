@@ -80,22 +80,22 @@ ip a sh dev lo
 
 `neighbor ibgp route-reflector-client` This command configures the ibgp peer as a route reflector client.
 
-`exit-address-family`
+`exit-address-family`  exits the address-family configuration mode.
+
 ==
 
-
-neighbor 1.1.1.1 route-reflector-client
+`neighbor 1.1.1.1 route-reflector-client`
 
 (the type of information BGP can distribute)
 configures the router as a BGP route reflector and the specified peer as its client. 
 Without this, no EVPN routes will be distributed to the leaves.
 
-    =====
+ =====
 
 
-    BGP Dynamic Neighbors are a way to bring up  BGP neighbors without specifically defining the neighbors remote IP address.
-    Using the BGP Listen Range command you specify a range of IP addresses typically on your Hub site that you trust to become BGP neigbors with you.
-
+BGP Dynamic Neighbors are a way to bring up  BGP neighbors without specifically defining the neighbors remote IP address.
+ Using the BGP Listen Range command you specify a range of IP addresses typically on your Hub site that you trust to become BGP neigbors with you.
+```
     R1#sh run int f0/0
 
     interface FastEthernet0/0
@@ -106,7 +106,7 @@ Without this, no EVPN routes will be distributed to the leaves.
      neighbor DYNAMIC peer-group
      neighbor DYNAMIC remote-as 65000
     R1#
-
+```
 
 https://ipwithease.com/dynamic-bgp-peering/
 
@@ -115,18 +115,19 @@ BGP Dynamic Neighbors / BGP Listen Range
 
 The BGP dynamic neighbors feature is supported in some implementations where one end, the listening end, is passive.
 It is just told what IP subnet to accept connections from, and is associated with a peer group that controls the characteristics of the peering session.
-
+```
 router bgp 65011
       ...
       neighbor SERVERS peer-group
       neighbor SERVERS remote-as 64512
       bgp listen range 172.16.1.0/24 peer-group SERVERS
       ...
+```      
 The listen command notifies BGP to accept any BGP connection that is received on the 172.16.1.0/24 subnet and treat the configuration for this peering session to be taken from the peer-group template, SERVERS.
 
 Cloud Native Data Center Networking p 330
 
-========
+==
 
 RR to avoid full-mesh topology(all leafs connected)
 RR take the VTEP information and redistribute/Reflect it to the other VTEPs
@@ -136,9 +137,6 @@ To simplify repetition when configuring multiple neighbors, most routing suites 
 The user creates a peer group with a name and then proceeds to configure the desired attributes for neighbor connection (such as remote-as, connection timers, and the use of BFD). In the next step, the operator assigns each real neighbor to the created peer group, thus avoiding the need to type the same boring stuff over and over again.
 
 Cloud Native Data Center Networking p 307
-
-
-
 
 1/ defines a peer-group called ISL.
 2/ assign attributes that all members of the peer-group share.
