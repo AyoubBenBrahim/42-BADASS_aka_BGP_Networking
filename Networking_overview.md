@@ -1274,7 +1274,7 @@ VPLS functions by creating a virtual private network (VPN) over a public infrast
 
 VPLS is typically used by organizations that have multiple locations and need to connect them together in a way that allows for the sharing of resources and communication between users at different sites. It can be used for a variety of applications, such as voice over IP (VoIP), video conferencing, and data sharing.
 
-بركة خان
+
 `is VPLS still in use`
 
 VPLS (Virtual Private LAN Service) is still in use, but it is not as widely deployed as it once was. The technology has been around for a number of years and has been used by many organizations to connect multiple sites together as if they were on the same LAN.
