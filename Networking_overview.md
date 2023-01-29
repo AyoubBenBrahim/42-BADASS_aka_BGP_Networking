@@ -388,10 +388,10 @@ Level 1–2 routers exchange information with both levels and are used to connec
 In OSPF, areas are delineated on the interface such that an area border router (ABR) is actually in two or more areas at once, effectively creating the borders between areas inside the ABR, whereas in IS-IS area borders are in between routers, designated as Level 2 or Level 1–2. The result is that an IS-IS router is only ever a part of a single area.
 
 
-ISIS runs on top of data link layer(encapsulated in Data link layer), whereas OSPF runs on top of IP
+IS-IS runs on top of data link layer(encapsulated in Data link layer), whereas OSPF runs on top of IP
 
 
- Administrative Distance of OSPF is 110 and ISIS is 115.
+Administrative Distance of OSPF is 110 and ISIS is 115.
 
 *******************************************************************
 
@@ -483,9 +483,9 @@ show ip ospf neighbor
 
 OSPF
 
- Link-state advertisements 
+Link-state advertisements 
 
- how updates are sent between areas. 
+how updates are sent between areas. 
   
 These updates are called link-state advertisements , or LSAs. An LSA is an OSPF multicast that describes a routing change or routing update to other routers or areas. 
 
@@ -1302,3 +1302,41 @@ When a BGP speaker receives a route update, it first checks if the route is alre
 In BGP EVPN, the RRs is used to propagate the MAC-IP information learned from the VTEPs (VXLAN Tunnel Endpoints) to the other BGP speakers in the same AS. This allows for efficient and scalable handling of BUM (Broadcast, Unknown unicast and multicast) traffic, and enables advanced use cases such as multi-tenancy and inter-subnet forwarding.
 
 In summary, the role of RR in BGP-EVPN is to reduce the number of iBGP sessions and to propagate the MAC-IP information learned from the VTEPs to other BGP speakers in the same AS, allowing for efficient and scalable handling of BUM traffic and enabling advanced use cases.
+
+`do we have ARP in clos topology/ spine-leaf architecture  that is based on VXLAN BGP-EVPN`
+
+Yes, ARP (Address Resolution Protocol) can be used in a CLOS (Clos Network) topology or spine-leaf architecture that is based on VXLAN (Virtual Extensible LAN) and BGP-EVPN (Border Gateway Protocol - Ethernet VPN). ARP can still be used for resolving IP addresses to MAC addresses within each switch, allowing for efficient forwarding of packets within the switch based on the IP-to-MAC mapping. However, for inter-switch communication in a VXLAN network, BGP-EVPN is used to map virtual network IDs (VNIDs) to IP addresses and to distribute this information between the VTEPs (VXLAN Tunnel End Points). BGP-EVPN also allows the VTEPs to exchange information and to maintain a consistent view of the VXLAN network, enabling them to properly forward traffic to the correct destination. While ARP can be used within each switch, BGP-EVPN is used for communication between switches in a VXLAN network.
+
+`do we need ARP on the underlay or the overlay network`
+
+In a VXLAN network, ARP is used on the underlay network, but not on the overlay network.
+
+On the underlay network, ARP is used to resolve IP addresses to MAC addresses, which is a requirement for any network. The underlay network provides the transport for the overlay network and is responsible for forwarding packets between VTEPs based on the IP-to-MAC mapping maintained through ARP.
+
+On the overlay network, VXLAN encapsulates Ethernet frames within UDP packets, and multicast is used to forward packets between virtual endpoints and map virtual network IDs (VNIDs) to IP addresses. The mapping of VNIDs to IP addresses is maintained by a network controller or by the VTEPs themselves through a control protocol such as BGP-EVPN. ARP is not used on the overlay network as the IP-to-MAC mapping is maintained through the VXLAN and BGP-EVPN protocols.
+
+`spine , leaf , VTEPS , BRIDGE, each one belongs to which Network, underlay or overlay and u can provide more`
+
+In a VXLAN network, the following components belong to the underlay network:
+
+* Spine switches: These are the core switches in a CLOS (Clos Network) topology or spine-leaf architecture and provide the transport for the overlay network. The spine switches are responsible for forwarding packets between the leaf switches and other network components.
+
+* Leaf switches: These are the access switches in a CLOS topology or spine-leaf architecture and connect to the end devices and servers. The leaf switches receive packets from the end devices and forward them to the spine switches for transport to the destination.
+
+* Physical Network
+
+* IP Network: This refers to the underlying IP network that provides connectivity between the VTEPs in the overlay network. The IP network is responsible for forwarding packets based on IP addresses and can be based on routing protocols such as OSPF or IS-IS.
+
+* MAC Addresses
+
+
+the overlay network:
+
+* VTEPs: These are the devices that perform the encapsulation and decapsulation of VXLAN packets, which are Ethernet frames encapsulated within UDP  packets. The VTEPs are responsible for forwarding traffic between virtual endpoints based on the mapping of virtual network IDs (VNIDs) to IP addresses, which is maintained by a network controller or by the VTEPs themselves through a control protocol such as BGP-EVPN (Border Gateway Protocol - Ethernet VPN).
+
+* Software Bridge
+
+* VXLAN Packets: VXLAN packets are Ethernet frames encapsulated within UDP (User Datagram Protocol) packets. VXLAN packets are used to forward traffic between virtual endpoints in the overlay network.
+
+* Virtual Network IDs (VNIDs): VNIDs are used to identify individual virtual networks within the overlay network. The VNID is used to map virtual networks to IP addresses, which is used by the VTEPs to forward traffic between virtual endpoints.
+
