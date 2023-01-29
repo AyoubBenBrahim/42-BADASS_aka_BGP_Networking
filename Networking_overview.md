@@ -735,7 +735,7 @@ EVPN is just a successor of MPLS based L2VPN/L3VPN and that VXLAN can work on it
 
 a WAN behaves like LAN
 
- virtual private LAN service (VPLS) ensures that geographically isolated user sites can communicate over metropolitan area networks (MANs) and wide-area networks (WANs) as if they were on the same local area network (LAN). 
+VPLS ensures that geographically isolated user sites can communicate over metropolitan area networks (MANs) and wide-area networks (WANs) as if they were on the same local area network (LAN). 
 
  MPLS network is a Layer 2 switched network that allows users to communicate with each other similarly to communication over a LAN.
 
@@ -847,7 +847,7 @@ Consider the match for a network with 4 spines and a 40-leaf underlay with a /31
 
 BGP as underlay routing protocol requires greater design and configuration time in a spine–leaf underlay compared to SPF-based routing protocols. 
 
-BGP, as a hard-state protocol, sends out updates only when there is a change in network reachability. Hence, it does not incur the periodic update overhead that link-state protocols like OSPF have in terms of periodic updates
+**BGP, as a hard-state protocol, sends out updates only when there is a change in network reachability. Hence, it does not incur the periodic update overhead that link-state protocols like OSPF have in terms of periodic updates**
 
 when using eBGP in the underlay, the overlay also needs to be configured in eBGP.
 
