@@ -1,9 +1,12 @@
 
-Forcing my thoughts into an ordered sequence is a torment for me. [...] I squander untold effort making an arrangement of my thoughts.
+"Forcing my thoughts into an ordered sequence is a torment for me. [...] I squander untold effort making an arrangement of my thoughts."
+      -Ludwig Wittgenstein - Culture and Value
 
-Ludwig Wittgenstein - Culture and Value
+"Give me six hours to chop down a tree and I will spend the first four sharpening the axe." 
+      - Abraham Lincoln
 
-Give me six hours to chop down a tree and I will spend the first four sharpening the axe. - Abraham Lincoln
+“He who would learn to fly one day must first learn to walk and run and climb and dance; one cannot fly into flying. ”
+      ― Nietzsche
 
 *******************************************************************
 
