@@ -5,11 +5,11 @@
 
 "Give me six hours to chop down a tree and I will spend the first four sharpening the axe." 
 
-   - Abraham Lincoln
+   -Abraham Lincoln
 
 “He who would learn to fly one day must first learn to walk and run and climb and dance; one cannot fly into flying. ”
 
-   ― Nietzsche
+   ―Nietzsche
 
 *******************************************************************
 
