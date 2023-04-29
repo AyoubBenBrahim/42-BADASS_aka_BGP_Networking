@@ -590,7 +590,7 @@ The entity that performs the encapsulation and decapsulation of packets is calle
 
 ******************************************************************
 
-i found this post on twitter, good initiation in translating newtworking content to Arabic
+i found this [post](https://twitter.com/hashimalshareef/status/1641816292624678919) on twitter, good initiation in translating newtworking content to Arabic
 
 ```
 VXLAN الشبكة المحلية الافتراضية القابلة للتوسع (Virtual Extensible LAN) 
