@@ -3,6 +3,8 @@
 
    -Ludwig Wittgenstein - Culture and Value
 
+   Edit: while reading an article by Hussein Nasser, i found a name for what im doing here ["Collateral Knowledge"](https://youtu.be/6YKbVpWmeLM)
+
 "Give me six hours to chop down a tree and I will spend the first four sharpening the axe." 
 
    -Abraham Lincoln
